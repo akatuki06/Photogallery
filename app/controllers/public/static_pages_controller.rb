@@ -1,4 +1,4 @@
-class Public::StaticPagesController < ApplicationController
+class Public::StaticPagesController < Public::Base
   def home
   end
 

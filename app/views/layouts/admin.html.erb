@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Photogallery</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	
+  	<!-- 追記 -->
+    <% content_for :content do %>
+      <%= render 'layouts/admin/header' %>
+      <%= yield %>
+      <%= render 'layouts/admin/footer' %>
+    <% end %>
+      <%= render template: "layouts/application" %>
+
+  	<p class="notice"><%= notice %></p>
+  	<p class="alert"><%= alert %></p>
+    <%= yield %>
+
+    <!-- https://qiita.com/maggam/items/5c361558559f1c3488bfのやつ -->
+    <%#= yield %>
+    <%# content_for :content do %>  
+      <%#= yield %>
+    <%# end %>
+    <%#= render template: "layouts/application" %>
+    
+  </body>
+</html>
