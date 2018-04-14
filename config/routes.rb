@@ -10,16 +10,19 @@ Rails.application.routes.draw do
     get 'static_pages/how_to_buy'
   end
 
+  namespace :admin do
+  end
+
   devise_for :admins, controllers: {
-  sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
+  sessions:      'admin/admins/sessions',
+  passwords:     'admin/admins/passwords',
+  registrations: 'admin/admins/registrations'
   }
   devise_for :users, controllers: {
-  sessions:      'users/sessions',
-  passwords:     'users/passwords',
-  registrations: 'users/registrations',
-  omniauth_callbacks: 'users/omniauth_callbacks'
+  sessions:      'public/users/sessions',
+  passwords:     'public/users/passwords',
+  registrations: 'public/users/registrations',
+  omniauth_callbacks: 'public/users/omniauth_callbacks'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
