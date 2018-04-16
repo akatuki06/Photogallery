@@ -2,15 +2,16 @@ Rails.application.routes.draw do
 
   root 'public/static_pages#home'
 
-  namespace :public do
+  scope module: :public do
     get 'static_pages/end'
     get 'static_pages/about'
     get 'static_pages/contact'
     get 'static_pages/how_to_register'
     get 'static_pages/how_to_buy'
+    get 'static_pages/entrance'
   end
 
-  namespace :admin do
+  scope module: :admin do
   end
 
   devise_for :admins, controllers: {

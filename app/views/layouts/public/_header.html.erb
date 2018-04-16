@@ -1,5 +1,6 @@
 <header>
 	<nav>
+    そのうち消す
 		<% if user_signed_in? %>
 		<strong><%#= link_to current_user.username, pages_show_path %></strong>
 		<%= link_to 'プロフィール変更', edit_user_registration_path %>
@@ -18,10 +19,12 @@
 		<% end %>
 	</nav>
 
-	<nav class="navbar navbar-expand-md navbar-dark flex-column h-500" style="background-image: url('/assets/I_020.JPG');background-position:right center;background-size:auto;">
+	<nav class="navbar navbar-expand-md navbar-dark flex-column h-50" style="background-image: url('/assets/I_020.JPG');background-position: center;background-size:cover;">
     <div class="container">
       <div class="row my-3">
-        <a class="h1  text-dark w-25" href="#">Photogallery</a>
+        <%= link_to root_path, class: "h1  text-dark w-25" do %>
+        Photogallery</a>
+        <% end %>
       </div>
       <div class="row">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
@@ -36,8 +39,23 @@
             <li class="nav-item">
               <a class="nav-link" href="#">写真展一覧</a>
             </li>
+            <% if user_signed_in? %>
             <li class="nav-item">
-              <a class="nav-link" href="#">ログイン</a>
+              <%= link_to edit_user_registration_path, class: "nav-link" do %>
+            プロフィール変更</a>
+            <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+              ログアウト</a>
+              <% end %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to static_pages_entrance_path, class: "nav-link" do %>
+            ログイン/新規登録</a>
+            <% end %>
+            <% end %>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">カート</a>
@@ -47,6 +65,12 @@
       </div>
     </div>
     <form class="form-inline offset-md-8" action="">
+      <% if user_signed_in? %>
+      <a>こんにちは<%= current_user.name %>さん</a>
+      <a><%= current_user.email %></a>
+      <% else %>
+      <a>こんにちはゲストさん</a>
+      <% end %>
       <input class="form-control mr-2 form-control-sm" type="text" placeholder="Search">
       <button class="btn btn-outline-dark btn-sm" type="submit">Search</button>
     </form>

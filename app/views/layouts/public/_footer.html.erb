@@ -2,21 +2,21 @@
   <div class="text-white bg-dark">
     <div class="container">
       <div class="row">
-        <div class="p-5 col-md-4"> <i class="fa fa-5x mb-5 fa-diamond"></i>
+        <div class="mt-5 col-md-4">
           <h3 class="mb-4">Photogallery</h3>
           <ul class="list-unstyled">
-            <a href="#" class="text-white">Home</a>
+            <%= link_to "Home", root_path, class: "text-white" %>
             <br>
-            <a href="#" class="text-white">About us</a>
+            <%= link_to "About us", static_pages_about_path, class: "text-white" %>
             <br>
-            <a href="#" class="text-white">お問い合わせ</a>
+            <%= link_to "お問い合わせ", static_pages_contact_path, class: "text-white" %>
             <br>
-            <a href="#" class="text-white">購入方法</a>
+            <%= link_to "購入方法", static_pages_how_to_buy_path, class: "text-white" %>
             <br>
-            <a href="#" class="text-white">アーティスト登録方法</a>
+            <%= link_to "アーティスト登録方法", static_pages_how_to_register_path, class: "text-white" %>
           </ul>
         </div>
-        <div class="p-5 col-md-4">
+        <div class="col-md-3">
           <h3 class="mb-4 mt-5">Content</h3>
           <ul class="list-unstyled">
             <a href="#" class="text-white">作品一覧</a>
@@ -26,13 +26,7 @@
             <a href="#" class="text-white">展覧会情報</a>
           </ul>
         </div>
-        <div class="p-5 col-md-4">
-          <h3 class="mt-5">Get in touch</h3>
-          <form class="my-4">
-            <fieldset class="form-group"> <label for="exampleInputEmail1">Get monthly updates</label>
-              <input type="email" class="form-control" placeholder="Enter email"> </fieldset>
-            <button type="submit" class="btn btn-outline-light">Submit</button>
-          </form>
+        <div class="mt-5 col-md-4">
           <h3>Social</h3>
           <div class="align-self-center col-12 my-4">
             <a href="https://www.facebook.com" target="_blank"><i class="fa fa-facebook d-inline fa-lg text-white"></i></a>

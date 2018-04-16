@@ -1,0 +1,24 @@
+<div class="text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center my-5">
+          <h1 class="display-3 mb-4 text-black">Entrance</h1>
+          <div class="row m-5 center-block">
+            <a href="#" class="offset-md-1 col-md-4 btn2 btn-secondary btn-lg">Facdbookで新規登録/ログイン</a>
+            <%= link_to user_google_oauth2_omniauth_authorize_path, class: "btn2 col-md-4 offset-md-2 btn-danger btn-lg" do %>
+            
+            Googleで新規登録/ログイン</a>
+            <% end %>
+          </div>
+          <div class="row m-5">
+            <%= link_to new_user_registration_path, class: "offset-md-4 col-md-4 btn2 btn-success btn-lg" do %>
+            メールアドレスで新規登録</a>
+            <% end %>
+          </div>
+          <div class="row m-5">
+            <a href="#" class="offset-md-4 col-md-4 btn2 btn-info btn-lg">すでにユーザーの方はこちら</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
