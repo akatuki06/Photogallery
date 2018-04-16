@@ -16,4 +16,7 @@ class Public::StaticPagesController < Public::Base
 
   def how_to_buy
   end
+
+  def entrance
+  end
 end
