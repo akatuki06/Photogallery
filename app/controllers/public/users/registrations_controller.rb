@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Public::Users::RegistrationsController < Devise::RegistrationsController
+
+layout 'public'
+  
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -59,4 +62,31 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+protected
+
+  ### アカウント編集後のリダイレクト ###
+  # def after_update_path_for(resource)
+  #   lovers_user_path(resource)
+  # end
+
+  ### サインアップ後のリダイレクト ###
+  def after_sign_up_path_for(resource)
+    super(resource)
+    root_path
+  end
+
+  # ### アカウント編集のパスワード無し設定 ###
+  # def update_resource(resource, params)
+  #   resource.update_without_password(params)
+  # end
+
+  def configure_permitted_parameters
+    added_attrs = [:name, :introduction, :image, :is_deleted]
+    ### サインアップ時のカラム追加 ###
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    ### アカウント編集のカラム追加 ###
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+  end
+
 end

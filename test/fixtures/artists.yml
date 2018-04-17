@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  url: MyText
+  group: MyText
+  career: MyText
+  message: MyText
+  is_deleted: false
+
+two:
+  user: two
+  name: MyString
+  url: MyText
+  group: MyText
+  career: MyText
+  message: MyText
+  is_deleted: false
