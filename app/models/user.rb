@@ -1,6 +1,20 @@
 class User < ApplicationRecord
 
+	has_one :artist
+
 	validates :name, presence: true
+
+	attachment :image
+
+	# 論理削除
+	def active_for_authentication?
+		super && self.is_deleted == false
+	end
+
+	def inactive_message
+		self.is_deleted == false ? super : :deleted_account
+	end
+
 
   # devise関連
   # Include default devise modules. Others available are:
@@ -38,5 +52,3 @@ class User < ApplicationRecord
 	 end
 
 end
-
-# , omniauth_providers: [:google_oauth2]

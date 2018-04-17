@@ -16,7 +16,9 @@
             <% end %>
           </div>
           <div class="row m-5">
-            <a href="#" class="offset-md-4 col-md-4 btn2 btn-info btn-lg">すでにユーザーの方はこちら</a>
+            <%= link_to new_user_session_path, class: "offset-md-4 col-md-4 btn2 btn-info btn-lg" do %>
+            すでにユーザーの方はこちら</a>
+            <% end %>
           </div>
         </div>
       </div>

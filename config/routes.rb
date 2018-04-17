@@ -2,18 +2,6 @@ Rails.application.routes.draw do
 
   root 'public/static_pages#home'
 
-  scope module: :public do
-    get 'static_pages/end'
-    get 'static_pages/about'
-    get 'static_pages/contact'
-    get 'static_pages/how_to_register'
-    get 'static_pages/how_to_buy'
-    get 'static_pages/entrance'
-  end
-
-  scope module: :admin do
-  end
-
   devise_for :admins, controllers: {
   sessions:      'admin/admins/sessions',
   passwords:     'admin/admins/passwords',
@@ -25,5 +13,23 @@ Rails.application.routes.draw do
   registrations: 'public/users/registrations',
   omniauth_callbacks: 'public/users/omniauth_callbacks'
   }
+  
+  scope module: :public do
+    get 'static_pages/end'
+    get 'static_pages/about'
+    get 'static_pages/contact'
+    get 'static_pages/how_to_register'
+    get 'static_pages/how_to_buy'
+    get 'static_pages/entrance'
+    get '/users/unsubscribe'
+    patch '/users/soft_delete'
+    resource :artists, except: [:show]
+    resources :artists, only: [:index, :show]
+
+  end
+
+  scope module: :admin do
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

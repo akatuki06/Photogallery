@@ -5,10 +5,10 @@
 		<strong><%#= link_to current_user.username, pages_show_path %></strong>
 		<%= link_to 'プロフィール変更', edit_user_registration_path %>
 		<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-		<p><%= current_user.name %></p>
-		<p><%= current_user.provider %></p>
-		<p><%= current_user.uid %></p>
-		<p><%= current_user.email %></p>
+		<p><%#= current_user.name %></p>
+		<p><%#= current_user.provider %></p>
+		<p><%#= current_user.uid %></p>
+		<p><%#= current_user.email %></p>
 		<% else %>
 		<%= link_to 'サインアップ', new_user_registration_path %>
 		<%= link_to 'ログイン', new_user_session_path %>
