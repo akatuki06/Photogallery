@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180417084924) do
+ActiveRecord::Schema.define(version: 20180418103350) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -65,6 +65,23 @@ ActiveRecord::Schema.define(version: 20180417084924) do
     t.boolean  "is_deleted",             default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "works", force: :cascade do |t|
+    t.integer  "artist_id",                     null: false
+    t.string   "title"
+    t.string   "image_id"
+    t.integer  "price",                         null: false
+    t.string   "creation_date"
+    t.string   "edition"
+    t.integer  "stock",                         null: false
+    t.string   "size"
+    t.string   "technique"
+    t.text     "comment"
+    t.boolean  "is_deleted",    default: false, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["artist_id"], name: "index_works_on_artist_id"
   end
 
 end

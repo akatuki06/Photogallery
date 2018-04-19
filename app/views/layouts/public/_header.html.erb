@@ -1,24 +1,4 @@
 <header>
-	<nav>
-    そのうち消す
-		<% if user_signed_in? %>
-		<strong><%#= link_to current_user.username, pages_show_path %></strong>
-		<%= link_to 'プロフィール変更', edit_user_registration_path %>
-		<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-		<p><%#= current_user.name %></p>
-		<p><%#= current_user.provider %></p>
-		<p><%#= current_user.uid %></p>
-		<p><%#= current_user.email %></p>
-		<% else %>
-		<%= link_to 'サインアップ', new_user_registration_path %>
-		<%= link_to 'ログイン', new_user_session_path %>
-
-		<%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
-		<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-		
-		<% end %>
-	</nav>
-
 	<nav class="navbar navbar-expand-md navbar-dark flex-column h-50" style="background-image: url('/assets/I_020.JPG');background-position: center;background-size:cover;">
     <div class="container">
       <div class="row my-3">
@@ -31,30 +11,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">アーティスト一覧</a>
+              <%= link_to "アーティスト一覧", artists_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">作品一覧</a>
+              <%= link_to "作品一覧", works_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">写真展一覧</a>
             </li>
             <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to edit_user_registration_path, class: "nav-link" do %>
-            プロフィール変更</a>
-            <% end %>
+              <%= link_to "マイページ", users_show_path, class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-              ログアウト</a>
-              <% end %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
             </li>
             <% else %>
             <li class="nav-item">
-              <%= link_to static_pages_entrance_path, class: "nav-link" do %>
-            ログイン/新規登録</a>
-            <% end %>
+              <%= link_to "ログイン/新規登録", static_pages_entrance_path, class: "nav-link" %>
             <% end %>
             </li>
             <li class="nav-item">

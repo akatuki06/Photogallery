@@ -11,15 +11,16 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item btn">クリップ一覧</li>
         <li class="list-group-item btn">購入履歴</li>
-        <li class="list-group-item btn">プロフィール編集</li>
+        <%= link_to "プロフィール編集", edit_user_registration_path, class: "list-group-item btn" %>
         <li class="list-group-item btn">個人情報設定</li>
-        <li class="list-group-item btn">アーティスト登録/詳細</li>
-        <%= link_to edit_artists_path, class: "nav-link" do %>
-            アーティスト編集テストボタン</a>
-            <% end %>
-            <%= link_to new_artists_path, class: "nav-link" do %>
-            アーティスト新規登録テストボタン</a>
-            <% end %>
+        <% if current_user.is_artist? %>
+          <%= link_to "アーティスト詳細", artist_path(current_user.artist.id), class: "list-group-item btn" %>
+          <li class="list-group-item btn">展覧会登録・編集</li>
+          <li class="list-group-item btn">売り上げ関連</li>
+        <% else %>
+          <%= link_to "アーティスト登録", new_artists_path, class: "list-group-item btn" %>
+        <% end %>
+        
       </ul>
     </div>
   </div>

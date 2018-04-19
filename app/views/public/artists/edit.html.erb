@@ -1,3 +1,12 @@
+<% if @artist.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+  <ul>
+    <% @artist.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 <div class="py-5">
   <div class="container">
     <div class="row">
