@@ -24,32 +24,25 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="#">アーティスト一覧</a>
+							<%= link_to "アーティスト一覧", artists_path, class: "nav-link" %>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">作品一覧</a>
+              				<%= link_to "作品一覧", works_path, class: "nav-link" %>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">写真展一覧</a>
 						</li>
 						<% if user_signed_in? %>
 						<li class="nav-item">
-							<%= link_to edit_user_registration_path, class: "nav-link" do %>
-						プロフィール変更</a>
-						<% end %>
-							</li>
-							<li class="nav-item">
-								<%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-							ログアウト</a>
-							<% end %>
+							<%= link_to "マイページ", users_show_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
 						</li>
 						<% else %>
 						<li class="nav-item">
-							<%= link_to static_pages_entrance_path, class: "nav-link" do %>
-						ログイン/新規登録</a>
-						<% end %>
-						<% end %>
-						</li>
+							<%= link_to "ログイン/新規登録", static_pages_entrance_path, class: "nav-link" %>
+							<% end %>
 						<li class="nav-item">
 							<a class="nav-link" href="#">カート</a>
 						</li>
@@ -78,70 +71,39 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="text-center text-info my-5">Photogallerry</h1>
+					<h1 class="text-center mt-5 my-5">Works</h1>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="">
+	<div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-						</ul>
-						<div class="card-body">
-							<a href="#" class="card-link">Card link</a>
-							<a href="#" class="card-link">Another link</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-						</ul>
-						<div class="card-body">
-							<a href="#" class="card-link">Card link</a>
-							<a href="#" class="card-link">Another link</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-						</ul>
-						<div class="card-body">
-							<a href="#" class="card-link">Card link</a>
-							<a href="#" class="card-link">Another link</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-						</ul>
-						<div class="card-body">
-							<a href="#" class="card-link">Card link</a>
-							<a href="#" class="card-link">Another link</a>
-						</div>
-					</div>
-				</div>
+				 <% @works.each do |w| %>
+          <div class="col-md-3 col-6 p-1">
+            <%= link_to work_path(w.id) do %>
+            <div class="card">
+            	<div class="text-center">
+              <%= attachment_image_tag w, :image, format: 'jpg',
+              class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+            	</div>
+              <div class="card-body text-dark">
+                <h6 class="card-title text-left"><%= w.title %></h6>
+                <p class="card-text text-right m-1"><%= w.artist.name %></p>
+                <div class="card-footer">
+                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円</span>
+                  <div>
+                    <i class="fa fa-heart like-btn mx-1"></i>
+                    <i class="fa fa-heart like-btn mx-1"></i>
+                  </div>
+                </div>
+                
+              </a>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
 			</div>
 		</div>
 	</div>
@@ -149,54 +111,29 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="text-center text-info mt-5 my-5">Artist</h1>
+					<h1 class="text-center text-info mt-5 my-5">Artists</h1>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="">
+	<div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3">
+				<% @artists.each do |a| %>
+				<div class="col-md-3 my-2">
+					<%= link_to artist_path(a.id) do %>
 					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
+						<div class="text-center">
+							<%= attachment_image_tag a.user, :image, format: 'jpg',
+							fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+						</div>
 						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+							<h5 class="card-title"><%= a.name %></h5>
 						</div>
 					</div>
+					<% end %>
 				</div>
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						</div>
-					</div>
-				</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
@@ -204,7 +141,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="text-center text-info">exhibition</h1>
+					<h1 class="text-center text-info">exhibitions</h1>
 				</div>
 			</div>
 		</div>

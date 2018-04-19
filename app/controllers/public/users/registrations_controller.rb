@@ -66,9 +66,9 @@ layout 'public'
 protected
 
   ### アカウント編集後のリダイレクト ###
-  # def after_update_path_for(resource)
-  #   lovers_user_path(resource)
-  # end
+  def after_update_path_for(resource)
+    users_show_path(resource)
+  end
 
   ### サインアップ後のリダイレクト ###
   def after_sign_up_path_for(resource)

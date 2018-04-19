@@ -1,2 +1,88 @@
-<h1>Public::Artists#show</h1>
-<p>Find me in app/views/public/artists/show.html.erb</p>
+<div class="py-5">
+    <div class="container">
+      <div class="row">
+      <div class="flex-colum d-flex">
+
+        <div class="col-md-4 text-center" >
+        	<%= attachment_image_tag @artist.user, :image, format: 'jpg',
+          class: "center-block", fallback: "/assets/no_image_m.png", width: '250', height: '250'%>
+        <% if user_signed_in? && @artist.user_id == current_user.id %>
+        <div>
+          <%= link_to "アーティスト情報編集", edit_artists_path, class: "col-9 btn bg-danger my-4 p-2" %>
+          <%= link_to "作品新規登録", new_work_path, class: "col-9 btn bg-secondary p-2" %>
+        </div>
+        <% else %>
+        <% end %>
+        </div>
+
+        <div class="col-lg-8 mx-4">
+          <ul class="list-group list-group-flush">
+            <h5 class="list-group-item md-1"><%= @artist.name %></h5>
+            <h5 class="list-group-item md-1"><%= @artist.url %></h5>
+            <a class="list-group-item flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">所属</h5>
+              </div>
+              <p class="mb-1"><%= @artist.group %></p>
+            </a>
+            <a class="list-group-item flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">経歴</h5>
+              </div>
+              <p class="mb-1"><%= @artist.career %></p>
+            </a>
+            <a class="list-group-item flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">メッセージ</h5>
+              </div>
+              <p class="mb-1"><%= @artist.message %></p>
+            </a>
+          </ul>
+          <div class="col-12 py-2 bg-success text-center col-md-12">
+            <a>このアーティストをクリップ</a>
+            <i class="fa fa-heart like-btn mx-3"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 my-3">
+            <h4 class="mb-4 text-dark my-3" contenteditable="true"><%= @artist.name %>さんの作品</h4>
+          </div>
+        </div>
+        <div class="row">
+        <% @artist.works.each do |w| %>
+          <div class="col-md-3 col-6 p-1">
+            <%= link_to work_path(w.id) do %>
+          <div class="card">
+            <%= attachment_image_tag w, :image, format: 'jpg',
+            class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+            <div class="card-body">
+              <h6 class="card-title text-left"><%= w.title %></h6>
+                  <p class="card-text text-right m-1"><%= @artist.name %></p>
+                  <div class="card-footer">
+                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円</span>
+                  <div>
+                    <i class="fa fa-heart like-btn mx-1"></i>
+                    <i class="fa fa-heart like-btn mx-1"></i>
+                  </div>
+                </div>
+                <% if user_signed_in? && @artist.user_id == current_user.id %>
+                <div>
+                  <%= link_to "作品情報編集", edit_work_path(w.id), class: "col-9 btn bg-danger my-2 p-2" %>
+                </div>
+                <% else %>
+                <% end %>
+
+            </a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

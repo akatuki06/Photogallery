@@ -21,10 +21,12 @@ Rails.application.routes.draw do
     get 'static_pages/how_to_register'
     get 'static_pages/how_to_buy'
     get 'static_pages/entrance'
+    get 'users/show'
     get '/users/unsubscribe'
     patch '/users/soft_delete'
     resource :artists, except: [:show]
     resources :artists, only: [:index, :show]
+    resources :works
 
   end
 

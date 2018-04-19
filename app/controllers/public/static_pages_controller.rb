@@ -1,5 +1,7 @@
 class Public::StaticPagesController < Public::Base
   def home
+    @artists = Artist.all
+    @works = Work.all
   end
 
   def end

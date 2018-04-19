@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-
+	has_many :works
 	has_one :artist
 
 	validates :name, presence: true
