@@ -8,5 +8,7 @@ class Work < ApplicationRecord
   validates :stock, presence: true
 
   attachment :image
+
+  acts_as_taggable
   
 end
