@@ -51,7 +51,8 @@ class Public::WorksController < Public::Base
 						  		:editionm,
 						  		:size,
 						  		:technique,
-						  		:comment
+						  		:comment,
+                  :tag_list
 						  		)
   end
 end
