@@ -43,7 +43,8 @@
                 </td>
                 <td><%= (item.total_price).to_s(:delimited) %>円</td>
                 <td>
-                  <a class="btn btn-danger" href="#">削除</a>
+                  <%= button_to '削除', item, method: :delete, data: {confirm: 'カートから削除してよろしいですか？'}, class: "btn btn-danger" %>
+                  <!-- <a class="btn btn-danger" href="#">削除</a> -->
                 </td>
               </tr>
           <% end %>
