@@ -1,0 +1,27 @@
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <%= render 'layouts/public/sidebar' %>
+      <div class="flex-colum d-flex col-lg-8">
+      	<div class="col-lg-12">
+      		<h2>個人情報詳細</h2>
+        <ul class="list-group list-group-flush my-5">
+            <li class="list-group-item">お名前：<%= @address.name %></li>
+            <li class="list-group-item">お名前(カナ)：<%= @address.name_kana %></li>
+            <li class="list-group-item">〒<%= @address.zipcode %></li>
+            <li class="list-group-item">住所：<%= @address.prefecture.name %><%= @address.address %></li>
+            <li class="list-group-item">電話番号：<%= @address.phone %></li>
+          <% if @address.user_id == current_user.id %>
+          <div>
+          	<%= link_to "個人情報編集", edit_addresses_path(@address.id), class: "col-9 btn bg-danger my-2 p-2" %>
+          </div>
+          <% end %>
+      	</div>
+          </ul>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>

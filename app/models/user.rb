@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 	has_many :works
 	has_one :artist
+	has_one :adress
 
 	validates :name, presence: true
 

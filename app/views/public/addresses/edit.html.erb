@@ -1,10 +1,10 @@
-<% if @work.errors.any? %>
+<% if @address.errors.any? %>
 <div id="error_explanation" class="alert alert-danger">
-    <ul>
-        <% @work.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-    </ul>
+  <ul>
+    <% @address.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
 </div>
 <% end %>
 <div class="py-5">
@@ -13,8 +13,9 @@
       <%= render 'layouts/public/sidebar' %>
       <div class="flex-colum d-flex col-lg-8">
         <div class="col-lg-12 mx-4">
-         <h1 class="mb-4">作品登録</h1>
-        　　<%= render 'layouts/public/form_for_work' %>
+         <h1 class="mb-4">個人情報編集</h1>
+         <h5>※項目は全て必須です</h5>
+         <%= render 'layouts/public/form_for_address' %>
         </div>
       </div>
     </div>

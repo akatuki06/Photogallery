@@ -29,7 +29,7 @@
           </div>
         </div>
 
-        <div class="col-lg-8" >
+        <div class="col-lg-8 mx-4" >
           <ul class="list-group list-group-flush">
             <h5 class="list-group-item md-1">作品名：<%= @work.title %></h5>
             <h5 class="list-group-item md-1">¥<%= @work.price.to_s(:delimited) %>円
@@ -39,16 +39,17 @@
                 <li class="list-group-item">エディション：<%= @work.edition %></li>
                 <li class="list-group-item">サイズ：<%= @work.size %></li>
                 <li class="list-group-item">素材・技法：<%= @work.technique %></li>
+            <li class="list-group-item">タグ：
+            <% @work.tag_list.each do |tag| %>
+            <span class="badge2 badge-light"><%= tag %></span>
+            <% end %>
+            </li>
             <a class="list-group-item flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">作品の注目ポイント</h5>
               </div>
               <p class="mb-1"><%= @work.comment %></p>
             </a>
-            タグ
-            <% @work.tag_list.each do |tag| %>
-            <span class="btn-primary"><%= tag %></span>
-            <% end %>
 
           </ul>
           <div class="col-12 py-2 bg-success text-center col-md-12">
