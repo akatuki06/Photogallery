@@ -10,7 +10,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <a class="btn btn-light" href="#">カートを空にする </a>
+        <!-- <a class="btn btn-light" href="#">カートを空にする </a> -->
+        <%= button_to 'カートを空にする', @cart, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'btn btn-light' %>
       </div>
     </div>
   </div>
