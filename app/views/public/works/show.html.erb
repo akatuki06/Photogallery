@@ -68,6 +68,7 @@
         </div>
         <div class="row">
           <% @work.artist.works.each do |w| %>
+        <% if w.is_deleted == false %>
           <div class="col-md-3 col-6 p-1">
             <%= link_to work_path(w.id) do %>
             <div class="card">
@@ -88,6 +89,7 @@
                   <%= link_to "作品情報編集", edit_work_path(w.id), class: "col-9 btn bg-danger my-2 p-2" %>
                 </div>
                 <% else %>
+                <% end %>
                 <% end %>
 
               </a>
