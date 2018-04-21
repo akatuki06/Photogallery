@@ -33,7 +33,8 @@
           <ul class="list-group list-group-flush">
             <h5 class="list-group-item md-1">作品名：<%= @work.title %></h5>
             <h5 class="list-group-item md-1">¥<%= @work.price.to_s(:delimited) %>円
-              <button type="button" class="btn btn-primary mx-5">カートに入れる</button>
+              <!-- <button type="button" class="btn btn-primary mx-5">カートに入れる</button> -->
+              <%= button_to 'カートに入れる', line_items_path(work_id: @work), class: 'btn btn-primary mx-5' %>
             </h5>
             <li class="list-group-item">制作年：<%= @work.creation_date %></li>
                 <li class="list-group-item">エディション：<%= @work.edition %></li>

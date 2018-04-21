@@ -1,0 +1,56 @@
+<div class="py-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 my-4">
+          <h1 class="">ショッピングカート</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <a class="btn btn-light" href="#">カートを空にする </a>
+      </div>
+    </div>
+  </div>
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>画像</td>
+                <td>作品タイトル</td>
+                <td>単価</td>
+                <td>数量</td>
+              </tr>
+          </tbody>
+
+              <tbody>
+		<% @cart.line_items.each do |item| %>
+              <tr>
+                <td>2</td>
+                <td><%= item.work.title %></td>
+                <td><%= (item.work.price).to_i %>円</td>
+                <td>数量
+                  <a class="btn btn-sm btn-info" href="#">更新</a>
+                </td>
+                <td>
+                  <a class="btn btn-danger" href="#">削除</a>
+                </td>
+              </tr>
+          <% end %>
+            </tbody>
+          </table>
+          <div>
+            <h4 class="text-right">
+              <!-- <a class="btn px-4 mx-5 btn-secondary" href="#">買い物を続ける</a>小計：¥@@@ -->
+              <a><%= link_to '買い物を続ける', root_path, :class => 'btn px-4 mx-5 btn-secondary' %></a>小計：¥@@@
+              <a class="btn btn-primary px-4 mx-4" href="#">レジに進む</a>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
