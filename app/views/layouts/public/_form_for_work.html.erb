@@ -1,0 +1,30 @@
+<%= form_for @work do |f| %>
+
+   <div>タイトル名<span class="badge badge-danger">必須</span></div>
+      <%= f.text_field :title,size: "50x10" %>
+   <div class="my-2">作品画像<span class="badge badge-danger">必須</span><br>
+      <%= f.attachment_field :image %>
+   </div>
+   <div class="my-2">値段<span class="badge badge-danger">必須(半角数字)</span></div>
+      <%= f.text_field :price,size: "50x10", placeholder: "例：10000" %>
+   <div class="my-2">在庫<span class="badge badge-danger">必須(半角数字)</span></div>
+      <%= f.text_field :stock, size: "50x10", placeholder: "例：10" %>
+   <div class="my-2">制作年</div>
+      <%= f.text_field :creation_date, size: "50x10" %>
+   <div class="my-2">エディション</div>
+      <%= f.text_field :edition, size: "50x10" %>
+   <div class="my-2">サイズ</div>
+      <%= f.text_field :size, size: "50x10" %>
+   <div class="my-2">素材・技法</div>
+      <%= f.text_field :technique, size: "50x10" %>
+   <div class="my-2">作品の注目ポイント</div>
+      <%= f.text_area :comment, size: "50x5" %>
+
+   <div class="field form-group form-group-lg">
+     <%= f.label :tag_list, "タグ(半角カンマ区切り)" %>
+     <%= text_field_tag 'work[tag_list]', @work.tag_list.join(","), "data-role" => "tagsinput", placeholder: "例:　風景,空,海" %>
+   </div>
+   <div>
+     <%= f.submit "登録", class: "btn btn-primary col-xs-12" %>
+   </div>
+<% end %>

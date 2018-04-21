@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resource :artists, except: [:show]
     resources :artists, only: [:index, :show]
     resources :works
+    resource :addresses
 
   end
 

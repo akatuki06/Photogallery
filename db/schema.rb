@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419120006) do
+ActiveRecord::Schema.define(version: 20180420072213) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "prefecture_id"
+    t.string   "name"
+    t.string   "name_kana"
+    t.string   "zipcode"
+    t.string   "address"
+    t.string   "phone"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["name"], name: "index_addresses_on_name"
+    t.index ["name_kana"], name: "index_addresses_on_name_kana"
+    t.index ["prefecture_id"], name: "index_addresses_on_prefecture_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -40,6 +56,13 @@ ActiveRecord::Schema.define(version: 20180419120006) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_artists_on_user_id"
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "postage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|

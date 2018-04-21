@@ -1,2 +1,23 @@
-<h1>Public::Works#edit</h1>
-<p>Find me in app/views/public/works/edit.html.erb</p>
+<% if @work.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+    <ul>
+        <% @work.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <%= render 'layouts/public/sidebar2' %>
+      <div class="flex-colum d-flex col-lg-8">
+        <div class="col-lg-12 mx-4">
+         <h1 class="mb-4">作品編集</h1>
+      	　　<%= render 'layouts/public/form_for_work' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

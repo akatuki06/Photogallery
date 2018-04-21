@@ -1,0 +1,19 @@
+<%= form_for @address, :url => addresses_path do |f| %>
+
+  <div class="my-2">名前</div>
+    <%= f.text_field :name,size: "50x10", placeholder: "例：鈴木 太郎" %>
+  <div class="my-2">名前(カナ)</div>
+    <%= f.text_field :name_kana,size: "50x10", placeholder: "例：スズキタロウ(スペースなし)" %>
+  <div class="my-2">郵便番号</div>
+    <%= f.text_field :zipcode, size: "50x10", placeholder: "例：001-0001" %>
+  <div class="my-2">都道府県</div>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, prompt: "都道府県を選んで下さい", class: "form-control") %>
+  <div class="my-2">住所</div>
+    <%= f.text_field :address, size: "50x10", placeholder: "例：渋谷区1-1-1 渋谷ビル101" %>
+  <div class="my-2">電話番号</div>
+    <%= f.text_field :phone, size: "50x10", placeholder: "例：090-0000-0000" %>
+
+  <div>
+    <%= f.submit "登録", class: "btn btn-primary col-xs-12 my-3" %>
+  </div>
+<% end %>

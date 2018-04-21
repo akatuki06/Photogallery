@@ -18,7 +18,6 @@ class Public::WorksController < Public::Base
   def create
   		@work = Work.new(work_params)
   		@work.artist_id = current_user.artist.id
-  	# binding.pry
   	if @work.save
   		redirect_to work_path(@work)
   	else
@@ -27,9 +26,19 @@ class Public::WorksController < Public::Base
   end
 
   def edit
+    @work = Work.find(params[:id])
+    if @work.artist.user != current_user
+       redirect_to root_path
+      end
   end
 
   def update
+    @work = Work.find(params[:id])
+    if @work.update(work_params)
+      redirect_to work_path(@work.id)
+    else
+      render :edit
+    end
   end
 
   def soft_delet
