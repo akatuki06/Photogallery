@@ -12,7 +12,7 @@
         <li class="list-group-item btn">クリップ一覧</li>
         <li class="list-group-item btn">購入履歴</li>
         <%= link_to "プロフィール編集", edit_user_registration_path, class: "list-group-item btn" %>
-        <li class="list-group-item btn">個人情報設定</li>
+        <%= link_to "個人情報詳細", addresses_path, class: "list-group-item btn" %>
         <% if current_user.is_artist? %>
           <%= link_to "アーティスト詳細", artist_path(current_user.artist.id), class: "list-group-item btn" %>
           <li class="list-group-item btn">展覧会登録・編集</li>
