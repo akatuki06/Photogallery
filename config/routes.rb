@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     patch '/users/soft_delete'
     resource :artists, except: [:show]
     resources :artists, only: [:index, :show]
+    patch '/work/:id/soft_delete', to: 'works#soft_delete', as: 'work_soft_delete'
     resources :works
     resource :addresses
 

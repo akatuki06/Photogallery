@@ -80,6 +80,7 @@
 		<div class="container">
 			<div class="row">
 				 <% @works.each do |w| %>
+        <% if w.is_deleted == false %>
           <div class="col-md-3 col-6 p-1">
             <%= link_to work_path(w.id) do %>
             <div class="card">
@@ -102,6 +103,7 @@
             </div>
           </div>
         </div>
+        <% end %>
         <% end %>
         <% end %>
 			</div>

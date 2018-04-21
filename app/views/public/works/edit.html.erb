@@ -15,6 +15,12 @@
         <div class="col-lg-12 mx-4">
          <h1 class="mb-4">作品編集</h1>
       	　　<%= render 'public/works/form' %>
+        <div class="btn btn-danger btn-block my-3 col-lg-5">
+        <%= link_to work_soft_delete_path(@work), data: { confirm: "作品を削除しますか?" }, method: :patch do %>
+        <div class="text-white">削除する</div>
+          
+        </div>
+        <% end %>
         </div>
       </div>
     </div>

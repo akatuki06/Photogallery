@@ -15,7 +15,7 @@ class Public::ArtistsController <  Public::Base
     if @artist.save
     	user = current_user
     	user.update(is_artist: true)
-    	redirect_to artist_path(@artist)
+    	redirect_to artist_path(@artist), notice: "アーティスト登録が完了しました"
       else
         render :new
       end
@@ -34,14 +34,14 @@ class Public::ArtistsController <  Public::Base
   	if current_user.is_artist == true
   		@artist = Artist.find_by(user_id: current_user)
   	else
-  		redirect_to new_artists_path
+  		redirect_to new_artists_path, notice: "アーティスト登録をしてください"
   	end
   end
 
   def update
   	@artist = Artist.find_by(user_id: current_user)
   	if @artist.update(artist_params)
-  	redirect_to artist_path(@artist)
+  	redirect_to artist_path(@artist), notice: "アーティスト情報を編集しました"
   else
     render :edit
   end
