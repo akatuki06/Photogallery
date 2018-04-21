@@ -15,7 +15,8 @@ class Public::LineItemsController < Public::Base
   def create
   	@cart = current_cart
   	work = Work.find(params[:work_id])
-  	@line_item = @cart.line_items.build(work: work)
+    @line_item = @cart.add_work(work.id)
+  	# @line_item = @cart.line_items.build(work: work)
   		if @line_item.save
   			redirect_to cart_path(@cart.id), notice: 'カートに商品が追加されました。'
   		else
