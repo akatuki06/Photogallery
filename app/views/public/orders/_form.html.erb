@@ -1,0 +1,35 @@
+<%= form_for @order, :url => orders_path do |f| %>
+
+<% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2>エラーが<%= @order.errors.count %>件あります。お客様情報を入力して下さい。</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-2">名前</div>
+    <%= f.text_field :name,size: "50x10", placeholder: "例：鈴木 太郎" %>
+  <div class="my-2">名前(カナ)</div>
+    <%= f.text_field :name_kana,size: "50x10", placeholder: "例：スズキタロウ(スペースなし)" %>
+  <div class="my-2">郵便番号</div>
+    <%= f.text_field :zipcode, size: "50x10", placeholder: "例：001-0001" %>
+  <div class="my-2">都道府県</div>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, prompt: "都道府県を選んで下さい", class: "form-control") %>
+  <div class="my-2">住所</div>
+    <%= f.text_field :address, size: "50x10", placeholder: "例：渋谷区1-1-1 渋谷ビル101" %>
+  <div class="my-2">電話番号</div>
+    <%= f.text_field :phone, size: "50x10", placeholder: "例：090-0000-0000" %>
+    <div class="my-2">e-mail</div>
+    <%= f.text_field :email, size: "50x10", placeholder: "例：example@example" %>
+  <div class="my-2">支払い方法</div>
+    <%= f.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: 'お支払い方法を選択してください'} %>
+
+  <div>
+    <%= f.submit "注文を確定する", class: "btn btn-primary col-xs-12 my-3" %>
+  </div>
+<% end %>

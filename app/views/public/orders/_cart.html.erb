@@ -1,20 +1,8 @@
-<div class="py-0">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 my-4">
-          <h1 class="">ショッピングカート</h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
+
+
       <div class="col-md-12">
         <!-- <a class="btn btn-light" href="#">カートを空にする </a> -->
         <%= button_to 'カートを空にする', @cart, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'btn btn-light' %>
-      </div>
-    </div>
-  </div>
   <div class="py-3">
     <div class="container">
       <div class="row">
@@ -50,11 +38,12 @@
             </tbody>
           </table>
           <div>
-            <h4 class="text-right">
+            <h4>
               <a><%= link_to '買い物を続ける', root_path, :class => 'btn px-4 mx-5 btn-secondary' %></a>小計：<%= (@cart.total_price).to_s(:delimited) %>円
-              <%= link_to "レジに進む",new_order_path, class: "btn btn-primary px-4 mx-4" %>
             </h4>
           </div>
         </div>
       </div>
     </div>
+  </div>
+      </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180421091219) do
+ActiveRecord::Schema.define(version: 20180421145037) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -69,8 +69,32 @@ ActiveRecord::Schema.define(version: 20180421091219) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "quantity",   default: 1
+    t.integer  "order_id"
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["work_id"], name: "index_line_items_on_work_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "state"
+    t.integer  "total"
+    t.integer  "postage"
+    t.string   "payment_state"
+    t.string   "shipment_state"
+    t.string   "name"
+    t.string   "name_kana"
+    t.string   "zipcode"
+    t.integer  "prefecture_id"
+    t.text     "address"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "payment"
+    t.boolean  "is_deleted",     default: false, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["name"], name: "index_orders_on_name"
+    t.index ["name_kana"], name: "index_orders_on_name_kana"
+    t.index ["prefecture_id"], name: "index_orders_on_prefecture_id"
   end
 
   create_table "prefectures", force: :cascade do |t|

@@ -30,8 +30,8 @@ Rails.application.routes.draw do
     resources :works
     resource :addresses
     resources :line_items
-    resources :carts
-
+    resources :carts, except: [:index, :edit, :new]
+    resources :orders
 
   end
 
