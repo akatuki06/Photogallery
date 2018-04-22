@@ -28,6 +28,7 @@
     <%= f.text_field :email, size: "50x10", placeholder: "例：example@example" %>
   <div class="my-2">支払い方法</div>
     <%= f.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: 'お支払い方法を選択してください'} %>
+    <%= f.hidden_field :total, value: "#{(@cart.total_price).to_s}" %>
 
   <div>
     <%= f.submit "注文を確定する", class: "btn btn-primary col-xs-12 my-3" %>

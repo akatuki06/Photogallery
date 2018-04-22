@@ -23,7 +23,7 @@ class Public::OrdersController < Public::Base
   def create
     @order = Order.new(order_params)
     @order.add_items(current_cart)
-
+binding.pry
       if @order.save
 	Cart.destroy(session[:cart_id])
 	session[:cart_id] = nil

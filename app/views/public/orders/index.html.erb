@@ -10,6 +10,7 @@
       <th>メールアドレス</th>
       <th>電話番号</th>
       <th>支払い方法</th>
+      <th>合計</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -33,6 +34,7 @@
         <td><%= order.email %></td>
         <td><%= order.phone %></td>
         <td><%= order.payment %></td>
+        <td><%= order.total %></td>
         <td><%= link_to '詳細', order_path(order), :class => 'btn' %></td>
         <td><%= link_to '削除', order, method: :delete, data: { confirm: '本当に削除してもよろしいですか？' }, :class => 'btn' %></td>
       </tr>
