@@ -31,9 +31,11 @@
               <%= link_to "ログイン/新規登録", static_pages_entrance_path, class: "nav-link" %>
             <% end %>
             </li>
+            <% if session[:cart_id].present? %>
             <li class="nav-item">
-              <a class="nav-link" href="#">カート</a>
+              <%= link_to "カート", cart_path(session[:cart_id]), class: "nav-link" %>
             </li>
+            <% end %>
           </ul>
         </div>
       </div>

@@ -30,7 +30,6 @@ class Public::OrdersController < Public::Base
   def create
       @order = Order.new(order_params)
       @order.add_items(current_cart)
-binding.pry
       if params[:back]
         @cart = current_cart
         render :new

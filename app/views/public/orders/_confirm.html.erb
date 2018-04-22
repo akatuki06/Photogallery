@@ -1,3 +1,5 @@
+<% sum = 0 %>
+
 <%= form_for @order, :url => orders_path do |f| %>
 
 <% if @order.errors.any? %>
@@ -36,10 +38,19 @@
   <div class="my-2">支払い方法</div>
     <%= @order.payment %>
     <%= f.hidden_field :payment %>
-    <%= f.hidden_field :total, value: "#{(@cart.total_price).to_s + 300}" %>
+  <div class="my-2">購入金額</div>
+    
+    <% sub_sum =+ sum + @cart.total_price %>
+    <h4>小計：¥<%= sub_sum.to_s(:delimited) %>円</h4>
+    <h5>消費税：¥<% tax = sub_sum * 0.08 %><%= tax.round.to_s(:delimited) %>円</h5>
+    <h5>配送料：¥<%= @order.prefecture.postage.to_s(:delimited) %>円</h5>
+    <% total_price = sub_sum + tax.round + @order.prefecture.postage %>
+    <h3>合計金額：¥<%= total_price.to_s(:delimited) %>円</h3>
+
+    <%= f.hidden_field :total, value: total_price %>
 
     <div class="actions">
-      <%= f.submit '編集', name: 'back' %>
+      <%= f.submit '内容を変更する', name: 'back', class: "btn btn-light col-xs-12 my-3"  %>
     </div>
 
   <div>
