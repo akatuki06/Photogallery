@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180421145037) do
+ActiveRecord::Schema.define(version: 20180422025421) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -75,12 +75,12 @@ ActiveRecord::Schema.define(version: 20180421145037) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "state"
-    t.integer  "total"
-    t.integer  "postage"
-    t.string   "payment_state"
-    t.string   "shipment_state"
+    t.integer  "user_id",        default: 0
+    t.string   "state",          default: "未完了"
+    t.integer  "total",          default: 0
+    t.integer  "postage",        default: 500
+    t.string   "payment_state",  default: "未完了"
+    t.string   "shipment_state", default: "未完了"
     t.string   "name"
     t.string   "name_kana"
     t.string   "zipcode"

@@ -1,4 +1,5 @@
 class LineItem < ApplicationRecord
+  belongs_to :order
   belongs_to :work
   belongs_to :cart
 

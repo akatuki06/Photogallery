@@ -30,17 +30,16 @@ class Public::OrdersController < Public::Base
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.add_items(current_cart)
 
-    respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
+	Cart.destroy(session[:cart_id])
+	session[:cart_id] = nil
+        redirect_to root_url, notice: 'ご注文ありがとうございました。'
       else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
-  end
+end
 
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
@@ -74,6 +73,16 @@ class Public::OrdersController < Public::Base
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :tel_number, :pay_type)
+      params.require(:order).permit(:user_id,
+      	:prefecture_id,
+      	:total,
+      	:postage,
+      	:name,
+      	:name_kana,
+      	:zipcode,
+      	:address,
+      	:phone,
+      	:email,
+      	:payment)
     end
 end
