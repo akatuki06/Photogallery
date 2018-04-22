@@ -24,6 +24,7 @@
 	<% order.line_items.each do |item| %>
 		[商品ID:<%= item.work.id %>]
 		[商品名：<%= item.work.title %>]
+    [単価：<%= item.price %>]
 		[数量：<%= item.quantity %>]
 		[金額：<%= (item.total_price).to_i %>円]
 		<br>
