@@ -1,4 +1,4 @@
-<%= form_for @order, :url => orders_path do |f| %>
+<%= form_for @order, :url => confirm_orders_path do |f| %>
 
 <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -31,6 +31,6 @@
     <%= f.hidden_field :total, value: "#{(@cart.total_price).to_s}" %>
 
   <div>
-    <%= f.submit "注文を確定する", class: "btn btn-primary col-xs-12 my-3" %>
+    <%= f.submit "注文内容を確認する", class: "btn btn-primary col-xs-12 my-3" %>
   </div>
 <% end %>

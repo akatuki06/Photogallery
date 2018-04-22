@@ -31,7 +31,11 @@ Rails.application.routes.draw do
     resource :addresses
     resources :line_items
     resources :carts, except: [:index, :edit, :new]
-    resources :orders
+    resources :orders do
+      collection do
+        post 'confirm'
+      end
+    end
 
   end
 

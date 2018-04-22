@@ -17,20 +17,32 @@ class Public::OrdersController < Public::Base
 	@order = Order.new
   end
 
+  def confirm
+    @cart = current_cart
+    @order = Order.new(order_params)
+    @order.add_items(current_cart)
+    render :new if @order.invalid?
+  end
+
   def edit
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.add_items(current_cart)
-      if @order.save
-	Cart.destroy(session[:cart_id])
-	session[:cart_id] = nil
-        redirect_to root_url, notice: 'ご注文ありがとうございました。'
-      else
+      @order = Order.new(order_params)
+      @order.add_items(current_cart)
+binding.pry
+      if params[:back]
+        @cart = current_cart
         render :new
-      end
-end
+      elsif @order.save
+       Cart.destroy(session[:cart_id])
+       session[:cart_id] = nil
+       redirect_to root_url, notice: 'ご注文ありがとうございました。'
+     else
+      @cart = current_cart
+      render :new
+    end
+  end
 
   private
     def set_order

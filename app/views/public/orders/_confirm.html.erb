@@ -1,0 +1,48 @@
+<%= form_for @order, :url => orders_path do |f| %>
+
+<% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2>エラーが<%= @order.errors.count %>件あります。お客様情報を入力して下さい。</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-2">名前</div>
+    <%= @order.name %>
+    <%= f.hidden_field :name %>
+  <div class="my-2">名前(カナ)</div>
+    <%= @order.name_kana %>
+    <%= f.hidden_field :name_kana %>
+  <div class="my-2">郵便番号</div>
+  <%= @order.zipcode %>
+    <%= f.hidden_field :zipcode %>
+  <div class="my-2">都道府県</div>
+    <%= @order.prefecture.name %>
+    <%= f.hidden_field :prefecture_id %>
+  <div class="my-2">住所</div>
+    <%= @order.address %>
+    <%= f.hidden_field :address %>
+  <div class="my-2">電話番号</div>
+    <%= @order.phone %>
+    <%= f.hidden_field :phone %>
+    <div class="my-2">e-mail</div>
+    <%= @order.email %>
+    <%= f.hidden_field :email %>
+  <div class="my-2">支払い方法</div>
+    <%= @order.payment %>
+    <%= f.hidden_field :payment %>
+    <%= f.hidden_field :total, value: "#{(@cart.total_price).to_s + 300}" %>
+
+    <div class="actions">
+      <%= f.submit '編集', name: 'back' %>
+    </div>
+
+  <div>
+    <%= f.submit "注文を確定する", class: "btn btn-primary col-xs-12 my-3" %>
+  </div>
+<% end %>
