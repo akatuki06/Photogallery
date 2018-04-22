@@ -1,0 +1,49 @@
+<%= form_for @order, :url => confirm_orders_path do |f| %>
+
+<% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2>エラーが<%= @order.errors.count %>件あります。お客様情報を入力して下さい。</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-2">名前</div>
+    <%= @address.name %>
+    <%= f.hidden_field :name, value: "#{@address.name}" %>
+  <div class="my-2">名前(カナ)</div>
+    <%= @address.name_kana %>
+    <%= f.hidden_field :name_kana, value: "#{@address.name_kana}" %>
+  <div class="my-2">郵便番号</div>
+  <%= @address.zipcode %>
+    <%= f.hidden_field :zipcode, value: "#{@address.zipcode}" %>
+  <div class="my-2">都道府県</div>
+    <%= @address.prefecture.name %>
+    <%= f.hidden_field :prefecture_id, value: "#{@address.prefecture.id}" %>
+  <div class="my-2">住所</div>
+    <%= @address.address %>
+    <%= f.hidden_field :address, value: "#{@address.address}" %>
+  <div class="my-2">電話番号</div>
+    <%= @address.phone %>
+    <%= f.hidden_field :phone, value: "#{@address.phone}" %>
+    <div class="my-2">e-mail</div>
+    <%= current_user.email %>
+    <%= f.hidden_field :email, value: "#{current_user.email}" %>
+
+  <div class="my-2">支払い方法</div>
+    <%= f.select :payment, ['銀行振込', 'クレジットカード'], {include_blank: 'お支払い方法を選択してください'} %>
+    <%= f.hidden_field :total, value: "#{(@cart.total_price).to_s}" %>
+
+    <div class="actions">
+      <%= f.submit '内容を変更する', name: 'back', class: "btn btn-light col-xs-12 my-3"  %>
+    </div>
+
+  <div>
+    <%= f.submit "注文内容を確認する", class: "btn btn-primary col-xs-12 my-3" %>
+  </div>
+<% end %>
+

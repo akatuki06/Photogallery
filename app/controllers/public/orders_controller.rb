@@ -9,19 +9,29 @@ class Public::OrdersController < Public::Base
   end
 
   def new
-	@cart = current_cart
-	if @cart.line_items.empty?
-		redirect_to root_path, notice: 'カートは空です。'
-		return
-	end
-	@order = Order.new
+      binding.pry
+  @cart = current_cart
+    if @cart.line_items.empty?
+      redirect_to root_path, notice: 'カートは空です。'
+      return
+    elsif user_signed_in? && Address.find_by(user_id: current_user).present?
+      redirect_to new_for_users_orders_path
+    else
+      @order = Order.new
+    end
+  end
+
+  def new_for_users
+     @cart = current_cart
+     @address = Address.find_by(user_id: current_user)
+     @order = Order.new
   end
 
   def confirm
     @cart = current_cart
     @order = Order.new(order_params)
     @order.add_items(current_cart)
-    render :new if @order.invalid?
+    render :new if @order.invalid? || params[:back]
   end
 
   def edit

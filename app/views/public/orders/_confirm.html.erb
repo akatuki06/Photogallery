@@ -38,8 +38,11 @@
   <div class="my-2">支払い方法</div>
     <%= @order.payment %>
     <%= f.hidden_field :payment %>
-  <div class="my-2">購入金額</div>
-    
+<% if user_signed_in? %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+<% end %>
+
+  <div class="my-2"><h2>購入金額</h2></div>
     <% sub_sum =+ sum + @cart.total_price %>
     <h4>小計：¥<%= sub_sum.to_s(:delimited) %>円</h4>
     <h5>消費税：¥<% tax = sub_sum * 0.08 %><%= tax.round.to_s(:delimited) %>円</h5>

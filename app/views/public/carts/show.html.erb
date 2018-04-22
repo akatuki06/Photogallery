@@ -57,6 +57,7 @@
             <h4 class="text-right">
               <a><%= link_to '買い物を続ける', root_path, :class => 'btn px-4 mx-5 btn-secondary' %></a>小計：<%= (@cart.total_price).to_s(:delimited) %>円
               <%= link_to "レジに進む",new_order_path, class: "btn btn-primary px-4 mx-4" %>
+
             </h4>
           </div>
         </div>

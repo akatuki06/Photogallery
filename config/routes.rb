@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :carts, except: [:index, :edit, :new]
     resources :orders do
       collection do
+        get 'new_for_users'
         post 'confirm'
       end
     end
