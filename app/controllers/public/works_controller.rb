@@ -3,6 +3,10 @@ class Public::WorksController < Public::Base
 	before_action :artist_user, except: [:index, :show]
   before_action :ensure_correct_artist, only: [:edit, :update, :soft_delete]
 
+  def test
+    @works = Work.all
+    @lis = LineItem.all
+  end
 
   def index
     @works = Work.all

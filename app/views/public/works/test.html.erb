@@ -1,0 +1,14 @@
+<h1>test</h1>
+
+<% @works.each do |w| %>
+
+<h2>ID:<%= w.id %></h2>
+<h3>STOCK:<%= w.stock %></h3>
+
+<% end %>
+
+<% @lis.each do |li| %>
+	<h3>ID:<%= li.id %></h3>
+	<h3>商品ID:<%= li.work.id %></h3>
+<h4>数量:<%= li.quantity %></h4>
+<% end %>

@@ -29,10 +29,12 @@ class Public::LineItemsController < Public::Base
   end
 
   def update
+    @cart = current_cart
+    @line_item = @cart.line_items.find(params[:id])
       if @line_item.update(line_item_params)
-        redirect_to @line_item, notice: 'Line item was successfully updated.'
+        redirect_to cart_path(@cart.id), notice: '数量を変更しました。'
       else
-        render :edit
+        redirect_to root_path
       end
   end
 
@@ -48,7 +50,7 @@ class Public::LineItemsController < Public::Base
     end
 
     def line_item_params
-    	params.require(:line_item).permit(:work_id, :cart_id)
+    	params.require(:line_item).permit(:work_id, :cart_id, :quantity)
     end
 end
 

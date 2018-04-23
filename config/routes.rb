@@ -27,7 +27,11 @@ Rails.application.routes.draw do
     resource :artists, except: [:show]
     resources :artists, only: [:index, :show]
     patch '/work/:id/soft_delete', to: 'works#soft_delete', as: 'work_soft_delete'
-    resources :works
+    resources :works do
+      collection do
+        get 'test'
+      end
+    end
     resource :addresses
     resources :line_items
     resources :carts, except: [:index, :edit, :new]
