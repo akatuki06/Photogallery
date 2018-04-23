@@ -2,7 +2,7 @@
 
 <% if @order.errors.any? %>
     <div id="error_explanation">
-      <h2>エラーが<%= @order.errors.count %>件あります。お客様情報を入力して下さい。</h2>
+      <a>エラーが<%= @order.errors.count %>件あります。</a>
 
       <ul>
       <% @order.errors.full_messages.each do |message| %>

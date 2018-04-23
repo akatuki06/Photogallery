@@ -9,7 +9,6 @@ class Public::OrdersController < Public::Base
   end
 
   def new
-      binding.pry
   @cart = current_cart
     if @cart.line_items.empty?
       redirect_to root_path, notice: 'カートは空です。'
