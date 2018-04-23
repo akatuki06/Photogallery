@@ -10,7 +10,6 @@ class Cart < ApplicationRecord
 		else
 			current_item = line_items.build(work_id: work_id)
 		end
-		# binding.pry
 		current_item
 	end
 	

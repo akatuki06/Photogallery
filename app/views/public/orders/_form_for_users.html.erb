@@ -12,26 +12,26 @@
     </div>
   <% end %>
 
-  <div class="my-2">名前</div>
-    <%= @address.name %>
+  <div class="my-2 border-bottom">名前：
+    <%= @address.name %></div>
     <%= f.hidden_field :name, value: "#{@address.name}" %>
-  <div class="my-2">名前(カナ)</div>
-    <%= @address.name_kana %>
+  <div class="my-2 border-bottom">名前(カナ)：
+    <%= @address.name_kana %></div>
     <%= f.hidden_field :name_kana, value: "#{@address.name_kana}" %>
-  <div class="my-2">郵便番号</div>
-  <%= @address.zipcode %>
+  <div class="my-2 border-bottom">郵便番号：
+  <%= @address.zipcode %></div>
     <%= f.hidden_field :zipcode, value: "#{@address.zipcode}" %>
-  <div class="my-2">都道府県</div>
-    <%= @address.prefecture.name %>
+  <div class="my-2 border-bottom">都道府県：
+    <%= @address.prefecture.name %></div>
     <%= f.hidden_field :prefecture_id, value: "#{@address.prefecture.id}" %>
-  <div class="my-2">住所</div>
-    <%= @address.address %>
+  <div class="my-2 border-bottom">住所：
+    <%= @address.address %></div>
     <%= f.hidden_field :address, value: "#{@address.address}" %>
-  <div class="my-2">電話番号</div>
-    <%= @address.phone %>
+  <div class="my-2 border-bottom">電話番号：
+    <%= @address.phone %></div>
     <%= f.hidden_field :phone, value: "#{@address.phone}" %>
-    <div class="my-2">e-mail</div>
-    <%= current_user.email %>
+    <div class="my-2 border-bottom">e-mail：
+    <%= current_user.email %></div>
     <%= f.hidden_field :email, value: "#{current_user.email}" %>
 
   <div class="my-2">支払い方法</div>

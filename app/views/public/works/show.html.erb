@@ -33,9 +33,14 @@
           <ul class="list-group list-group-flush">
             <h5 class="list-group-item md-1">作品名：<%= @work.title %></h5>
             <h5 class="list-group-item md-1">¥<%= @work.price.to_s(:delimited) %>円
-              <!-- <button type="button" class="btn btn-primary mx-5">カートに入れる</button> -->
-              <%= link_to line_items_path(work_id: @work), method: :post, class: 'btn btn-primary mx-5' do %>
-              カートに入れる
+              <% if user_signed_in? || session[:cart_id].present? %>
+                <%= link_to line_items_path(work_id: @work), method: :post, class: 'btn btn-primary mx-5' do %>
+                カートに入れる
+                <% end %>
+                <% else %>
+                <%= link_to line_items_path(work_id: @work), method: :post, data: {confirm: 'ログインせずに買い物しますか？'}, class: 'btn btn-primary mx-5' do %>
+                カートに入れる
+                <% end %>
               <% end %>
             </h5>
             <li class="list-group-item">制作年：<%= @work.creation_date %></li>
