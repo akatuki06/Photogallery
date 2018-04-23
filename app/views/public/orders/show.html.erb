@@ -1,0 +1,74 @@
+<h1>注文情報の表示</h1>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>単価</th>
+      <th>数量</th>
+      <th>金額</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+	<% @order.line_items.each do |item| %>
+          <tr>
+		<td><%= item.work.id %></td>
+		<td><%= item.work.title %></td>
+    <td><%= item.price %>円</td>
+		<td><%= item.quantity %>点</td>
+		<td><%= (item.total_price).to_i %>円</td>
+          </tr>
+	<% end %>
+  </tbody>
+</table>
+<br>
+<p>
+<font size="4px">
+  <strong>【ユーザーID:】 </strong>
+  <%= @order.user_id %>
+</font>
+</p>
+<p>
+<font size="4px">
+  <strong>【注文ID:】 </strong>
+  <%= @order.id %>
+</font>
+</p>
+
+<p>
+<font size="4px">
+  <strong>【氏名:】 </strong>
+  <%= @order.name %>
+</font>
+</p>
+
+<p>
+<font size="4px">
+  <strong>【住所:】 </strong>
+  <%= @order.address %>
+</font>
+</p>
+
+<p>
+<font size="4px">
+  <strong>【メールアドレス:】 </strong>
+  <%= @order.email %>
+</font>
+</p>
+
+<p>
+<font size="4px">
+  <strong>【電話番号:】 </strong>
+  <%= @order.phone %>
+</font>
+</p>
+
+<p>
+<font size="4px">
+  <strong>【支払い方法:】 </strong>
+  <%= @order.payment %>
+</font>
+</p>

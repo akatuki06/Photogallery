@@ -1,0 +1,65 @@
+<div class="py-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 my-4">
+          <h1 class="">ショッピングカート</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <% if @cart.line_items.blank? %>
+        <h3>カートが空です</h3>
+        <% else %>
+        <!-- <a class="btn btn-light" href="#">カートを空にする </a> -->
+        <%= button_to 'カートを空にする', @cart, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'btn btn-light' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>画像</td>
+                <td>タイトル</td>
+                <td>単価</td>
+                <td>数量</td>
+                <td>小計</td>
+                <td></td>
+              </tr>
+          </tbody>
+
+              <tbody>
+		<% @cart.line_items.each do |item| %>
+              <tr>
+                <td><%= attachment_image_tag item.work, :image, format: 'jpg',
+              class: "center-block", fallback: "/assets/no_image_m.png", width: '100', height: '100'%></td>
+                <td><%= item.work.title %></td>
+                <td><%= (item.work.price).to_s(:delimited) %>円</td>
+                <td><%= item.quantity %>点
+                  <a class="btn btn-sm btn-info" href="#">更新</a>
+                </td>
+                <td><%= (item.total_price).to_s(:delimited) %>円</td>
+                <td>
+                  <%= button_to '削除', item, method: :delete, data: {confirm: 'カートから削除してよろしいですか？'}, class: "btn btn-danger" %>
+                </td>
+              </tr>
+          <% end %>
+            </tbody>
+          </table>
+          <div>
+            <h4 class="text-right">
+              <a><%= link_to '買い物を続ける', root_path, :class => 'btn px-4 mx-5 btn-secondary' %></a>小計：<%= (@cart.total_price).to_s(:delimited) %>円
+              <%= link_to "レジに進む",new_order_path, class: "btn btn-primary px-4 mx-4" %>
+
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>

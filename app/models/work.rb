@@ -2,6 +2,9 @@ class Work < ApplicationRecord
   belongs_to :artist
   belongs_to :user
 
+  has_many :line_items
+  before_destroy :referenced_by_line_item
+
   validate :price_validate
   validate :stock_validate
 
@@ -29,4 +32,16 @@ class Work < ApplicationRecord
   def stock_validate
     errors.add(:stock, "は0より大きくなければなりません。") unless stock.nil? || stock > 0.0
   end
+
+  private
+  def referenced_by_line_item
+
+    if line_items.empty?
+      return true
+    else
+      errors.add(:base, '品目が存在します。')
+      retuen false
+    end
+  end
+  
 end

@@ -10,7 +10,7 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item btn">クリップ一覧</li>
-        <li class="list-group-item btn">購入履歴</li>
+        <%= link_to "購入履歴", orders_path, class: "list-group-item btn" %>
         <%= link_to "プロフィール編集", edit_user_registration_path, class: "list-group-item btn" %>
         <%= link_to "個人情報詳細", addresses_path, class: "list-group-item btn" %>
         <% if current_user.is_artist? %>

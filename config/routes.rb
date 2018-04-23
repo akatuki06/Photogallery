@@ -29,6 +29,14 @@ Rails.application.routes.draw do
     patch '/work/:id/soft_delete', to: 'works#soft_delete', as: 'work_soft_delete'
     resources :works
     resource :addresses
+    resources :line_items
+    resources :carts, except: [:index, :edit, :new]
+    resources :orders do
+      collection do
+        get 'new_for_users'
+        post 'confirm'
+      end
+    end
 
   end
 

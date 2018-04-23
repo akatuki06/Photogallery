@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  state: MyString
+  total: 1
+  postage: 1
+  payment_state: MyString
+  shipment_state: MyString
+  name: MyString
+  name_kana: MyString
+  zipcode: MyString
+  prefecture: one
+  address: MyText
+  phone: MyString
+  email: MyString
+  payment: MyString
+  is_deleted: false
+
+two:
+  user_id: 1
+  state: MyString
+  total: 1
+  postage: 1
+  payment_state: MyString
+  shipment_state: MyString
+  name: MyString
+  name_kana: MyString
+  zipcode: MyString
+  prefecture: two
+  address: MyText
+  phone: MyString
+  email: MyString
+  payment: MyString
+  is_deleted: false
