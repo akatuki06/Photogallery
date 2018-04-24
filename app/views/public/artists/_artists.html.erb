@@ -1,0 +1,28 @@
+<div class="text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-4 text-dark">Artists
+            <br> </h1>
+        </div>
+      </div>
+      <div class="row">
+      	<% @artists.each do |a| %>
+          <% if a.is_deleted == false %>
+      	<div class="col-md-3 col-6 p-1">
+      		<%= link_to artist_path(a.id) do %>
+      		<div class="card">
+      			<%= attachment_image_tag a.user, :image, format: 'jpg',
+      			class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+      			<div class="card-body">
+      				<h6 class="card-title text-left"><%= a.name %></h6>
+      			</a>
+      		  </div>
+      	  </div>
+        </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>

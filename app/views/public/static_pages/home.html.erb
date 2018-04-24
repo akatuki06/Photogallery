@@ -70,78 +70,8 @@
 <p class="alert"><%= alert %></p>
 
 <body>
-	<div class="">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="text-center mt-5 my-5">Works</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div>
-		<div class="container">
-			<div class="row">
-				 <% @works.each do |w| %>
-        <% if w.is_deleted == false %>
-          <div class="col-md-3 col-6 p-1">
-            <%= link_to work_path(w.id) do %>
-            <div class="card">
-            	<div class="text-center">
-              <%= attachment_image_tag w, :image, format: 'jpg',
-              class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
-            	</div>
-              <div class="card-body text-dark">
-                <h6 class="card-title text-left"><%= w.title %></h6>
-                <p class="card-text text-right m-1"><%= w.artist.name %></p>
-                <div class="card-footer">
-                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円</span>
-                  <div>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                  </div>
-                </div>
-                
-              </a>
-            </div>
-          </div>
-        </div>
-        <% end %>
-        <% end %>
-        <% end %>
-			</div>
-		</div>
-	</div>
-	<div class="">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="text-center text-info mt-5 my-5">Artists</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div>
-		<div class="container">
-			<div class="row">
-				<% @artists.each do |a| %>
-				<div class="col-md-3 my-2">
-					<%= link_to artist_path(a.id) do %>
-					<div class="card">
-						<div class="text-center">
-							<%= attachment_image_tag a.user, :image, format: 'jpg',
-							fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
-						</div>
-						<div class="card-body">
-							<h5 class="card-title"><%= a.name %></h5>
-						</div>
-					</div>
-					<% end %>
-				</div>
-				<% end %>
-			</div>
-		</div>
-	</div>
+ <%= render 'public/works/works' %>
+ <%= render 'public/artists/artists' %>
 	<div class="my-5">
 		<div class="container">
 			<div class="row">

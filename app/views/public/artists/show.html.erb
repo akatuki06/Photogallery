@@ -1,10 +1,9 @@
 <div class="py-5">
     <div class="container">
       <div class="row">
-      <div class="flex-colum d-flex">
 
-        <div class="col-md-4 text-center" >
-        	<%= attachment_image_tag @artist.user, :image, format: 'jpg',
+        <div class="col-lg-4 text-center" >
+          <%= attachment_image_tag @artist.user, :image, format: 'jpg',
           class: "center-block", fallback: "/assets/no_image_m.png", width: '250', height: '250'%>
         <% if user_signed_in? && @artist.user_id == current_user.id %>
         <div>
@@ -13,11 +12,12 @@
         </div>
         <% else %>
         <% end %>
-        </div>
+      </div>
 
-        <div class="col-lg-8 mx-4">
+      <div class="flex-colum d-flex col-lg-8">
+        <div class="col-lg-10 offset-1">
           <ul class="list-group list-group-flush">
-            <h5 class="list-group-item md-1"><%= @artist.name %></h5>
+            <h2 class="list-group-item md-1"><%= @artist.name %></h2>
             <h5 class="list-group-item md-1"><%= @artist.url %></h5>
             <a class="list-group-item flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
@@ -45,6 +45,7 @@
         </div>
       </div>
     </div>
+  </div>
     <div class="text-center">
       <div class="container">
         <div class="row">

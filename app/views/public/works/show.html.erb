@@ -1,9 +1,8 @@
  <div class="py-5">
   <div class="container">
     <div class="row">
-      <div class="flex-colum d-flex">
 
-        <div class="col-md-4 text-center mx-1">
+        <div class="col-lg-4 text-center">
           <%= attachment_image_tag @work, :image, format: 'jpg',
           class: "center-block", fallback: "/assets/no_image_m.png", width: '250', height: '250'%>
           <% if user_signed_in? && @work.artist.user_id == current_user.id %>
@@ -29,22 +28,24 @@
           </div>
         </div>
 
-        <div class="col-lg-8 mx-4" >
+      <div class="flex-colum d-flex col-lg-8">
+        <div class="col-lg-10 mx-3" >
           <ul class="list-group list-group-flush">
             <h4 class="list-group-item md-1">作品名：<%= @work.title %></h4>
             <h4 class="list-group-item md-1 d-inline-flex">¥<%= @work.price.to_s(:delimited) %>円
               <span class="mx-5">
-                
-              <% if user_signed_in? || session[:cart_id].present? %>
-              <%= form_for @line_item, url:line_items_path(work_id: @work) do |li| %>
-              <%= li.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: @work.stock %>
-              <%= li.submit 'カートに入れる', class:'btn btn-primary' %>
-              <% end %>
-                <% else %>
-                 <%= form_for @line_item, url:line_items_path(work_id: @work) do |li| %>
-              <%= li.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: @work.stock %>
-              <%= li.submit 'カートに入れる', data: {confirm: 'ログインせずに買い物しますか？'}, class:'btn btn-primary' %>
-                <% end %>
+              <% if @work.stock == 0 %>
+                <button type="button" class="btn btn-danger" disabled="disabled">売り切れ</button>
+              <% elsif user_signed_in? || session[:cart_id].present? %>
+                  <%= form_for @line_item, url:line_items_path(work_id: @work) do |li| %>
+                  <%= li.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: @work.stock %>
+                  <%= li.submit 'カートに入れる', class:'btn btn-primary' %>
+                  <% end %>
+              <% else %>
+                  <%= form_for @line_item, url:line_items_path(work_id: @work) do |li| %>
+                  <%= li.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: @work.stock %>
+                  <%= li.submit 'カートに入れる', data: {confirm: 'ログインせずに買い物しますか？'}, class:'btn btn-primary' %>
+                  <% end %>
               <% end %>
               </span>
               </h4>
