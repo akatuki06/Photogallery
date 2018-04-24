@@ -21,7 +21,8 @@ Rails.application.routes.draw do
     get 'static_pages/how_to_register'
     get 'static_pages/how_to_buy'
     get 'static_pages/entrance'
-    
+    get 'sales/index'
+
     get 'static_pages/test'
 
     get 'users/show'

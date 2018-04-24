@@ -16,7 +16,7 @@
         <% if current_user.is_artist? %>
           <%= link_to "アーティスト詳細", artist_path(current_user.artist.id), class: "list-group-item btn" %>
           <li class="list-group-item btn">展覧会登録・編集</li>
-          <li class="list-group-item btn">売り上げ関連</li>
+          <%= link_to "売上関連", sales_index_path, class: "list-group-item btn" %>
         <% else %>
           <%= link_to "アーティスト登録", new_artists_path, class: "list-group-item btn" %>
         <% end %>
