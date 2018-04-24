@@ -22,7 +22,7 @@
                 <div class="card card-warning">
                   <div class="card-heading clearfix">
                     <span style="float: left">
-                      <%= link_to order.created_at.strftime('%Y年%m月%d日 %H:%M'), order_path(order.id) %></span>
+                      <%= link_to order.created_at.strftime('%Y年%m月%d日 %H:%M'), order_path(order.id),class: "border bg-info" %></span>
                       <span class="mx-3">ステータス：<%= order.state %></span>
                     </div>
                     <div class="card-body" style="padding: 15px 15px 0 15px">
