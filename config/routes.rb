@@ -21,20 +21,19 @@ Rails.application.routes.draw do
     get 'static_pages/how_to_register'
     get 'static_pages/how_to_buy'
     get 'static_pages/entrance'
+    
+    get 'static_pages/test'
+
     get 'users/show'
     get '/users/unsubscribe'
     patch '/users/soft_delete'
     resource :artists, except: [:show]
     resources :artists, only: [:index, :show]
     patch '/work/:id/soft_delete', to: 'works#soft_delete', as: 'work_soft_delete'
-    resources :works do
-      collection do
-        get 'test'
-      end
-    end
+    resources :works
     resource :addresses
-    resources :line_items
-    resources :carts, except: [:index, :edit, :new]
+    resources :line_items, only: [:create, :update, :destroy]
+    resources :carts, only: [:show, :destroy]
     resources :orders do
       collection do
         get 'new_for_users'

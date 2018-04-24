@@ -1,11 +1,10 @@
 
 
-      <div class="col-md-12">
-        <!-- <a class="btn btn-light" href="#">カートを空にする </a> -->
-        <%= button_to 'カートを空にする', @cart, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'btn btn-light' %>
+<div class="col-md-12">
   <div class="py-3">
     <div class="container">
       <div class="row">
+        <%= button_to 'カートを空にする', @cart, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: 'btn btn-light' %>
         <div class="col-md-12">
           <table class="table">
             <tbody>

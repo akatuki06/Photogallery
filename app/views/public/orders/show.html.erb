@@ -1,3 +1,126 @@
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <%= render 'layouts/public/sidebar' %>
+      <div class="flex-colum d-flex col-lg-8">
+        <div class="col-lg-12 mx-4">
+         <h1 class="mb-4">購入詳細</h1>
+                    <div class="card">
+                      <div class="card-body p-5">
+                        <ul class="list-group list-group-flush">
+                          <h5 class="list-group-item md-1">注文日：<%= @order.created_at.strftime('%Y年%m月%d日 %H:%M') %></h5>
+                          <h5 class="list-group-item md-1">ステータス：<%= @order.state %></h5>
+                          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">お届け先</h5>
+                            </div>
+                            <ul class="list-group">
+                              <li class="list-group-item d-flex justify-content-between align-items-center">お名前：<%= @order.name %></li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center">〒<%= @order.zipcode %>
+                              <li class="list-group-item d-flex justify-content-between align-items-center"><%= @order.prefecture.name %><%= @order.address %></li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center">電話番号：<%= @order.phone %></li>
+                            </ul>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">支払い方法</h5>
+                            </div>
+                            <p class="mb-1"><%= @order.payment %></p>
+                          </a>
+                          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">注文内容</h5>
+                            </div>
+                            <table class="table">
+                              <tbody>
+                                <tr>
+                                  <td></td>
+                                  <td>作品名</td>
+                                  <td>単価</td>
+                                  <td>枚数</td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                  <td>2</td>
+                                  <td>Jacob</td>
+                                  <td>Thornton</td>
+                                  <td>Jacob</td>
+                                  <td>Thornton</td>
+                                </tr>
+                                <tr>
+                                  <td>3</td>
+                                  <td>Larry</td>
+                                  <td>the Bird</td>
+                                  <td>Jacob</td>
+                                  <td>Thornton</td>
+                                </tr>
+                                <tr>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td>配送料</td>
+                                  <td>¥1,000</td>
+                                </tr>
+                                <tr>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td>ご請求額</td>
+                                  <td>¥1,000</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </a>
+                        </ul>
+                        <div class="col-md-12">
+                          <h3 class="my-3">作品情報</h3>
+                          <div class="card">
+                            <img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">作品名</li>
+                              <li class="list-group-item text-right">アーティスト名</li>
+                              <li class="list-group-item text-center text-danger">SOLD/残り3枚/販売中</li>
+                            </ul>
+                            <div class="card-body">
+                              <a href="#" class="card-link">Card link</a>
+                              <a href="#" class="card-link">Another link</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <h3 class="my-3">作品情報</h3>
+                          <div class="card">
+                            <img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">作品名</li>
+                              <li class="list-group-item text-right">アーティスト名</li>
+                              <li class="list-group-item text-center text-danger">SOLD/残り3枚/販売中</li>
+                            </ul>
+                            <div class="card-body">
+                              <a href="#" class="card-link">Card link</a>
+                              <a href="#" class="card-link">Another link</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
 <h1>注文情報の表示</h1>
 <br>
 <table>

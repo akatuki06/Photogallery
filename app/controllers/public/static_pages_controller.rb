@@ -21,4 +21,10 @@ class Public::StaticPagesController < Public::Base
 
   def entrance
   end
+
+  
+  def test
+    @works = Work.all
+    @lis = LineItem.all
+  end
 end

@@ -30,7 +30,7 @@ class Work < ApplicationRecord
 	end
 
   def stock_validate
-    errors.add(:stock, "は0より大きくなければなりません。") unless stock.nil? || stock > 0.0
+    errors.add(:stock, "はnilじゃだめ") unless stock.nil? || stock >= 0.0
   end
 
   private

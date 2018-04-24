@@ -2,10 +2,11 @@ class Public::OrdersController < Public::Base
   before_action :set_order, only: [:show, :edit]
 
   def index
-    @orders = Order.all
+    @orders = Order.where(user_id: current_user.id)
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def new
@@ -40,16 +41,23 @@ class Public::OrdersController < Public::Base
       @order = Order.new(order_params)
       @order.add_items(current_cart)
       if params[:back]
-        @cart = current_cart
-        render :new
-      elsif @order.save
-       Cart.destroy(session[:cart_id])
-       session[:cart_id] = nil
-       redirect_to root_url, notice: 'ご注文ありがとうございました。'
-     else
-      @cart = current_cart
-      render :new
-    end
+         @cart = current_cart
+         render :new
+      elsif
+        @order.line_items.each do |item|
+          if item.work.stock - item.quantity < 0.0
+             return redirect_to cart_path(session[:cart_id]),flash: {notice: '大変申し訳ございません。売り切れの商品がございます。'}
+          end
+          item.work.update!(stock: item.work.stock - item.quantity)
+        end
+         @order.save
+         Cart.destroy(session[:cart_id])
+         session[:cart_id] = nil
+         redirect_to root_url, notice: 'ご注文ありがとうございました。'
+      else
+         @cart = current_cart
+         render :new
+      end
   end
 
   private

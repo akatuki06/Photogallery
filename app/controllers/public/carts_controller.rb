@@ -1,5 +1,5 @@
 class Public::CartsController < Public::Base
-  before_action :set_cart, only: [:show, :destroy]
+  before_action :set_cart
 
   def show
   end
@@ -23,7 +23,4 @@ class Public::CartsController < Public::Base
       end
     end
 
-    def cart_params
-      params.fetch(:cart, {})
-    end
 end

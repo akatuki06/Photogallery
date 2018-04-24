@@ -31,18 +31,23 @@
 
         <div class="col-lg-8 mx-4" >
           <ul class="list-group list-group-flush">
-            <h5 class="list-group-item md-1">作品名：<%= @work.title %></h5>
-            <h5 class="list-group-item md-1">¥<%= @work.price.to_s(:delimited) %>円
+            <h4 class="list-group-item md-1">作品名：<%= @work.title %></h4>
+            <h4 class="list-group-item md-1 d-inline-flex">¥<%= @work.price.to_s(:delimited) %>円
+              <span class="mx-5">
+                
               <% if user_signed_in? || session[:cart_id].present? %>
-                <%= link_to line_items_path(work_id: @work), method: :post, class: 'btn btn-primary mx-5' do %>
-                カートに入れる
-                <% end %>
+              <%= form_for @line_item, url:line_items_path(work_id: @work) do |li| %>
+              <%= li.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: @work.stock %>
+              <%= li.submit 'カートに入れる', class:'btn btn-primary' %>
+              <% end %>
                 <% else %>
-                <%= link_to line_items_path(work_id: @work), method: :post, data: {confirm: 'ログインせずに買い物しますか？'}, class: 'btn btn-primary mx-5' do %>
-                カートに入れる
+                 <%= form_for @line_item, url:line_items_path(work_id: @work) do |li| %>
+              <%= li.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: @work.stock %>
+              <%= li.submit 'カートに入れる', data: {confirm: 'ログインせずに買い物しますか？'}, class:'btn btn-primary' %>
                 <% end %>
               <% end %>
-            </h5>
+              </span>
+              </h4>
             <li class="list-group-item">制作年：<%= @work.creation_date %></li>
                 <li class="list-group-item">エディション：<%= @work.edition %></li>
                 <li class="list-group-item">サイズ：<%= @work.size %></li>
