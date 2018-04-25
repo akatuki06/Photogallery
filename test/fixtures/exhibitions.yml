@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artist: one
+  title: MyString
+  summary: MyText
+  place: MyString
+  term: MyString
+  entrance_fee: MyString
+  closed_day: MyString
+  opneing_hour: MyString
+  information: MyString
+  url: MyString
+
+two:
+  artist: two
+  title: MyString
+  summary: MyText
+  place: MyString
+  term: MyString
+  entrance_fee: MyString
+  closed_day: MyString
+  opneing_hour: MyString
+  information: MyString
+  url: MyString

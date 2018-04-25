@@ -62,7 +62,7 @@ class Public::WorksController < Public::Base
 						  		:price,
 						  		:stock,
 						  		:creation_date,
-						  		:editionm,
+						  		:edition,
 						  		:size,
 						  		:technique,
 						  		:comment,

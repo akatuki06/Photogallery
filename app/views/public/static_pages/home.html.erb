@@ -30,7 +30,7 @@
               				<%= link_to "作品一覧", works_path, class: "nav-link" %>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">写真展一覧</a>
+              				<%= link_to "写真展一覧", exhibitions_path, class: "nav-link" %>
 						</li>
 						<% if user_signed_in? %>
 						<li class="nav-item">
@@ -72,61 +72,7 @@
 <body>
  <%= render 'public/works/works' %>
  <%= render 'public/artists/artists' %>
-	<div class="my-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="text-center text-info">exhibitions</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="card">
-						<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg" alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+ <%= render 'public/exhibitions/exhibitions' %>
 	<%= render 'layouts/public/footer' %>
 	<%= render template: "layouts/application" %>
 	<!-- 追記 -->

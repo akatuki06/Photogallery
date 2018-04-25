@@ -1,0 +1,32 @@
+<%= form_for @exhibition, :url => exhibitions_path do |f| %>
+
+   <div>タイトル名<span class="badge badge-danger">必須</span></div>
+      <%= f.text_field :title,size: "70x10" %>
+   <div class="my-2">概要<span class="badge badge-danger">必須</span></div>
+      <%= f.text_area :summary,size: "70x10" %>
+   <div class="my-2">会場<span class="badge badge-danger">必須</span></div>
+      <%= f.text_field :place, size: "70x10" %>
+   <div class="my-2">会期<span class="badge badge-danger">必須</span></div>
+      <%= f.text_field :term, size: "70x10" %>
+   <div class="my-2">入場料</div>
+      <%= f.text_area :entrance_fee, size: "70x5" %>
+   <div class="my-2">休館日</div>
+      <%= f.text_field :closed_day, size: "70x10" %>
+   <div class="my-2">開館時間</div>
+      <%= f.text_field :opneing_hour, size: "70x10" %>
+   <div class="my-2">問い合わせ先</div>
+      <%= f.text_field :information, size: "70x10" %>
+   <div class="my-2">公式サイト</div>
+      <%= f.text_field :url, size: "70x10" %>
+
+     <%= f.fields_for :images do |ff| %>
+      <%= render "image_fields", f: ff %>
+     <% end %>
+     <div>
+      <%= link_to_add_fields "画像追加", f, :images, class: "btn btn-secondary btn-md my-3" %>
+     </div>
+
+   <div>
+     <%= f.submit "登録", class: "btn btn-primary btn-block col-lg-5" %>
+   </div>
+<% end %>

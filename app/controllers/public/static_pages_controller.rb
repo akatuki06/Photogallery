@@ -2,6 +2,7 @@ class Public::StaticPagesController < Public::Base
   def home
     @artists = Artist.all
     @works = Work.all
+    @exhibitions = Exhibition.all
   end
 
   def end

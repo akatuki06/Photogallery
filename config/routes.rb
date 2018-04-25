@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     resource :addresses
     resources :line_items, only: [:create, :update, :destroy]
     resources :carts, only: [:show, :destroy]
+    resource :exhibitions, except: [:show]
+    resources :exhibitions, only: [:index, :show]
     resources :orders do
       collection do
         get 'new_for_users'

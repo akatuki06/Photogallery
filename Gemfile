@@ -69,3 +69,5 @@ gem 'hirb-unicode'
 gem 'pry-byebug'
 gem 'rails-i18n'
 gem 'acts-as-taggable-on', '~> 4.0'
+gem 'jquery-turbolinks'
+

@@ -8,7 +8,6 @@
         <% if user_signed_in? && @artist.user_id == current_user.id %>
         <div>
           <%= link_to "アーティスト情報編集", edit_artists_path, class: "col-9 btn bg-danger my-4 p-2" %>
-          <%= link_to "作品新規登録", new_work_path, class: "col-9 btn bg-secondary p-2" %>
         </div>
         <% else %>
         <% end %>

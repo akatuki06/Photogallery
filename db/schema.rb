@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422063512) do
+ActiveRecord::Schema.define(version: 20180424142958) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -61,6 +61,30 @@ ActiveRecord::Schema.define(version: 20180422063512) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "exhibitions", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "title"
+    t.text     "summary"
+    t.string   "place"
+    t.string   "term"
+    t.string   "entrance_fee"
+    t.string   "closed_day"
+    t.string   "opneing_hour"
+    t.string   "information"
+    t.string   "url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["artist_id"], name: "index_exhibitions_on_artist_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.integer  "exhibition_id"
+    t.string   "image_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["exhibition_id"], name: "index_images_on_exhibition_id"
   end
 
   create_table "line_items", force: :cascade do |t|

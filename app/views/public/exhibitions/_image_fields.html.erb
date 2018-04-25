@@ -1,0 +1,12 @@
+<div class="my-2">作品画像<span class="badge badge-danger">必須</span><br>
+	<%= f.attachment_field :image %>
+	<%= attachment_image_tag f.object, :image, width: "100%" %>
+	<% if @exhibition.persisted? %>
+	<div class="my-2">
+		<%= f.check_box :_destroy %>
+		<%= f.label :_destroy, "削除", class: "badge-danger" %><br />
+	</div>
+	<% end %>
+</div>
+
+

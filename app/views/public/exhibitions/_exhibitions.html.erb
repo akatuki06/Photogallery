@@ -3,25 +3,27 @@
       <div class="row">
         <div class="col-md-12 text-center">
               <h1>
-              <%= link_to "Artists", artists_path, class: " text-dark" %>
+              <%= link_to "Exhibitions", exhibitions_path, class: " text-dark" %>
               </h1><br>
         </div>
       </div>
       <div class="row">
-      	<% @artists.each do |a| %>
-          <% if a.is_deleted == false %>
+      	<% @exhibitions.each do |a| %>
       	<div class="col-md-3 col-6 p-1">
-      		<%= link_to artist_path(a.id) do %>
+      		<%= link_to exhibition_path(a.id) do %>
       		<div class="card">
-      			<%= attachment_image_tag a.user, :image, format: 'jpg',
+            <% af = a.images.first %>
+      			<%= attachment_image_tag af, :image, format: 'jpg',
       			class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
       			<div class="card-body">
-      				<h6 class="card-title text-left"><%= a.name %></h6>
+      				<h6 class="card-title text-left"><%= a.title %></h6>
       			</a>
       		  </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" >会期：<%= a.term %></li>
+            </ul>
       	  </div>
         </div>
-          <% end %>
         <% end %>
       <% end %>
       </div>
