@@ -9,6 +9,7 @@ class Public::WorksController < Public::Base
   end
 
   def show
+    @works = Work.all
   	@work = Work.find(params[:id])
     @line_item = LineItem.new
   end

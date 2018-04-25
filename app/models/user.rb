@@ -3,8 +3,11 @@ class User < ApplicationRecord
 	has_one :artist
 	has_one :adress
 	has_many :clip_works, dependent: :destroy
+	has_many :works, through: :clip_works
 	has_many :clip_artists, dependent: :destroy
+	has_many :artists, through: :clip_artists
 	has_many :clip_exhibitions, dependent: :destroy
+	has_many :exhibitions, through: :clip_exhibitions
 
 	validates :name, presence: true
 

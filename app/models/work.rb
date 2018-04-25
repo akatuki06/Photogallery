@@ -7,8 +7,8 @@ class Work < ApplicationRecord
 
   has_many :clip_works, dependent: :destroy
 
-  def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+  def cliped_by?(user)
+    clip_works.where(user_id: user.id).exists?
   end
 
 

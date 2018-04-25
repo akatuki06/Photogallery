@@ -66,10 +66,22 @@
             </a>
 
           </ul>
-          <div class="col-12 py-2 bg-success text-center col-md-12">
-            <a>この作品をクリップ</a>
-            <i class="fa fa-heart like-btn mx-3"></i>
-          </div>
+          <% if user_signed_in? && @work.cliped_by?(current_user) %>
+             <%= link_to work_clip_works_path(@work), method: :delete do %>
+            <div class="col-12 py-2 bg-light text-center col-md-12">
+              この作品はクリップ済み！</a>
+              <i class="fa fa-paperclip" aria-hidden="true" style="color: red;"></i>
+            </div>
+            <% end %>
+            <% else %>
+            <%= link_to work_clip_works_path(@work), method: :post do %>
+            <div class="col-12 py-2 bg-light text-center col-md-12">
+              この作品をクリップする！</a>
+              <i class="fa fa-paperclip" aria-hidden="true" ></i>
+            </div>
+            <% end %>
+          <% end %>
+
         </div>
       </div>
     </div>
@@ -77,7 +89,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 my-3">
-            <h4 class="mb-4 text-dark my-3" contenteditable="true"><%= @work.artist.name %>さんの作品</h4>
+            <h2 class="mb-4 text-dark my-3" contenteditable="true"><%= @work.artist.name %>さんの作品</h2>
           </div>
         </div>
         <div class="row">
@@ -92,11 +104,13 @@
                 <h6 class="card-title text-left"><%= w.title %></h6>
                 <p class="card-text text-right m-1"><%= @work.artist.name %></p>
                 <div class="card-footer">
-                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円</span>
-                  <div>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                  </div>
+                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円<% if user_signed_in? && w.cliped_by?(current_user) %>
+                  <i class="fa fa-paperclip"" aria-hidden="true" style="color: red;"></i>
+                  <% else %>
+                  <i class="fa fa-paperclip"></i>
+                  <% end %>
+                </span>
+                  
                 </div>
                 <% if user_signed_in? && @work.artist.user_id == current_user.id %>
                 <div>

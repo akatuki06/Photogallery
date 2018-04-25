@@ -27,6 +27,7 @@ class Public::ArtistsController <  Public::Base
 
   def show
     @artist = Artist.find(params[:id])
+    @works = Work.all
     # @works = Work.where(artist_id: params[:id])あとで
   end
 

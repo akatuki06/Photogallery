@@ -9,7 +9,7 @@
         <h5 class="mb-0 text-center text-white">詳細情報</h5>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item btn">クリップ一覧</li>
+        <%= link_to "クリップ一覧", clips_index_path, class: "list-group-item btn" %>
         <%= link_to "購入履歴", orders_path, class: "list-group-item btn" %>
         <%= link_to "プロフィール編集", edit_user_registration_path, class: "list-group-item btn" %>
         <%= link_to "個人情報詳細", addresses_path, class: "list-group-item btn" %>

@@ -16,7 +16,11 @@
       			<%= attachment_image_tag af, :image, format: 'jpg',
       			class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
       			<div class="card-body">
-      				<h6 class="card-title text-left"><%= a.title %></h6>
+      				<h6 class="card-title text-left"><%= a.title %><% if user_signed_in? && a.cliped_by?(current_user) %>
+                <i class="fa fa-paperclip" aria-hidden="true" style="color: red;"></i>
+                <% else %>
+                <i class="fa fa-paperclip" aria-hidden="true" ></i>
+                <% end %></h6>
       			</a>
       		  </div>
             <ul class="list-group list-group-flush">

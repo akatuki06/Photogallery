@@ -9,8 +9,8 @@ class Exhibition < ApplicationRecord
 
   validates :title, :summary, :place, :term, presence: true
 
-  def favorited_by?(user)
-  	favorites.where(user_id: user.id).exists?
+  def cliped_by?(user)
+  	clip_exhibitions.where(user_id: user.id).exists?
   end
 
 end
