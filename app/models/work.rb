@@ -5,6 +5,13 @@ class Work < ApplicationRecord
   has_many :line_items
   before_destroy :referenced_by_line_item
 
+  has_many :clip_works, dependent: :destroy
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
+
+
   validate :price_validate
   validate :stock_validate
 

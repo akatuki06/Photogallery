@@ -29,14 +29,20 @@ Rails.application.routes.draw do
     get '/users/unsubscribe'
     patch '/users/soft_delete'
     resource :artists, except: [:show]
-    resources :artists, only: [:index, :show]
+    resources :artists, only: [:index, :show] do
+      resource :clip_artists, only: [:create, :destroy]
+    end
     patch '/work/:id/soft_delete', to: 'works#soft_delete', as: 'work_soft_delete'
-    resources :works
+    resources :works do
+      resource :clip_works, only: [:create, :destroy]
+    end
     resource :addresses
     resources :line_items, only: [:create, :update, :destroy]
     resources :carts, only: [:show, :destroy]
     resource :exhibitions, except: [:show]
-    resources :exhibitions, only: [:index, :show]
+    resources :exhibitions, only: [:index, :show] do
+      resource :clip_exhibitions, only: [:create, :destroy]
+    end
     resources :orders do
       collection do
         get 'new_for_users'
