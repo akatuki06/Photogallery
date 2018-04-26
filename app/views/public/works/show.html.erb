@@ -66,21 +66,9 @@
             </a>
 
           </ul>
-          <% if user_signed_in? && @work.cliped_by?(current_user) %>
-             <%= link_to work_clip_works_path(@work), method: :delete do %>
-            <div class="col-12 py-2 bg-light text-center col-md-12">
-              この作品はクリップ済み！</a>
-              <i class="fa fa-paperclip" aria-hidden="true" style="color: red;"></i>
-            </div>
-            <% end %>
-            <% else %>
-            <%= link_to work_clip_works_path(@work), method: :post do %>
-            <div class="col-12 py-2 bg-light text-center col-md-12">
-              この作品をクリップする！</a>
-              <i class="fa fa-paperclip" aria-hidden="true" ></i>
-            </div>
-            <% end %>
-          <% end %>
+          <div id="like-button">
+            <%= render partial: "like", locals:{work: @work} %>
+          </div>
 
         </div>
       </div>

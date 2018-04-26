@@ -7,21 +7,9 @@
             <div class="col-md-12">
               <h1 class="text-light"><%= @exhibition.title %></h1>
               <p class="text-light text-left"><%= @exhibition.summary %></p>
-              <% if user_signed_in? && @exhibition.cliped_by?(current_user) %>
-              <%= link_to exhibition_clip_exhibitions_path(@exhibition), method: :delete do %>
-              <div class="col-12 py-2 bg-light text-center col-md-12">
-              この写真展はクリップ済み！</a>
-              <i class="fa fa-paperclip" aria-hidden="true" style="color: red;"></i>
-            </div>
-            <% end %>
-            <% else %>
-            <%= link_to exhibition_clip_exhibitions_path(@exhibition), method: :post do %>
-            <div class="col-12 py-2 bg-light text-center col-md-12">
-            この写真展をクリップする！</a>
-            <i class="fa fa-paperclip" aria-hidden="true" ></i>
-          </div>
-          <% end %>
-          <% end %>
+              <div id="like-button">
+              <%= render partial: "like", locals:{exhibition: @exhibition} %>
+              </div>
             </div>
           </div>
         </div>
