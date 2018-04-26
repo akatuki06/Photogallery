@@ -1,0 +1,17 @@
+<% if user_signed_in? && @artist.cliped_by?(current_user) %>
+<%#= link_to artist_clip_artists_path(@artist), method: :delete do %>
+  <%= button_to artist_clip_artists_path(artist_id: @artist.id), method: :delete, remote: true do %>
+    <div class="col-12 py-2 bg-light text-center col-md-12">
+    このアーティストはクリップ済み！</a>
+    <i class="fa fa-paperclip" aria-hidden="true" style="color: red;"></i>
+    </div>
+    <% end %>
+  <% else %>
+<%#= link_to artist_clip_artists_path(@artist), method: :post do %>
+  <%= button_to artist_clip_artists_path(@artist), method: :post, remote: true do %>
+  <div class="col-12 py-2 bg-light text-center col-md-12">
+    このアーティストをクリップする！</a>
+    <i class="fa fa-paperclip" aria-hidden="true" ></i>
+  </div>
+  <% end %>
+<% end %>
