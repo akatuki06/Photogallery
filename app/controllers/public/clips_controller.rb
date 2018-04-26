@@ -1,4 +1,6 @@
 class Public::ClipsController < Public::Base
+	before_action :authenticate_user!
+
   def index
   	@user = current_user
   	@works = @user.works

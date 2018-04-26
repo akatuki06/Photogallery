@@ -1,0 +1,41 @@
+<% if admin_signed_in? %>
+
+<div class="">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-3 col-12 my-3" >
+        <h1 class="nav-header my-3">管理メニュー </h1>
+        <ul class="nav nav-pills flex-column">
+          <li class="nav-item border">
+            <a class="nav-link">
+              <%= link_to admin_orders_path do  %>
+              <i class="fa fa-clipboard mt-1 mx-2"></i>注文履歴</a>
+              <% end %>
+            </li>
+            <li class="nav-item border">
+              <a class="nav-link">
+                <i class="fa fa-anchor mt-1 mx-2"></i>ユーザー</a>
+              </li>
+              <li class="nav-item border">
+                <a class="nav-link">
+                  <i class="fa fa-anchor mt-1 mx-2"></i>売り上げ</a>
+                </li>
+                <li class="nav-item border">
+                  <a class="nav-link">
+                    <i class="fa fa-anchor mt-1 mx-2"></i>商品</a>
+                  </li>
+                </ul>
+                <div class="nav-footer">
+                  <ul class="list-group">
+                    <%= link_to  edit_admin_registration_path do %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><%= current_admin.email %></li>
+                    <% end %>
+                    <%= link_to destroy_admin_session_path, method: :delete do %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"> Logout</li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+
+              <% end %>

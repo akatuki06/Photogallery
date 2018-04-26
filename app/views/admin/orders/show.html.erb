@@ -1,46 +1,55 @@
-<div class="py-5">
-  <div class="container">
-    <div class="row">
-      <%= render 'layouts/public/sidebar' %>
-      <div class="flex-colum d-flex col-lg-8">
-        <div class="col-lg-12 mx-4">
-         <h1 class="mb-4">購入詳細</h1>
-         <div class="card">
-          <div class="card-body p-5">
+
+        <div class="col-lg-8 m-3">
+          <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+            <div class="container">
+              <a class="navbar-brand">
+                <b>Orders/No.<%= @order.id %></b>
+              </a>
+              <div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimarySupportedContent"> </div>
+            </div>
+          </nav>
+          <div class="col-lg-12">
+            <h3 class="pb-3 my-3">購入詳細
+            <%= link_to edit_admin_order_path(@order.id) do  %>
+                        <button type="submit" class="btn btn-secondary btn- mx-2">編集する</button>
+                    <% end %></h3>
             <ul class="list-group list-group-flush">
               <h5 class="list-group-item md-1">注文日：<%= @order.created_at.strftime('%Y年%m月%d日 %H:%M') %></h5>
               <h5 class="list-group-item md-1">ステータス：<%= @order.state %></h5>
+              <h5 class="list-group-item md-1">支払い状況：<%= @order.payment_state %></h5>
+              <h5 class="list-group-item md-1">配送状況：<%= @order.shipment_state %></h5>
               <a class="list-group-item  flex-column align-items-start">
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-1">お届け先</h5>
                 </div>
                 <ul class="list-group">
                   <li class="list-group-item d-flex justify-content-between align-items-center">お名前：<%= @order.name %></li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">〒<%= @order.zipcode %>
-                    <li class="list-group-item d-flex justify-content-between align-items-center"><%= @order.prefecture.name %><%= @order.address %></li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">電話番号：<%= @order.phone %></li>
-                  </ul>
-                </a>
-                <a class="list-group-item  flex-column align-items-start">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">支払い方法</h5>
-                  </div>
-                  <p class="mb-1"><%= @order.payment %></p>
-                </a>
-                <a class="list-group-item  flex-column align-items-start">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">注文内容</h5>
-                  </div>
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>ID</td>
-                        <td>作品名</td>
-                        <td>単価</td>
-                        <td>枚数</td>
-                        <td>小計</td>
-                      </tr>
-                      <% @order.line_items.each do |li| %>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">お名前(カナ)：<%= @order.name_kana %></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">〒<%= @order.zipcode %></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">住所：<%= @order.prefecture.name %><%= @order.address %></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">電話番号：<%= @order.phone %></li>
+                </ul>
+              </a>
+              <a class="list-group-item  flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">支払い方法</h5>
+                </div>
+                <p class="mb-1"><%= @order.payment %></p>
+              </a>
+              <a class="list-group-item  flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">注文内容</h5>
+                </div>
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>作品名</td>
+                      <td>単価</td>
+                      <td>枚数</td>
+                      <td></td>
+                    </tr>
+                    <% @order.line_items.each do |li| %>
                       <tr>
                         <td><%= li.work.id %></td>
                         <td><%= li.work.title %></td>
@@ -69,7 +78,7 @@
                   </table>
                 </a>
               </ul>
-              <div class="row justify-content-center">
+            <div class="row justify-content-center">
 
                 <div class="col-md-8 text-center">
                   <h3 class="my-3">作品情報</h3>
@@ -99,6 +108,3 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
