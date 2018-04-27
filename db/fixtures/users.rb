@@ -38,3 +38,11 @@ User.seed do |s|
 	s.password = "vvvvvv"
 	s.is_artist = true
 end
+
+User.seed do |s|
+	s.id = 6
+	s.email = "6@gmail.com"
+	s.name = "ロクジ"
+	s.password = "vvvvvv"
+	s.is_artist = false
+end

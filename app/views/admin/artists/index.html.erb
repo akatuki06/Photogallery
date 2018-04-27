@@ -1,0 +1,86 @@
+        <div class="col-lg-8 m-3">
+          <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+            <div class="container">
+              <a class="navbar-brand" href="#">
+                <b>Artist</b>
+              </a>
+              <div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimarySupportedContent"> </div>
+            </div>
+          </nav>
+          <h2 class="my-3">検索フォーム</h2>
+          <hr>
+          <form class="">
+            <div class="form-group">
+              <label>ID</label>
+              <input type="email" class="form-control" placeholder="Enter email">
+              <div class="form-group">
+                <label>アーティスト名</label>
+                <input type="password" class="form-control" placeholder="Password"> </div>
+              <div class="form-group">
+                <label>ユーザー名</label>
+                <input type="password" class="form-control" placeholder="Password"> </div>
+              <button type="submit" class="btn btn-primary">検索</button>
+              <hr> </div>
+            </form>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 justify-content-center">
+                <h2 class="my-3">検索結果</h2>
+                <hr>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>アーティスト名</th>
+                      <th>ユーザー名</th>
+                      <th>販売点数</th>
+                      <th>売り上げ合計</th>
+                      <th>ステータス</th>
+                      <th>登録日時</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @artists.each do |u| %>
+                    <tr>
+                      <td><%= u.id %></td>
+                      <td><%= u.name %></td>
+                      <td><%= u.user.name %></td>
+                      <% @line_items = LineItem.includes(work: :artist).where(artists: {id: [u.id] }) %>
+                      <% @ordered_items =  @line_items.where.not(order_id: nil) %>
+                      <td><%= @ordered_items.sum(:quantity) %>点</td>
+                      <% sum = 0 %>
+                      <% @ordered_items.each do |oi| %>
+                      <% oi_total = oi.price * oi.quantity %>
+					  <% total_sale = oi_total * 0.8 %>
+					  <% sum = sum + total_sale %>
+                      <% end %>
+
+                      <td>¥<%= sum.round.to_s(:delimited) %>円</td>
+                      <td>
+                        <% if u.is_deleted? %>
+                        <a class="badge badge-danger text-white">削除済み</a>
+                        <% else %>
+                        <a class="badge badge-primary text-white">アクティブ</a>
+                        <% end %>
+                      </td>
+                      <td><%= u.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
+                      <td>
+                        <%= link_to admin_artist_path(u.id) do  %>
+                        <button type="submit" class="btn btn-primary btn-sm mx-2">詳細</button>
+                      </td>
+                      <% end %>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

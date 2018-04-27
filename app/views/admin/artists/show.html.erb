@@ -1,0 +1,130 @@
+<div class="col-lg-8 m-3">
+	<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+		<div class="container">
+			<a class="navbar-brand">
+				<b>Artist/No.<%= @artist.id %></b>
+			</a>
+			<div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimarySupportedContent"> </div>
+		</div>
+	</nav>
+	<div class="col-lg-12">
+		<h3 class="pb-3 my-3">アーティスト詳細
+      <% if @artist.is_deleted? %>
+      <%= link_to admin_artist_path(@artist.id), method: :patch do  %>
+      <button type="submit" class="btn btn-secondary btn- mx-2">登録する</button>
+      <span class="btn btn-outline-danger">退会しています</span>
+      <% end %>
+      <% else %>
+      <%= link_to admin_artist_path(@artist.id), method: :patch, data: {confirm: 'アーティストを削除してよろしいですか？'} do  %>
+      <button type="submit" class="btn btn-danger btn- mx-2">削除する</button>
+      <% end %>
+      
+      <% end %></h3>
+      <div><%= attachment_image_tag @user, :image, format: 'jpg', class: "center-block", width: '250px', height: '250px'%></div>
+      <ul class="list-group list-group-flush">
+        <h3 class="list-group-item md-1">アーティスト名：<%= @artist.name %></h3>
+        <%= link_to admin_user_path(@artist.user.id) do  %>
+        <h4 class="list-group-item md-1 bg-light">ユーザー名：<%= @artist.user.name %></h4>
+        <% end %>
+      </ul>
+    </div>
+<div class="flex-colum d-flex mt-5">
+            <div class="card">
+              <div class="card-body p-5">
+                <h3 class="pb-3">売り上げ関連</h3>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>取引日時</th>
+                      <th>販売作品</th>
+                      <th>販売単価</th>
+                      <th>数量</th>
+                      <th>売り上げ</th>
+                    </tr>
+                  </thead>
+                  <% sum = 0 %>
+                <% @ordered_items.each do |oi| %>
+                  <tbody>
+                    <tr>
+                      <td><%= oi.order.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
+                      <td><%= link_to "#{oi.work.title}", admin_work_path(oi.work.id) ,class: "border bg-info" %></td>
+                      <td>¥<%= oi.price.to_s(:delimited) %>円</td>
+                      <td><%= oi.quantity %>点</td>
+                      <% total = oi.price * oi.quantity %>
+                      <% total_sale = total * 0.8 %>
+                      <% sum = sum + total_sale %>
+                      <td><%= total_sale.round.to_s(:delimited) %></td>
+                    </tr>
+                <% end %>
+                  </tbody>
+                </table>
+                <% final_total =  %>
+                <h3 class="text-right my-3"> 売り上げ合計
+                  <span class="mx-2">¥<%= sum.round.to_s(:delimited)  %></span>
+                </h3>
+                <ul class="pagination justify-content-center">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">«</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">4</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">»</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+登録作品一覧
+
+<div class="text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 my-3">
+            <h2 class="mb-4 text-dark my-3" contenteditable="true"><%= @artist.name %>さんの作品</h2>
+          </div>
+        </div>
+        <div class="row">
+          <% @artist.works.each do |w| %>
+          <div class="col-md-3 col-6 p-1">
+            <%= link_to admin_work_path(w.id) do %>
+            <div class="card">
+              <%= attachment_image_tag w, :image, format: 'jpg',
+              class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+              <div class="card-body">
+                <h6 class="card-title text-left"><%= w.title %></h6>
+                <p class="card-text text-right m-1"><%= @artist.name %></p>
+                <div class="card-footer">
+                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円<% if user_signed_in? && w.cliped_by?(current_user) %>
+                  <i class="fa fa-paperclip"" aria-hidden="true" style="color: red;"></i>
+                  <% else %>
+                  <i class="fa fa-paperclip"></i>
+                  <% end %>
+                </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>

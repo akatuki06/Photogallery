@@ -1,6 +1,6 @@
 class Public::WorksController < Public::Base
 	before_action :authenticate_user!, except: [:index, :show]
-	before_action :artist_user, except: [:index, :show]
+	before_action :artist_user, except: [:new, :index, :show]
   before_action :ensure_correct_artist, only: [:edit, :update, :soft_delete]
 
 
@@ -50,7 +50,7 @@ class Public::WorksController < Public::Base
   private
 
   def artist_user
-  	redirect_to root_path unless current_user.is_artist?
+  	redirect_to root_path unless current_user.is_artist? && !current_user.artist.is_deleted?
   end
 
   def ensure_correct_artist

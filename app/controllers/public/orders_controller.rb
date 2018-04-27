@@ -2,7 +2,7 @@ class Public::OrdersController < Public::Base
   before_action :set_order, only: [:show, :edit]
 
   def index
-    @orders = Order.where(user_id: current_user.id)
+    @orders = Order.where(user_id: current_user.id).reverse_order
   end
 
   def show

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'artists/index'
+  end
+
+  namespace :admin do
+    get 'artists/show'
+  end
+
   root 'public/static_pages#home'
 
   devise_for :admins, controllers: {

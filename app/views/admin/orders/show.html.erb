@@ -80,7 +80,7 @@
                         <td>ご請求額</td>
                         <td>¥<%= @order.total.to_s(:delimited) %>円</td>
                       </tr>
-                      </tbod>
+                      </tbody>
                   </table>
                 </a>
               </ul>
@@ -89,8 +89,8 @@
                 <div class="col-md-8 text-center">
                   <h3 class="my-3">作品情報</h3>
                   <% @order.line_items.each do |w| %>
-                  <%= link_to admin_work_path(w.work.id) do %>
                   <div class="card">
+                  <%= link_to admin_work_path(w.work.id) do %>
                    <%= attachment_image_tag w.work, :image, format: 'jpg',
                    class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
                     <div class="card-body">
@@ -105,12 +105,13 @@
                         </div>
                       </div>
                       </a>
+                    <% end %>
                     </div>
                   </div>
+                <% end %>
                 </div>
-            <% end %>
-            <% end %>
                 </div>
+              </div>
           </div>
         </div>
       </div>
