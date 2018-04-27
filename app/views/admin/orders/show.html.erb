@@ -14,10 +14,10 @@
                         <button type="submit" class="btn btn-secondary btn- mx-2">編集する</button>
                     <% end %></h3>
                     <% if @order.is_deleted? %>
-              <div class="btn btn-danger">
-                <span>キャンセルされました</span>
-              </div>
-            <% end %>
+                    <div class="btn btn-danger">
+                      <span>キャンセルされました</span>
+                    </div>
+                    <% end %>
             <ul class="list-group list-group-flush">
                   <h5 class="list-group-item d-flex justify-content-between align-items-center">ユーザーID：<%= @order.user_id %></h5>
               <h5 class="list-group-item md-1">注文日：<%= @order.created_at.strftime('%Y年%m月%d日 %H:%M') %></h5>

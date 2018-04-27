@@ -70,4 +70,8 @@ gem 'pry-byebug'
 gem 'rails-i18n'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'jquery-turbolinks'
+gem 'ransack'
+gem 'enum_help'
+gem 'kaminari'
+
 

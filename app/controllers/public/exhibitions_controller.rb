@@ -3,6 +3,9 @@ class Public::ExhibitionsController < Public::Base
 
   def index
     @exhibitions = Exhibition.all
+
+    @search = Exhibition.ransack(params[:q])
+    @exhibitions = @search.result.page(params[:page]).reverse_order
   end
 
   def show

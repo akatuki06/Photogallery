@@ -17,8 +17,9 @@ class Admin::OrdersController < Admin::Base
     if params[:delete]
       @order.line_items.each do |li|
       li.work.update!(stock: li.work.stock + li.quantity)
+      li.update!(price: 0)
       end
-      @order.update!(is_deleted: true)
+      @order.update!(is_deleted: true, total: 0)
       redirect_to admin_order_path(@order), notice: "削除しました"
       return
   	elsif

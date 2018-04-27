@@ -2,23 +2,24 @@
 	<nav class="navbar navbar-expand-md navbar-dark bg-primary">
 		<div class="container">
 			<a class="navbar-brand">
-				<b>Orders/No.<%= @work.id %></b>
+				<b>Works/No.<%= @work.id %></b>
 			</a>
 			<div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimarySupportedContent"> </div>
 		</div>
 	</nav>
 	<div class="col-lg-12">
-		<h3 class="pb-3 my-3">購入詳細
+		<h3 class="pb-3 my-3">作品詳細
       <% if @work.is_deleted? %>
         <%= link_to admin_work_path(@work.id), method: :patch do  %>
-  			<button type="submit" class="btn btn-secondary btn- mx-2">登録する</button>
+  			<button type="submit" class="btn btn-secondary mx-2">登録する</button>
+        <span class="btn btn-outline-danger">削除されています</span>
         <% end %>
       <% else %>
         <%= link_to admin_work_path(@work.id), method: :patch, name: "delete", data: {confirm: '作品を削除してよろしいですか？'} do  %>
         <button type="submit" class="btn btn-danger btn- mx-2">削除する</button>
         <% end %>
 			<% end %></h3> 
-
+    <div><%= attachment_image_tag @work, :image, format: 'jpg', class: "center-block", width: 'aouto'%></div>
 
           <ul class="list-group list-group-flush">
             <h4 class="list-group-item md-1">アーティスト名：<%= link_to "#{@work.artist.name}", admin_artist_path(@work.artist), class: "border bg-light" %></h4>

@@ -67,7 +67,7 @@
               </tr>
               <tr class="bg-info">
                 <th scope="row">参加アーティスト</th>
-                <td class="bg-white"><%= link_to "#{@exhibition.artist.name}", artist_path(@exhibition.artist.id) %></td>
+                <td class="bg-white"><%= link_to "#{@exhibition.artist.name}", artist_path(@exhibition.artist.id),class: "btn btn-secondary" %></td>
               </tr>
             </tbody>
           </table>

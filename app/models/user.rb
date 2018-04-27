@@ -1,7 +1,8 @@
 class User < ApplicationRecord
 	has_many :works
+	has_many :orders
 	has_one :artist
-	has_one :adress
+	has_one :address
 	has_many :clip_works, dependent: :destroy
 	has_many :works, through: :clip_works
 	has_many :clip_artists, dependent: :destroy
@@ -57,5 +58,19 @@ class User < ApplicationRecord
 	 	end
 	 	user
 	 end
+
+	 # allow users to update their accounts without passwords
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+ 
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+ 
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
+  end
 
 end

@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::Base
 	before_action :set_user, except: [:index]
 
   def index
-  	@users = user.all.reverse_order
+  	@users = User.all.reverse_order
   end
 
   def show
@@ -20,7 +20,7 @@ class Admin::UsersController < Admin::Base
   private
 
   def set_user
-  	@user = user.find(params[:id])
+  	@user = User.find(params[:id])
   end
 
   def user_params

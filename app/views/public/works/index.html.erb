@@ -1,50 +1,37 @@
 <div class="container">
-    <form class="form-inline col-8 offset-2 justify-content-center my-5 bg-light">
-      <span class="">キーワード</span>
-      <div class="form-group m-2">
-        <input type="password" class="form-control" id="passwd" placeholder=""> </div>
-      <button type="button" class="col-2 btn btn-primary">検索 ≫</button>
-      <select class="form-control input-sm ml-auto" id="pref">
-        <option>新着順</option>
+  <form class="form-inline col-8 offset-2 justify-content-center my-5 bg-light">
+    <%= search_form_for @search do |f| %>
+    <span class="">キーワード</span>
+    <div class="form-group m-2"　>
+      <%= f.search_field :title_or_creation_date_or_technique_or_comment_or_tags_name_cont_any %>
+    </div>
+<%# binding.pry %>
+<%= f.label :s, "並び替え" %>
+    <%= f.select :s,[["price acs"], ["price desc"], ["created_at acs"], ["created_at desc"]] %>
+    <%#= f.select :s, Work.prices_i18n.keys.map {|k| [Work.prices_i18n[k], k]} %>
+
+    <div class=""><%= f.submit "検索", class: "btn btn-primary" %></div>
+    <!-- <select class="form-control input-sm ml-auto" id="pref">
+      <option>新着順</option>
         <option>アルファベット順</option>
         <option>五十音順</option>
         <option>価格が高い順</option>
         <option>価格が安い順</option>
         <option>売り切れの商品を除く</option>
-      </select>
-    </form>
-  </div>
+    </select> -->
+  </form>
+</div>
+<% end %>
+
+
  <%= render 'public/works/works' %>
   <div class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" aria-label="Previous">
-                <span aria-hidden="true">«</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" aria-label="Next">
-                <span aria-hidden="true">»</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
+         <div class="row", style="margin-bottom: 60px">
+          <%= paginate @works, class: "pagenate"%>
+        </div>
         </div>
       </div>
     </div>

@@ -33,7 +33,7 @@
           <ul class="list-group list-group-flush">
             <h4 class="list-group-item md-1">作品名：<%= @work.title %></h4>
             <h4 class="list-group-item md-1 d-inline-flex">¥<%= @work.price.to_s(:delimited) %>円
-              <span class="mx-5">
+              <span class="mx-2">
               <% if @work.stock == 0 %>
                 <button type="button" class="btn btn-danger" disabled="disabled">売り切れ</button>
               <% elsif user_signed_in? || session[:cart_id].present? %>

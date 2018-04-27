@@ -1,8 +1,8 @@
 class Public::StaticPagesController < Public::Base
   def home
-    @artists = Artist.all
-    @works = Work.all
-    @exhibitions = Exhibition.all
+    @artists = Artist.where(:is_deleted => false).page(params[:page]).per(4).reverse_order
+    @works = Work.where(:is_deleted => false).page(params[:page]).per(4).reverse_order
+    @exhibitions = Exhibition.page(params[:page]).per(4).reverse_order
   end
 
   def end

@@ -1,4 +1,9 @@
 ja:
+  enums:
+    work:
+        price:
+            "price asc": 安い順
+            "price desc": 高い順
   activerecord:
     models:
     attributes:

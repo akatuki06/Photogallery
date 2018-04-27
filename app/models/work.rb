@@ -29,9 +29,14 @@ class Work < ApplicationRecord
 
   acts_as_taggable
 
+  # enum price: {
+  #   "price asc" => "安い順",
+  #   "price desc" => "高い順"
+  # }
+
   #商品の価格が正の数であることを確認する。
-	#価格フィールドが空でないときだけチェックをする。
-	protected
+  #価格フィールドが空でないときだけチェックをする。
+  protected
 	def price_validate
 		errors.add(:price, "は0より大きくなければなりません。") unless price.nil? || price > 0.0
 	end

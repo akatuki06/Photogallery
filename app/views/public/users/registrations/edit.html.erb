@@ -20,10 +20,11 @@
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
-          <div class="field my-3">
-            <%= f.label :image, "画像変更" %><br />
-            <%= f.attachment_field :image, placeholder: "プロフィール画像", class: "user-edit-form" %>
+          <div class="my-2">画像変更<br>
+          <%= f.attachment_field :image %><br>
           </div>
+          <%= attachment_image_tag f.object, :image, width: "250px" %>
+          
           <div class="field">
             <%= f.label :introduction, "自己紹介" %><br />
             <%= f.text_area :introduction %>
@@ -43,10 +44,12 @@
             <%= f.password_field :password_confirmation, autocomplete: "off" %>
           </div>
 
+          <% if false %>
           <div class="field">
             <%= f.label :current_password, "現在のパスワード" %> <i class="text-danger">(内容を変更するにはパスワードが必要です)</i><br />
             <%= f.password_field :current_password, autocomplete: "off" %>
           </div>
+          <% end %>
 
           <div class="actions">
             <%= f.submit "変更", class: "btn btn-primary my-3" %>

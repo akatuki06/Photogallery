@@ -1,0 +1,89 @@
+        <div class="col-lg-8 m-3">
+          <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+            <div class="container">
+              <a class="navbar-brand" href="#">
+                <b>User</b>
+              </a>
+              <div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimarySupportedContent"> </div>
+            </div>
+          </nav>
+          <h2 class="my-3">検索フォーム</h2>
+          <hr>
+          <form class="">
+            <div class="form-group">
+              <label>ユーザーID</label>
+              <input type="email" class="form-control" placeholder="Enter email">
+              <div class="form-group">
+                <label>ユーザー名</label>
+                <input type="password" class="form-control" placeholder="Password"> </div>
+              <div class="form-group">
+                <label>メールアドレス</label>
+                <input type="password" class="form-control" placeholder="Password"> </div>
+              <button type="submit" class="btn btn-primary">検索</button>
+              <hr> </div>
+            </form>
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 justify-content-center">
+                <h2 class="my-3">検索結果</h2>
+                <hr>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>画像</th>
+                      <th>ID</th>
+                      <th>ユーザー名</th>
+                      <th>メールアドレス</th>
+                      <th>注文数</th>
+                      <th>購入合計</th>
+                      <th>アーティスト？</th>
+                      <th>ステータス</th>
+                      <th>登録日時</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @users.each do |u| %>
+                    <tr>
+                      <td><%= attachment_image_tag u, :image, format: 'jpg', class: "center-block", fallback: "/assets/no_image_m.png", width: '40', height: '40'%></td>
+                      <td><%= u.id %></td>
+                      <td><%= u.name %></td>
+                      <td><%= u.email %></td>
+                      <td><%= u.orders.count %>件</td>
+                      <% total = u.orders.sum(:total) %>
+                      <td>¥<%= total.to_s(:delimited) %>円</td>
+                      <td>
+                        <% if u.is_artist? %>
+                        <a class="badge badge-secondary text-white">アーティスト</a>
+                        <% else %>
+                        <a class="badge badge-light text-black">一般</a>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% if u.is_deleted? %>
+                        <a class="badge badge-danger text-white">削除済み</a>
+                        <% else %>
+                        <a class="badge badge-primary text-white">アクティブ</a>
+                        <% end %>
+
+                      </td>
+                      <td><%= u.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
+                      <td>
+                        <%= link_to admin_user_path(u.id) do  %>
+                        <button type="submit" class="btn btn-primary btn-sm mx-2">詳細</button>
+                      </td>
+                      <% end %>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -2,6 +2,8 @@ class Order < ApplicationRecord
   belongs_to :prefecture
   has_many :line_items, dependent: :destroy
 
+  belongs_to :user, optional: true
+
   validates :name, :name_kana, :prefecture_id, :address, :zipcode, :phone, :email, :payment, presence: true
 
 

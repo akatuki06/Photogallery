@@ -77,9 +77,9 @@ protected
   end
 
   # ### アカウント編集のパスワード無し設定 ###
-  # def update_resource(resource, params)
-  #   resource.update_without_password(params)
-  # end
+  def update_resource(resource, params)
+    resource.update_without_current_password(params)
+  end
 
   def configure_permitted_parameters
     added_attrs = [:name, :introduction, :image, :is_deleted]
