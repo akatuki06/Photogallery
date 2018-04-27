@@ -19,17 +19,16 @@
               <h6 class="card-title text-left"><%= w.title %></h6>
               <p class="card-text text-right m-1"><%= w.artist.name %></p>
               <div class="card-footer">
-                <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円<% if user_signed_in? && w.cliped_by?(current_user) %>
+                <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円
+                  <% if user_signed_in? && w.cliped_by?(current_user) %>
                   <i class="fa fa-paperclip"" aria-hidden="true" style="color: red;"></i>
                   <% else %>
                   <i class="fa fa-paperclip"></i>
                   <% end %>
-                </span>
-                <div>
                   <% if w.stock == 0 %>
                   <span class="badge badge-danger">売り切れ</span>
                   <% end %>
-                </div>
+                </span>
               </div>
             </a>
             </div>

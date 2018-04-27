@@ -11,6 +11,11 @@
           <%= form_for @order, :url => admin_order_path do |f| %>
           <div class="col-lg-12">
             <h3 class="pb-3 my-3">購入詳細</h3>
+            <% if @order.is_deleted? %>
+              <div class="btn btn-danger">
+                <span>キャンセルされました</span>
+              </div>
+            <% end %>
             <ul class="list-group list-group-flush">
               <h5 class="list-group-item md-1">注文日：<%= @order.created_at.strftime('%Y年%m月%d日 %H:%M') %></h5>
               <h5 class="list-group-item md-1">ステータス：<%= f.select :state, ['未完了', '準備中', '発送済'], {include_blank: '注文状況を選択'}  %></h5>
@@ -38,6 +43,7 @@
               </a>
               <div>
                 <%= f.submit "変更する", class: "btn btn-secondary btn-block mx-2" %>
+                <%= f.submit '注文を削除する', name: 'delete', class: "btn btn-danger col-xs-12 my-2", data: {confirm: '削除してよろしいですか？'}  %>
 
               </div>
               <a class="list-group-item  flex-column align-items-start">

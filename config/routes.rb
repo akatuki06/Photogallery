@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   registrations: 'public/users/registrations',
   omniauth_callbacks: 'public/users/omniauth_callbacks'
   }
-  
+
   scope module: :public do
     get 'static_pages/end'
     get 'static_pages/about'
@@ -55,6 +55,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :orders, only: [:index, :show, :edit, :update]
+    resources :works, only: [:index, :show, :update]
+    resources :artists, only: [:index, :show, :update]
+    resources :users, only: [:index, :show, :update]
+
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

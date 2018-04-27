@@ -1,0 +1,96 @@
+<div class="col-lg-8 m-3">
+	<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+		<div class="container">
+			<a class="navbar-brand">
+				<b>Orders/No.<%= @work.id %></b>
+			</a>
+			<div class="collapse navbar-collapse text-center justify-content-end" id="navbarPrimarySupportedContent"> </div>
+		</div>
+	</nav>
+	<div class="col-lg-12">
+		<h3 class="pb-3 my-3">購入詳細
+      <% if @work.is_deleted? %>
+        <%= link_to admin_work_path(@work.id), method: :patch do  %>
+  			<button type="submit" class="btn btn-secondary btn- mx-2">登録する</button>
+        <% end %>
+      <% else %>
+        <%= link_to admin_work_path(@work.id), method: :patch, name: "delete", data: {confirm: '作品を削除してよろしいですか？'} do  %>
+        <button type="submit" class="btn btn-danger btn- mx-2">削除する</button>
+        <% end %>
+			<% end %></h3> 
+
+
+          <ul class="list-group list-group-flush">
+            <h4 class="list-group-item md-1">アーティスト名：<%= link_to "#{@work.artist.name}", admin_artist_path(@work.artist), class: "border bg-light" %></h4>
+            <h4 class="list-group-item md-1">作品名：<%= @work.title %></h4>
+            <h4 class="list-group-item md-1 d-inline-flex">¥<%= @work.price.to_s(:delimited) %>円
+              <span class="mx-5">
+              <% if @work.stock == 0 %>
+                <button type="button" class="btn btn-danger" disabled="disabled">売り切れ</button>
+              <% end %>
+              </span>
+              </h4>
+            <li class="list-group-item">制作年：<%= @work.creation_date %></li>
+                <li class="list-group-item">エディション：<%= @work.edition %></li>
+                <li class="list-group-item">サイズ：<%= @work.size %></li>
+                <li class="list-group-item">素材・技法：<%= @work.technique %></li>
+            <li class="list-group-item">タグ：
+            <% @work.tag_list.each do |tag| %>
+            <span class="badge2 badge-light"><%= tag %></span>
+            <% end %>
+            </li>
+            <a class="list-group-item flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">作品の注目ポイント</h5>
+              </div>
+              <p class="mb-1"><%= @work.comment %></p>
+            </a>
+
+          </ul>
+          
+
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 my-3">
+            <h2 class="mb-4 text-dark my-3" contenteditable="true"><%= @work.artist.name %>さんの作品</h2>
+          </div>
+        </div>
+        <div class="row">
+          <% @work.artist.works.each do |w| %>
+        <% if w.is_deleted == false %>
+          <div class="col-md-3 col-6 p-1">
+            <%= link_to admin_work_path(w.id) do %>
+            <div class="card">
+              <%= attachment_image_tag w, :image, format: 'jpg',
+              class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+              <div class="card-body">
+                <h6 class="card-title text-left"><%= w.title %></h6>
+                <p class="card-text text-right m-1"><%= @work.artist.name %></p>
+                <div class="card-footer">
+                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円<% if user_signed_in? && w.cliped_by?(current_user) %>
+                  <i class="fa fa-paperclip"" aria-hidden="true" style="color: red;"></i>
+                  <% else %>
+                  <i class="fa fa-paperclip"></i>
+                  <% end %>
+                </span>
+                  
+                </div>
+                <% if user_signed_in? && @work.artist.user_id == current_user.id %>
+                <div>
+                  <%= link_to "作品情報編集", edit_work_path(w.id), class: "col-9 btn bg-danger my-2 p-2" %>
+                </div>
+                <% else %>
+                <% end %>
+                <% end %>
+
+              </a>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
