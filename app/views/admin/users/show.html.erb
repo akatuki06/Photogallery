@@ -20,7 +20,7 @@
       <% end %>
       
       <% end %></h3>
-      <div><%= attachment_image_tag @user, :image, format: 'jpg', class: "center-block img-fluid", width: '250px', height: '250px'%></div>
+      <div><%= attachment_image_tag @user, :image, format: 'jpg', class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '250px', height: '250px'%></div>
       <ul class="list-group list-group-flush">
         <h4 class="list-group-item md-1">ユーザー名：<%= @user.name %></h4>
         <% if @user.is_artist? %>

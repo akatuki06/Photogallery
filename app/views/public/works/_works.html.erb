@@ -16,7 +16,6 @@
                 <%= link_to work_path(w.id) do %>
                   <%= attachment_image_tag w, :image, format: 'jpg',
                   class: "center-block img-fluid imgg imggg", fallback: "/assets/no_image_m.png"%>
-                <% end %>
               </div>
               <div class="card-body">
                 <h6 class="card-title text-left"><%= w.title %></h6>
@@ -34,6 +33,7 @@
                   </span>
                 </div>
               </div>
+                <% end %>
             </div>
           </div>
         <% end %>

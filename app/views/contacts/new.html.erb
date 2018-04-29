@@ -1,22 +1,35 @@
-<%= form_for @contact do |f| %>
 
-<div>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-</div>
 
-<div>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
-</div>
+<div class="py-3 text-white h-100" >
+    <div class="container">
+      <div class="row text-dark justify-content-center">
+        <div class="col-md-6 my-5">
+          <h1>お問い合わせ</h1>
+          <p>ご意見・ご相談はこちらのお問い合わせフォームをご利用ください。</p>
+<%= form_for @contact, :url => confirm_contacts_path do |f| %>     
+  <% if @contact.errors.any? %>
+      <strong class="text-danger">入力内容にエラーがあります</strong>
+  <% end %>
 
-<div>
-	<%= f.label :message %>
-	<%= f.text_area :message %>
-</div>
+          <%#= form_for @contact do |f| %>
+          <form>
+            <div class="form-group">
+              <label for="InputName" contenteditable="true">Your name</label>
+              <%= f.text_field :name, class: "form-control", placeholder: "お名前" %>
+            </div>
+            <div class="form-group">
+              <label for="InputEmail1">Email address</label>
+              <%= f.text_field :email, class: "form-control", placeholder: "メールアドレス" %>
+              </div>
+            <div class="form-group">
+              <label for="Textarea">Write here</label>
+              <%= f.text_area :message, class: "form-control", placeholder: "お問い合わせ内容", size: "50x5" %>
+            </div>
+            <%= f.submit "確認", class: "btn btn-info" %>
+          </form>
+          <% end %>
 
-<div>
-	<%= f.submit "送信" %>
-</div>
-
-<% end %>
+        </div>
+      </div>
+    </div>
+  </div>

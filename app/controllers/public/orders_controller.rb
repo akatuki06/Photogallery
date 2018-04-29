@@ -53,7 +53,7 @@ class Public::OrdersController < Public::Base
          @order.save
          Cart.destroy(session[:cart_id])
          session[:cart_id] = nil
-         redirect_to root_url, notice: 'ご注文ありがとうございました。'
+         redirect_to static_pages_end_path
       else
          @cart = current_cart
          render :new

@@ -21,9 +21,11 @@
       <div class="row">
         <div class="col-md-12">
          <%= @exhibition.images.each do |i| %>
-         <div>
-         <%= attachment_image_tag i, :image, format: 'jpg',
-                class: "my-3 center-block img-fluid", width: '100%' %>
+         <div class="imgg">
+           <div>
+            <%= attachment_image_tag i, :image, format: 'jpg',
+            class: "my-3 center-block img-fluid imgg imggg" %>
+           </div>
          </div>
          <% end %>
        </div>

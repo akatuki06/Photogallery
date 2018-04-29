@@ -50,7 +50,11 @@ Rails.application.routes.draw do
 
   end
 
-  resource :contacts, only: [:new, :create]
+  resource :contacts, only: [:new, :create] do
+    collection do
+      post 'confirm'
+    end
+  end
 
   namespace :admin do
     get 'sales/index'

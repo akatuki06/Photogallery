@@ -1,2 +1,93 @@
-<h1>Public::StaticPages#about</h1>
-<p>Find me in app/views/public/static_pages/about.html.erb</p>
+<div class="py-5 text-white" style="background-image: url('/assets/I_020.JPG');background-position: center;background-size:cover;" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <p class="lead text-center">
+            <i>写真と暮らそう。</i>
+          </p>
+          <p class="lead m-4">
+            <br> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="py-5" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center text-dark">What is Photogallery?</h1><br>
+          <p class="">これまでは、アーティストが作品を見てもらいたい、売りたいと思ったとき、画廊と契約する、場所代のかかるレンタルスペースを借りるなどして個展やグループ展を開くなどのプロセスを経ることが一般的でした。これらを経てアーティストとして認知されるには、画廊に才能を見出されるまでは世間に認められるルートが少なかったり、自分で個展を出そうとするとお金や手間がかかったり、個展会場に来てくれる限られたお客さんにしかアピールできなかったりと、多くのハードルを越えなくてはなりませんでした。 もしアーティストが「Photogallery」に登録すれば、すぐにインターネットを通じて世界中に作品を紹介することができます。 もちろん、アートファンにもメリットがあります。アート初心者にとっては、敷居の高い画廊に緊張しながら足を運ぶことなく、自宅に居ながらにして好きなアーティストに出会えます。作品を買い慣れた人や、コレクターにとっても、いち早く若い才能に出会えるチャンスが広がります。しかも、購入はワンクリック。 「いつでも個展が開ける」 「いつでもギャラリーに足を運べる」 アーティストとアートファンをダイレクトにつなぐ場を「Photogallery」は提供します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="py-5 text-center bg-light" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>３つのカテゴリー</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 p-4">
+          <%= link_to  works_path do  %>
+          <i class="fa fa-image fa-5x mt-1 mx-2"></i>
+          <p class="my-4">
+          <p>
+            <b class="lead">Wok</b>
+            <br>作品
+          </p>
+            <i>アーティストが登録した作品を購入することができます。サイト内からお気に入りの一枚を見つけましょう。</i>
+          </p>
+          <% end %>
+        </div>
+        <div class="col-md-4 p-4">
+        	<%= link_to artists_path do  %>
+          <i class="fa fa-user fa-5x mt-1 mx-2"></i>
+          <p class="my-4">
+          <p>
+            <b class="lead">Artist</b>
+            <br>アーティスト
+          </p>
+            <i>登録されているアーティストを検索できます。お気に入りのアーティストを探しましょう。</i>
+          </p>
+          <% end %>
+        </div>
+        <div class="col-md-4 p-4">
+        	<%= link_to exhibitions_path do  %>
+          <i class="fa fa-table fa-5x mt-1 mx-2"></i>
+          <p class="my-4">
+          <p>
+            <b class="lead">Exhibition</b>
+            <br>写真展
+          </p>
+            <i>登録しているアーティストの写真展が検索できます。ぜひ写真展に足を運びましょう。</i>
+          </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="py-5" >
+	<div class="container">
+	  <div class="row mb-5">
+	    <div class="col-md-7">
+	      <h2 class="text-primary">購入しよう</h2>
+	      <p class="">どなたでも購入できます。面倒な会員登録は必要ありません。お気に入りの一枚を見つけ、ぜひ購入しましょう。</p>
+	    </div>
+	    <div class="col-md-5 align-self-center">
+	      <img class="img-fluid d-block w-100 img-thumbnail" src="/assets/pic_1"> </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-md-5">
+	      <img class="img-fluid d-block mb-4 w-100 img-thumbnail" src="/assets/pic_1"> </div>
+	    <div class="col-md-7">
+	      <h2 class="text-primary pt-3">ユーザー登録してクリップしよう</h2>
+	      <p class="">・ユーザー登録をすると、お気に入りの作品やアーティスト、写真展をクリップし、いつでも見ることができるようになります。<br>・過去に買った商品を見ることができます<br>・住所を登録すると、購入がスムーズになります。<br>・アーティスト登録ができるようになります。</p>
+	    </div>
+	  </div>
+	</div>
+</div>
