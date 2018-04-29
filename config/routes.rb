@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'exhibitions/index'
-  end
-
   root 'public/static_pages#home'
 
   devise_for :admins, controllers: {
@@ -53,6 +49,8 @@ Rails.application.routes.draw do
     end
 
   end
+
+  resource :contacts, only: [:new, :create]
 
   namespace :admin do
     get 'sales/index'
