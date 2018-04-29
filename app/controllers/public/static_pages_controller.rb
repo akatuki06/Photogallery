@@ -1,8 +1,8 @@
 class Public::StaticPagesController < Public::Base
   def home
-    @artists = Artist.where(:is_deleted => false).page(params[:page]).per(4).reverse_order
-    @works = Work.where(:is_deleted => false).page(params[:page]).per(4).reverse_order
-    @exhibitions = Exhibition.page(params[:page]).per(4).reverse_order
+    @artists = Artist.order('RANDOM()').where(is_deleted: false).limit(4)
+    @works = Work.where(is_deleted: false).order('RANDOM()').limit(4)
+    @exhibitions = Exhibition.order('RANDOM()').limit(4)
   end
 
   def end
@@ -21,11 +21,5 @@ class Public::StaticPagesController < Public::Base
   end
 
   def entrance
-  end
-
-  
-  def test
-    @works = Work.all
-    @lis = LineItem.all
   end
 end

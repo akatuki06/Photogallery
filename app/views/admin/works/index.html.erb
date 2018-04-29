@@ -10,19 +10,30 @@
           <h2 class="my-3">検索フォーム</h2>
           <hr>
           <form class="">
+            <%= search_form_for @search do |f| %>
             <div class="form-group">
               <label>作品ID</label>
-              <input type="email" class="form-control" placeholder="Enter email">
+              <div>
+                <%= f.search_field :id_eq, size: "70x10", class: "form-control" %>
+              </div>
               <div class="form-group">
                 <label>作品名</label>
-                <input type="password" class="form-control" placeholder="Password"> </div>
-              <div class="form-group">
+                <div>
+                <%= f.search_field :title_cont, size: "70x10", class: "form-control" %>
+              </div>
+                <div class="form-group">
                 <label>アーティスト名</label>
-                <input type="password" class="form-control" placeholder="Password"> </div>
-              <button type="submit" class="btn btn-primary">検索</button>
+                <div>
+                <%= f.search_field :artist_name_cont, size: "70x10", class: "form-control" %>
+              </div>
+              <div class=""><%= f.submit "検索", class: "btn btn-primary" %></div>
+              <% end %>
               <hr> </div>
             </form>
           </div>
+        </div>
+      </div>
+    </div>
 
           <div class="container">
             <div class="row">
@@ -46,7 +57,7 @@
                   <tbody>
                     <% @works.each do |w| %>
                     <tr>
-                      <td><%= attachment_image_tag w, :image, format: 'jpg', class: "center-block", fallback: "assets/no_image_m.png", width: '40', height: '40'%></td>
+                      <td><%= attachment_image_tag w, :image, format: 'jpg', class: "center-block img-fluid", fallback: "assets/no_image_m.png", width: '40', height: '40'%></td>
                       <td><%= w.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
                       <td><%= w.id %></td>
                       <td><%= w.title %></td>
@@ -80,6 +91,20 @@
             </div>
           </div>
         </div>
+
+        <div class="py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+               <div class="row", style="margin-bottom: 60px">
+                <%= paginate @works, class: "pagenate"%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        
       </div>
     </div>
   </div>

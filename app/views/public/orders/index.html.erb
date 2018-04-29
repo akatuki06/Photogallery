@@ -30,7 +30,7 @@
                         <tbody>
                           <% order.line_items.each do |i| %>
                           <tr>
-                            <td><%= attachment_image_tag i.work, :image, format: 'jpg', class: "center-block", fallback: "/no_image_s.png", width: '40', height: '40'%></td>
+                            <td><%= attachment_image_tag i.work, :image, format: 'jpg', class: "center-block img-fluid", fallback: "/no_image_s.png", width: '40', height: '40'%></td>
                             <td><%= i.work.title %></td>
                             <td><%= i.work.artist.name %></td>
                             <td>￥<%= i.price.to_s(:delimited) %></td>
@@ -65,9 +65,20 @@
                 </td>
               </tbody>
             </table>
+    <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+         <div class="row", style="margin-bottom: 60px">
+          <%= paginate @orders, class: "pagenate"%>
+        </div>
+        </div>
         </div>
       </div>
     </div>
+      </div>
+    </div>
+  </div>
   </div>
 </div>
 </div>

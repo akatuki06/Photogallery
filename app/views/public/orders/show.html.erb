@@ -77,7 +77,7 @@
                   <%= link_to work_path(w.work.id) do %>
                   <div class="card">
                    <%= attachment_image_tag w.work, :image, format: 'jpg',
-                   class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+                   class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
                     <div class="card-body">
                     <h6 class="card-title text-left"><%= w.work.title %></h6>
                     <p class="card-text text-right m-1"><%= w.work.artist.name %></p>

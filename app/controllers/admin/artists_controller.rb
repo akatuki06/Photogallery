@@ -3,12 +3,8 @@ class Admin::ArtistsController < Admin::Base
   before_action :set_artist, except: [:index]
 
   def index
-  	@artists = Artist.all.reverse_order
-  	@artists.each do |artist|
-	  	id = artist.id
-	  	@line_items = LineItem.includes(work: :artist).where(artists: {id: [id] })
-	  	@ordered_items =  @line_items.where.not(order_id: nil)
-  	end
+  	@search = Artist.ransack(params[:q])
+    @artists = @search.result.page(params[:page]).reverse_order
   end
 
   def show

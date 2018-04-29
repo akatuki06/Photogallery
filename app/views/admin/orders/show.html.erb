@@ -34,6 +34,7 @@
                   <li class="list-group-item d-flex justify-content-between align-items-center">〒<%= @order.zipcode %></li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">住所：<%= @order.prefecture.name %><%= @order.address %></li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">電話番号：<%= @order.phone %></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">メールアドレス：<%= @order.email %></li>
                 </ul>
               </a>
               <a class="list-group-item  flex-column align-items-start">
@@ -92,7 +93,7 @@
                   <div class="card">
                   <%= link_to admin_work_path(w.work.id) do %>
                    <%= attachment_image_tag w.work, :image, format: 'jpg',
-                   class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+                   class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
                     <div class="card-body">
                     <h6 class="card-title text-left"><%= w.work.title %></h6>
                     <p class="card-text text-right m-1"><%= w.work.artist.name %></p>

@@ -53,7 +53,7 @@
 						</li>
 							<% if session[:cart_id].present? %>
 							<li class="nav-item">
-								<%= link_to "カート", cart_path(session[:cart_id]), class: "nav-link" %>
+								<%= link_to "カート", cart_path(session[:cart_id]), class: "nav-link fa fa-shopping-cart bg-light text-dark" %>
 							</li>
 							<% end %>
 					</ul>
@@ -68,43 +68,10 @@
 
 <body>
  <%= render 'public/works/works' %>
- <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-         <div class="row", style="margin-bottom: 60px">
-          <%= paginate @works, class: "pagenate"%>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
  <%= render 'public/artists/artists' %>
- <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-         <div class="row", style="margin-bottom: 60px">
-          <%= paginate @artists, class: "pagenate"%>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
  <%= render 'public/exhibitions/exhibitions' %>
- <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-         <div class="row", style="margin-bottom: 60px">
-          <%= paginate @exhibitions, class: "pagenate"%>
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-	<%= render 'layouts/public/footer' %>
-	<%= render template: "layouts/application" %>
+ <%= render 'layouts/public/footer' %>
+ <%= render template: "layouts/application" %>
 	<!-- 追記 -->
 	
 

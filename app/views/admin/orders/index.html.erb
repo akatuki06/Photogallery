@@ -12,26 +12,57 @@
           <form class="">
             <div class="form-group">
               <label>期間</label>
-              <input type="email" class="form-control" placeholder="Enter email">
+              <%= search_form_for @search, url: admin_orders_path do |f| %>
+              <%= f.date_field :created_at_gteq %> 
+              ~
+              <%= f.date_field :created_at_lteq_end_of_day %>
               <div class="form-group">
                 <label>注文番号</label>
-                <input type="password" class="form-control" placeholder="Password"> </div>
+                <div>
+                <%= f.search_field :id_eq, size: "70x10", class: "form-control" %>
+              </div>
+            </div>
               <div class="form-group">
                 <label>お名前</label>
-                <input type="password" class="form-control" placeholder="Password"> </div>
+                <div>
+                <%= f.search_field :name_cont, size: "70x10", class: "form-control" %>
+                </div>
+              </div>
               <div class="form-group">
                 <label>お名前(カナ)</label>
-                <input type="password" class="form-control" placeholder="Password"> </div>
-              <div class="form-group">
-                <label>ステータス</label>
-                <input type="password" class="form-control" placeholder="Password"> </div>
+                <div>
+                <%= f.search_field :name_kana_cont, size: "70x10", class: "form-control" %>
+                </div>
+              </div>
               <div class="form-group">
                 <label>Eメール</label>
-                <input type="password" class="form-control" placeholder="Password"> </div>
-              <button type="submit" class="btn btn-primary">検索</button>
-              <hr> </div>
+                <div>
+                <%= f.search_field :email_cont, size: "70x10", class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>ステータス</label>
+                <div>
+                <%= f.select :state_eq, ['未完了', '準備中', '完了'], {include_blank: '選択'}  %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>支払い状況</label>
+                <div>
+                <%= f.select :payment_state_eq, ['完了', '未完了'], {include_blank: '選択'}  %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>配送状況</label>
+                <div>
+                <%= f.select :shipment_state_eq, ['準備中', '発送済', '未完了'], {include_blank: '選択'}  %>
+                </div>
+              <%= f.submit "検索", class: "btn btn-primary" %>
+              </div>
+            </div>
             </form>
           </div>
+          <% end %>
 
           <div class="container">
             <div class="row">
@@ -75,6 +106,18 @@
             </div>
           </div>
         </div>
+
+        <div class="py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+               <div class="row", style="margin-bottom: 60px">
+                <%= paginate @orders, class: "pagenate"%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>

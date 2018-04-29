@@ -3,7 +3,8 @@ class Admin::UsersController < Admin::Base
 	before_action :set_user, except: [:index]
 
   def index
-  	@users = User.all.reverse_order
+  	@search = User.ransack(params[:q])
+    @users = @search.result.page(params[:page]).reverse_order
   end
 
   def show

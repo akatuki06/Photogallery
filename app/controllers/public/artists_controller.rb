@@ -22,8 +22,6 @@ class Public::ArtistsController <  Public::Base
   end
 
   def index
-    @artists = Artist.all
-
     @search = Artist.ransack(params[:q])
     @artists = @search.result.where(:is_deleted => false).page(params[:page]).reverse_order
 

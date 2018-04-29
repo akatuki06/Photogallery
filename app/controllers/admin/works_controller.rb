@@ -3,7 +3,8 @@ class Admin::WorksController < Admin::Base
 	before_action :set_work, except: [:index]
 
   def index
-  	@works = Work.all.reverse_order
+    @search = Work.ransack(params[:q])
+  	@works = @search.result.page(params[:page]).reverse_order
   end
 
   def show

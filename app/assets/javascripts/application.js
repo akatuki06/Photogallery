@@ -14,4 +14,5 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap-tagsinput
+//= require featherlight.min.js
 //= require_tree .

@@ -5,8 +5,6 @@ class Public::WorksController < Public::Base
 
 
   def index
-    @works = Work.all
-
     @search = Work.ransack(params[:q])
     @works = @search.result.where(:is_deleted => false).page(params[:page]).reverse_order
   end

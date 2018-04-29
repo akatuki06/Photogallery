@@ -5,25 +5,12 @@
     <div class="form-group m-2"　>
       <%= f.search_field :title_or_creation_date_or_technique_or_comment_or_tags_name_cont_any %>
     </div>
-<%# binding.pry %>
-<%= f.label :s, "並び替え" %>
-    <%= f.select :s,[["price acs"], ["price desc"], ["created_at acs"], ["created_at desc"]] %>
-    <%#= f.select :s, Work.prices_i18n.keys.map {|k| [Work.prices_i18n[k], k]} %>
-
-    <div class=""><%= f.submit "検索", class: "btn btn-primary" %></div>
-    <!-- <select class="form-control input-sm ml-auto" id="pref">
-      <option>新着順</option>
-        <option>アルファベット順</option>
-        <option>五十音順</option>
-        <option>価格が高い順</option>
-        <option>価格が安い順</option>
-        <option>売り切れの商品を除く</option>
-    </select> -->
+    <span class="border"><%= sort_link(@search, :updated_at, '新着順', hide_indicator: true) %></span>/
+    <span class="border"><%= sort_link(@search, :price, '価格順', hide_indicator: true, default_order: :desc) %></span>
+    <div class="mx-2"><%= f.submit "検索", class: "btn btn-primary" %></div>
   </form>
 </div>
 <% end %>
-
-
  <%= render 'public/works/works' %>
   <div class="py-5">
     <div class="container">

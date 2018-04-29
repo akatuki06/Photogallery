@@ -23,7 +23,7 @@
          <%= @exhibition.images.each do |i| %>
          <div>
          <%= attachment_image_tag i, :image, format: 'jpg',
-                class: "my-3 center-block", width: '100%' %>
+                class: "my-3 center-block img-fluid", width: '100%' %>
          </div>
          <% end %>
        </div>

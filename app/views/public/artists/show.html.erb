@@ -4,7 +4,7 @@
 
         <div class="col-lg-4 text-center" >
           <%= attachment_image_tag @artist.user, :image, format: 'jpg',
-          class: "center-block", fallback: "/assets/no_image_m.png", width: '250', height: '250'%>
+          class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '100%'%>
         <% if user_signed_in? && @artist.user_id == current_user.id %>
         <div>
           <%= link_to "アーティスト情報編集", edit_artists_path, class: "col-9 btn bg-danger my-4 p-2" %>
@@ -60,7 +60,7 @@
             <%= link_to work_path(w.id) do %>
           <div class="card">
             <%= attachment_image_tag w, :image, format: 'jpg',
-            class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+            class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
             <div class="card-body">
               <h6 class="card-title text-left"><%= w.title %></h6>
                   <p class="card-text text-right m-1"><%= @artist.name %></p>

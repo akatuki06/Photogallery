@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 
   belongs_to :user, optional: true
 
-  validates :name, :name_kana, :prefecture_id, :address, :zipcode, :phone, :email, :payment, presence: true
+  validates :name, :name_kana, :prefecture_id, :address, :zipcode, :phone, :email, :payment, :state, :payment_state, :shipment_state, presence: true
 
 
   	def add_items(cart)

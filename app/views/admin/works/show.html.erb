@@ -19,7 +19,7 @@
         <button type="submit" class="btn btn-danger btn- mx-2">削除する</button>
         <% end %>
 			<% end %></h3> 
-    <div><%= attachment_image_tag @work, :image, format: 'jpg', class: "center-block", width: 'aouto'%></div>
+    <div><%= attachment_image_tag @work, :image, format: 'jpg', class: "center-block img-fluid", width: 'aouto'%></div>
 
           <ul class="list-group list-group-flush">
             <h4 class="list-group-item md-1">アーティスト名：<%= link_to "#{@work.artist.name}", admin_artist_path(@work.artist), class: "border bg-light" %></h4>
@@ -66,7 +66,7 @@
             <%= link_to admin_work_path(w.id) do %>
             <div class="card">
               <%= attachment_image_tag w, :image, format: 'jpg',
-              class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+              class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
               <div class="card-body">
                 <h6 class="card-title text-left"><%= w.title %></h6>
                 <p class="card-text text-right m-1"><%= @work.artist.name %></p>

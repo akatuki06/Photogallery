@@ -2,8 +2,6 @@ class Public::ExhibitionsController < Public::Base
   before_action :ensure_exhibitions, only: [:edit, :update, :destroy]
 
   def index
-    @exhibitions = Exhibition.all
-
     @search = Exhibition.ransack(params[:q])
     @exhibitions = @search.result.page(params[:page]).reverse_order
   end

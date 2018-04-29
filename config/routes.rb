@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'artists/index'
-  end
-
-  namespace :admin do
-    get 'artists/show'
+    get 'exhibitions/index'
   end
 
   root 'public/static_pages#home'
@@ -31,9 +27,6 @@ Rails.application.routes.draw do
     get 'static_pages/entrance'
     get 'sales/index'
     get 'clips/index'
-
-    get 'static_pages/test'
-
     get 'users/show'
     get '/users/unsubscribe'
     patch '/users/soft_delete'
@@ -62,10 +55,12 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get 'sales/index'
     resources :orders, only: [:index, :show, :edit, :update]
     resources :works, only: [:index, :show, :update]
     resources :artists, only: [:index, :show, :update]
     resources :users, only: [:index, :show, :update]
+    resources :exhibitions, only: [:index, :destroy]
 
   end
 

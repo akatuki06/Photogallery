@@ -13,8 +13,11 @@
       	<div class="col-md-3 col-6 p-1">
       		<%= link_to artist_path(a.id) do %>
       		<div class="card">
-      			<%= attachment_image_tag a.user, :image, format: 'jpg',
-      			class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+            <div class="imgg">
+              
+            <%= attachment_image_tag a.user, :image, format: 'jpg',
+            class: "center-block img-fluid imgg imggg", fallback: "/assets/no_image_m.png" %>
+            </div>
       			<div class="card-body">
       				<h6 class="card-title text-left"><%= a.name %>
                 <% if user_signed_in? && a.cliped_by?(current_user) %>

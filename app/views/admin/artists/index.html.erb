@@ -10,19 +10,31 @@
           <h2 class="my-3">検索フォーム</h2>
           <hr>
           <form class="">
+            <form class="">
+            <%= search_form_for @search do |f| %>
             <div class="form-group">
               <label>ID</label>
-              <input type="email" class="form-control" placeholder="Enter email">
-              <div class="form-group">
+              <div>
+                <%= f.search_field :id_eq, size: "70x10", class: "form-control" %>
+              </div>
+                <div class="form-group">
                 <label>アーティスト名</label>
-                <input type="password" class="form-control" placeholder="Password"> </div>
+                <div>
+                <%= f.search_field :name_cont, size: "70x10", class: "form-control" %>
+              </div>
               <div class="form-group">
                 <label>ユーザー名</label>
-                <input type="password" class="form-control" placeholder="Password"> </div>
-              <button type="submit" class="btn btn-primary">検索</button>
+                <div>
+                <%= f.search_field :user_name_cont, size: "70x10", class: "form-control" %>
+              </div>
+              <div class=""><%= f.submit "検索", class: "btn btn-primary" %></div>
+              <% end %>
               <hr> </div>
             </form>
           </div>
+        </div>
+      </div>
+    </div>
 
           <div class="container">
             <div class="row">
@@ -54,8 +66,9 @@
                       <% sum = 0 %>
                       <% @ordered_items.each do |oi| %>
                       <% oi_total = oi.price * oi.quantity %>
-					  <% total_sale = oi_total * 0.8 %>
-					  <% sum = sum + total_sale %>
+          					  <% total_sale = oi_total * 0.8 %>
+                      <% taxin_total = total_sale * 1.08 %>
+          					  <% sum = sum + taxin_total %>
                       <% end %>
 
                       <td>¥<%= sum.round.to_s(:delimited) %>円</td>
@@ -81,6 +94,18 @@
             </div>
           </div>
         </div>
+
+        <div class="py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+               <div class="row", style="margin-bottom: 60px">
+                <%= paginate @artists, class: "pagenate"%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>

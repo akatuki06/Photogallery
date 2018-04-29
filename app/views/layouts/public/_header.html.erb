@@ -40,7 +40,7 @@
             </li>
             <% if session[:cart_id].present? %>
             <li class="nav-item">
-              <%= link_to "カート", cart_path(session[:cart_id]), class: "nav-link" %>
+              <%= link_to "カート", cart_path(session[:cart_id]), class: "nav-link fa fa-shopping-cart bg-light text-dark" %>
             </li>
             <% end %>
           </ul>

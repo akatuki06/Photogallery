@@ -4,7 +4,8 @@ class Admin::OrdersController < Admin::Base
 
 
   def index
-  	@orders = Order.all.reverse_order
+    @search = Order.ransack(params[:q])
+    @orders = @search.result.page(params[:page]).reverse_order
   end
 
   def show

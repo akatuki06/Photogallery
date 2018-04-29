@@ -38,32 +38,11 @@
 								<h3 class="text-right my-3"> 売り上げ合計
 									<span class="mx-2">¥<%= sum.round.to_s(:delimited)  %></span>
 								</h3>
-								<ul class="pagination justify-content-center">
-									<li class="page-item">
-										<a class="page-link" href="#" aria-label="Previous">
-											<span aria-hidden="true">«</span>
-											<span class="sr-only">Previous</span>
-										</a>
-									</li>
-									<li class="page-item">
-										<a class="page-link" href="#">1</a>
-									</li>
-									<li class="page-item">
-										<a class="page-link" href="#">2</a>
-									</li>
-									<li class="page-item">
-										<a class="page-link" href="#">3</a>
-									</li>
-									<li class="page-item">
-										<a class="page-link" href="#">4</a>
-									</li>
-									<li class="page-item">
-										<a class="page-link" href="#" aria-label="Next">
-											<span aria-hidden="true">»</span>
-											<span class="sr-only">Next</span>
-										</a>
-									</li>
-								</ul>
+								<div class="col-md-12">
+									<div class="row", style="margin-bottom: 60px">
+										<%= paginate @ordered_items, class: "pagenate"%>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

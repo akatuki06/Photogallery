@@ -12,9 +12,11 @@
       	<div class="col-md-3 col-6 p-1">
       		<%= link_to exhibition_path(a.id) do %>
       		<div class="card">
+            <div class="imgg">
             <% af = a.images.first %>
-      			<%= attachment_image_tag af, :image, format: 'jpg',
-      			class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+            <%= attachment_image_tag af, :image, format: 'jpg',
+            class: "center-block img-fluid imggg", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+            </div>
       			<div class="card-body">
       				<h6 class="card-title text-left"><%= a.title %><% if user_signed_in? && a.cliped_by?(current_user) %>
                 <i class="fa fa-paperclip" aria-hidden="true" style="color: red;"></i>

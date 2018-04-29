@@ -6,7 +6,7 @@ class Public::SalesController < Public::Base
   def index
   	id = current_user.artist.id
   	@line_items = LineItem.includes(work: :artist).where(artists: {id: [id] })
-  	@ordered_items =  @line_items.where.not(order_id: nil)
+  	@ordered_items =  @line_items.where.not(order_id: nil).page(params[:page]).per(10).reverse_order
   end
 
   private
