@@ -9,4 +9,8 @@ module ApplicationHelper
 		link_to(name, '#', class: [locals[:class], "add_fields"], data: {id: id, fields: fields.gsub("\n", "")})
 	end
 
+	def order_total(total_price, tax, postage)
+		total_price + tax + postage
+	end
+
 end

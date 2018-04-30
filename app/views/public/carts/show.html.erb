@@ -44,7 +44,7 @@
                 <td><%= (item.work.price).to_s(:delimited) %>円</td>
                 <td>
                   <%= form_for item, url:line_item_path(item.id), method: :patch do |f| %>
-                  <%= f.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: item.work.stock %>
+                  <%= f.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: item.work.stock %>点
                   <%= f.hidden_field :id %>
                   <%= f.submit '数量を変更する', class: "btn btn-light btn-xs" %>
                   <% end %>

@@ -12,4 +12,8 @@ class Cart < ApplicationRecord
 	def total_price
 		line_items.to_a.sum { |item| item.total_price }
 	end
+
+	def tax
+		self.total_price * 0.08
+	end
 end
