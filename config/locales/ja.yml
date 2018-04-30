@@ -1,9 +1,4 @@
 ja:
-  enums:
-    work:
-        price:
-            "price asc": 安い順
-            "price desc": 高い順
   activerecord:
     models:
     attributes:
@@ -26,3 +21,8 @@ ja:
         phone: 電話番号
         email: メールアドレス
         payment: 支払い方法
+      exhibition:
+        title: タイトル名
+        summary: 概要
+        place: 会場
+        term: 会期

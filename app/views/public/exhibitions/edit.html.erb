@@ -13,7 +13,7 @@
       <%= render 'layouts/public/sidebar' %>
       <div class="flex-colum d-flex col-lg-8">
         <div class="col-lg-12 mx-4">
-         <h1 class="mb-4">写真展編集</h1>
+         <h1 class="mb-4">展覧会編集</h1>
         　　<%= render 'public/exhibitions/form' %>
           <%= link_to "全て削除する", exhibitions_path(@exhibition.id), data: { confirm: "削除しますか?" }, method: :delete, class: "btn btn-danger my-3" %>
         </div>

@@ -72,7 +72,6 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'jquery-turbolinks'
 gem 'ransack'
 gem 'kaminari'
-gem 'lightbox2-rails'
 
 
 

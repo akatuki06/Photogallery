@@ -17,7 +17,7 @@ class ContactsController < Public::Base
     @contact = Contact.new(contact_params)
     MailSenderMailer.inquiry(@contact).deliver 
          if @contact.save
-                    redirect_to static_pages_end_path
+            redirect_to static_pages_end_path
          else
            render action: 'new'
          end

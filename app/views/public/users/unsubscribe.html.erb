@@ -1,32 +1,14 @@
-<div class="py-5" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/form_red.jpg&quot;);">
+<div class="py-5 bg-info">
 	<div class="container">
-		<div class="row">
-			<div class="align-self-center col-md-6 text-white">
-				<h1 class="text-center text-md-left display-4">退会のお手続き</h1>
+		<div class="row justify-content-center">
+			<div class="align-self-center col-md-6 text-white text-center">
+				<h1 class="text-center display-4">退会のお手続き</h1>
 				<p class="lead">退会ボタンを押すとお手続きが完了します。</p>
+				<%= link_to users_soft_delete_path, method: :patch do %>
+				<button class="btn btn-danger">退会</button>
+				<% end %>
 			</div>
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<h3 class="pb-3">退会　メール送信機能つける？</h3>
-						<form action="https://formspree.io/YOUREMAILHERE">
-							<div class="form-group">
-								<label>Name</label>
-								<input class="form-control" placeholder="お名前"> </div>
-								<div class="form-group">
-									<label for="Textarea">Write here</label>
-									<textarea class="form-control form-control-sm" id="Textarea" rows="3" placeholder="ご意見、ご感想など"></textarea>
-								</div>
-								<div class="modal-footer">
-									<%= link_to users_soft_delete_path, method: :patch do %>
-									<button class="btn btn-danger">退会</button>
-									<% end %>
-									<!-- <button type="submit" class="btn mt-2 btn-outline-dark">退会</button> -->
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
+</div>
