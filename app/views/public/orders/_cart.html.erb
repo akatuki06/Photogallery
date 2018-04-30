@@ -38,7 +38,9 @@
           </table>
           <div>
             <h4>
-              <a><%= link_to '買い物を続ける', root_path, :class => 'btn px-4 mx-3 btn-secondary' %></a>小計：<%= (@cart.total_price).to_s(:delimited) %>円
+              <a><%= link_to '買い物を続ける', root_path, :class => 'btn px-4 mx-3 btn-secondary' %></a>
+              <%= link_to "送料について",static_pages_postage_path, class: "btn btn-sm btn-info"  %>
+              小計：<%= (@cart.total_price).to_s(:delimited) %>円
             </h4>
           </div>
         </div>

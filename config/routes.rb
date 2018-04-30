@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get 'static_pages/about'
     get 'static_pages/contact'
     get 'static_pages/how_to_register'
-    get 'static_pages/how_to_buy'
+    get 'static_pages/postage'
     get 'static_pages/entrance'
     get 'sales/index'
     get 'clips/index'

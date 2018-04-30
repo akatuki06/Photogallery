@@ -21,8 +21,12 @@
   <body>
     <% content_for :content do %>
       <%= render 'layouts/public/header' %>
-      <%= notice %>
-      <%= alert %>
+      <% if notice %>
+      <p class="alert alert-primary text-center"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+      <p class="alert alert-danger text-center"><%= alert %></p>
+      <% end %>
       <%= yield %>
       <%= render 'layouts/public/footer' %>
     <% end %>

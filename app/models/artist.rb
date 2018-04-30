@@ -1,7 +1,7 @@
 class Artist < ApplicationRecord
   belongs_to :user
   has_many :works
-  has_one :exhibition
+  has_one :exhibition, dependent: :destroy
   has_many :clip_artists, dependent: :destroy
 
 

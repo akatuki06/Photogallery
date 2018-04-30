@@ -17,7 +17,7 @@ class Public::StaticPagesController < Public::Base
   def how_to_register
   end
 
-  def how_to_buy
+  def postage
   end
 
   def entrance

@@ -17,7 +17,7 @@ class Public::CartsController < Public::Base
         redirect_to root_path, notice: 'カートは空です'
       elsif
         params[:id].to_i != session[:cart_id]
-        redirect_to root_path, notice: '権限がありません'
+        redirect_to root_path, alert: '権限がありません'
       else
         @cart = Cart.find(params[:id])
       end

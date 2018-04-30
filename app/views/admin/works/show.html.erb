@@ -80,6 +80,11 @@
                 </div>
                 <% end %>
               </a>
+              <% if w.is_deleted? %>
+              <a class="badge badge-danger text-white">削除済み</a>
+              <% else %>
+              <a class="badge badge-secondary text-white">販売中</a>
+              <% end %>
             </div>
           </div>
         </div>

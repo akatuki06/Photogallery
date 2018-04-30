@@ -54,7 +54,7 @@ class Public::WorksController < Public::Base
   def ensure_correct_artist
      @work = Work.find(params[:id])
     if @work.artist.user != current_user || @work.is_deleted == true
-       redirect_to root_path, notice: "権限がありません"
+       redirect_to root_path, alert: "権限がありません"
       end
   end
 

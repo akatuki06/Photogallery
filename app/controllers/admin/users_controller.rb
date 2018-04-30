@@ -14,7 +14,16 @@ class Admin::UsersController < Admin::Base
   end
 
   def update
-  		@user.update(is_deleted: !@user.is_deleted?)
+  	@user.update(is_deleted: !@user.is_deleted?)
+    if @user.is_artist?
+      @user.artist.update!(is_deleted: true)
+      if @user.artist.works.present?
+      @user.artist.works.all.update(is_deleted: true)
+        if @user.artist.exhibition.present?
+        @user.artist.exhibition.destroy
+        end
+      end
+    end
   		redirect_to admin_user_path(@user), notice: "更新しました"
   end
 

@@ -18,6 +18,12 @@ class Admin::ArtistsController < Admin::Base
 
   def update
   		@artist.update(is_deleted: !@artist.is_deleted?)
+      if @artist.works.present?
+      @artist.works.all.update(is_deleted: true)
+        if @artist.exhibition.present?
+        @artist.exhibition.destroy
+        end
+      end
   		redirect_to admin_artist_path(@artist), notice: "更新しました"
   end
 
