@@ -1,5 +1,3 @@
-<% sum = 0 %>
-
 <%= form_for @order, :url => orders_path do |f| %>
 
 <% if @order.errors.any? %>
@@ -44,14 +42,10 @@
 
   <div class="my-2 card"><h3 class="card-header">購入金額</h3>
   <div class="card-body border">
-    
-    <%# sub_sum =+ sum + @cart.total_price %>
     <h4>小計：¥<%= @cart.total_price.to_s(:delimited) %>円</h4>
-    <h5>消費税：¥<%# tax = sub_sum * 0.08 %><%= @cart.tax.round.to_s(:delimited) %>円</h5>
+    <h5>消費税：¥<%= @cart.tax.round.to_s(:delimited) %>円</h5>
     <h5>配送料：¥<%= @order.postage.to_s(:delimited) %>円</h5>
-    <%# total_price = sub_sum + tax.round + @order.prefecture.postage %>
     <h3>合計金額：¥<%= order_total(@cart.total_price,@cart.tax,@order.postage).round.to_s(:delimited) %>円</h3>
-
     <%= f.hidden_field :total, value: order_total(@cart.total_price,@cart.tax,@order.postage) %>
   </div>
   </div>

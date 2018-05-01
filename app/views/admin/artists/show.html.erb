@@ -28,9 +28,9 @@
         <% end %>
       </ul>
     </div>
-<div class="flex-colum d-flex mt-5">
+<div class="flex-colum mt-5">
             <div class="card">
-              <div class="card-body p-5">
+              <div class="card-body p-1">
                 <h3 class="pb-3">売り上げ関連</h3>
                 <table class="table">
                   <thead>
@@ -40,6 +40,7 @@
                       <th>販売単価</th>
                       <th>数量</th>
                       <th>売り上げ</th>
+                      <th>消費税</th>
                     </tr>
                   </thead>
                   <% sum = 0 %>
@@ -50,10 +51,11 @@
                       <td><%= link_to "#{oi.work.title}", admin_work_path(oi.work.id) ,class: "border bg-info" %></td>
                       <td>¥<%= oi.price.to_s(:delimited) %>円</td>
                       <td><%= oi.quantity %>点</td>
-                      <% total = oi.price * oi.quantity %>
-                      <% total_sale = total * 0.8 %>
-                      <% sum = sum + total_sale %>
-                      <td><%= total_sale.round.to_s(:delimited) %></td>
+                      <% total = oi.artist_item_total %>
+                      <% sum = sum + total %>
+                      <td><%= total.round.to_s(:delimited) %></td>
+                      <% tax = oi.artist_item_total * 0.08 %>
+                      <td><%= tax %></td>
                     </tr>
                 <% end %>
                   </tbody>

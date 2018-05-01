@@ -27,7 +27,7 @@
         <h4 class="list-group-item md-1">アーティスト名：<%= link_to "#{@user.artist.name}", admin_artist_path(@user.artist), class: "border bg-light" %></h4>
         <% end %>
         <h4 class="list-group-item md-1">メールアドレス：<%= @user.email %></h4>
-        <h4 class="list-group-item md-1 d-inline-flex">購入合計：¥<%= @user.orders.sum(:total).to_s(:delimited) %>円
+        <h4 class="list-group-item md-1 d-inline-flex">購入合計：¥<%= @user.user_total.to_s(:delimited) %>円
         </h4>
         <li class="list-group-item">自己紹介：<%= @user.introduction %></li>
       </ul>

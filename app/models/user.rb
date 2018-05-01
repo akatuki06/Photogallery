@@ -73,4 +73,8 @@ class User < ApplicationRecord
     result
   end
 
+  def user_total
+  	orders.sum(:total)
+  end
+
 end

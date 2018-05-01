@@ -35,11 +35,19 @@
                             <td><%= i.work.artist.name %></td>
                             <td>￥<%= i.price.to_s(:delimited) %></td>
                             <td><%= i.quantity %>点</td>
-                            <% total = i.total_price * 1.08 %>
-                            <td>￥<%= total.round.to_s(:delimited) %>(税込)</td>
+                            <%# total = i.total_price * 1.08 %>
+                            <td>￥<%= i.total_price.round.to_s(:delimited) %></td>
                           </tr>
                             <!-- 合計の前までに繰り返しを止める -->
                             <% end %>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>消費税</td>
+                            <td>￥<%= order.tax.round.to_s(:delimited)  %></td>
+                          </tr>
                           <tr>
                             <td></td>
                             <td></td>
@@ -54,7 +62,7 @@
                             <td></td>
                             <td></td>
                             <td>合計</td>
-                            <td>￥<%= order.total.to_s(:delimited)  %></td>
+                            <td>￥<%= order.total.to_s(:delimited)  %>(税込)</td>
                           </tr>
                         </tbody>
                       </table>

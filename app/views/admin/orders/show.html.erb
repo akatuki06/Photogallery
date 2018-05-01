@@ -53,7 +53,7 @@
                       <td>作品ID</td>
                       <td>作品名</td>
                       <td>単価</td>
-                      <td>枚数</td>
+                      <td>点数</td>
                       <td></td>
                     </tr>
                     <% @order.line_items.each do |li| %>
@@ -62,11 +62,16 @@
                         <td><%= li.work.title %></td>
                         <td>¥<%= li.price.to_s(:delimited) %></td>
                         <td><%= li.quantity %>点</td>
-                        <% sub_total = li.price * li.quantity %>
-                        <% total = sub_total * 1.08 %>
-                        <td>¥<%= total.round.to_s(:delimited) %>円(税込)</td>
+                        <td>¥<%= li.total_price.round.to_s(:delimited) %>円</td>
                       </tr>
                       <% end %>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>消費税</td>
+                        <td>￥<%= @order.tax.round.to_s(:delimited)  %></td>
+                      </tr>
                       <tr>
                         <td></td>
                         <td></td>

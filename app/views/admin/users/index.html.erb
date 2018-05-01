@@ -64,8 +64,7 @@
                       <td><%= u.name %></td>
                       <td><%= u.email %></td>
                       <td><%= u.orders.count %>件</td>
-                      <% total = u.orders.sum(:total) %>
-                      <td>¥<%= total.to_s(:delimited) %>円</td>
+                      <td>¥<%= u.user_total.to_s(:delimited) %>円</td>
                       <td>
                         <% if u.is_artist? %>
                         <a class="badge badge-secondary text-white">アーティスト</a>

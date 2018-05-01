@@ -13,4 +13,6 @@ module ApplicationHelper
 		total_price + tax + postage
 	end
 
+	
+
 end

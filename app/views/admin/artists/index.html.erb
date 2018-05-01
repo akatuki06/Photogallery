@@ -60,11 +60,11 @@
                       <td><%= u.id %></td>
                       <td><%= u.name %></td>
                       <td><%= u.user.name %></td>
-                      <% @line_items = LineItem.includes(work: :artist).where(artists: {id: [u.id] }) %>
-                      <% @ordered_items =  @line_items.where.not(order_id: nil) %>
-                      <td><%= @ordered_items.sum(:quantity) %>点</td>
+                      <% line_items = LineItem.includes(work: :artist).where(artists: {id: [u.id] }) %>
+                      <% ordered_items =  line_items.where.not(order_id: nil) %>
+                      <td><%= ordered_items.sum(:quantity) %>点</td>
                       <% sum = 0 %>
-                      <% @ordered_items.each do |oi| %>
+                      <% ordered_items.each do |oi| %>
                       <% oi_total = oi.price * oi.quantity %>
           					  <% total_sale = oi_total * 0.8 %>
                       <% taxin_total = total_sale * 1.08 %>

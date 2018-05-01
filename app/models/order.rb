@@ -17,4 +17,10 @@ class Order < ApplicationRecord
 	def postage
 		self.prefecture.postage
 	end
+
+	def tax
+		line_items.to_a.sum { |item| item.total_price } * 0.08
+	end
+
+	
 end
