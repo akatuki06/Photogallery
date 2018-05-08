@@ -10,7 +10,7 @@ class Admin::ArtistsController < Admin::Base
   def show
   	id = @artist.id
   	@line_items = LineItem.includes(work: :artist).where(artists: {id: [id] })
-  	@ordered_items =  @line_items.where.not(order_id: nil)
+  	@ordered_items =  @line_items.where.not(order_id: nil).page(params[:page]).reverse_order
   end
 
   def edit

@@ -13,6 +13,30 @@ module ApplicationHelper
 		total_price + tax + postage
 	end
 
-	
+
+	# 遠藤さんヘルプ
+	def sum(ordered_items)
+		sum = 0
+       	ordered_items.each do |oi|
+       		oi_total = oi.price * oi.quantity
+			total_sale = oi_total * 0.8
+    		taxin_total = total_sale * 1.08
+		   sum = sum + taxin_total
+        end
+        return sum
+	end
+
+	def tax(oi)
+		oi.artist_item_total * 0.08
+	end
+
+	def artist_total(ordered_items)
+		sum = 0
+		ordered_items.each do |oi|
+			total = oi.artist_item_total + tax(oi)
+            sum = sum + total
+        end
+        return sum
+	end
 
 end

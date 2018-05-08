@@ -6,7 +6,7 @@
         class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '100%' %>
         <div class="form-group my-3">
         </div>
-        <% if user_signed_in? && @artist.id == current_user.artist.id %>
+        <% if user_signed_in? && current_user.is_artist? && @artist.id == current_user.artist.id %>
         <div class="col-md-12 my-5">
           <div class="card">
             <div class="card-header bg-info">

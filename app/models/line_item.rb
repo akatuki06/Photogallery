@@ -11,6 +11,10 @@ class LineItem < ApplicationRecord
   	work.price * quantity * 0.8
   end
 
+  # def lines(artist)
+  # 	includes(work: :artist).where(artists: {id: [artist.id] })
+  # end
+
   # def artist_item_tax
   # 	 lineItem.to_a.sum { |item| item.artist_item_total } * 0.08
   # end

@@ -1,4 +1,4 @@
-<div class="my-2">作品画像<span class="badge badge-danger">必須</span><br>
+<div class="my-2">作品画像(ファイルサイズは5.0M以内)<span class="badge badge-danger">必須</span><br>
 	<%= f.attachment_field :image %>
 	<%= attachment_image_tag f.object, :image, width: "100%" %>
 	<% if @exhibition.persisted? %>

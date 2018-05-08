@@ -63,15 +63,14 @@
                       <% line_items = LineItem.includes(work: :artist).where(artists: {id: [u.id] }) %>
                       <% ordered_items =  line_items.where.not(order_id: nil) %>
                       <td><%= ordered_items.sum(:quantity) %>点</td>
-                      <% sum = 0 %>
-                      <% ordered_items.each do |oi| %>
-                      <% oi_total = oi.price * oi.quantity %>
-          					  <% total_sale = oi_total * 0.8 %>
-                      <% taxin_total = total_sale * 1.08 %>
-          					  <% sum = sum + taxin_total %>
-                      <% end %>
-
-                      <td>¥<%= sum.round.to_s(:delimited) %>円</td>
+                      <%# sum = 0 %>
+                      <%# ordered_items.each do |oi| %>
+                      <%# oi_total = oi.price * oi.quantity %>
+          					  <%# total_sale = oi_total * 0.8 %>
+                      <%# taxin_total = total_sale * 1.08 %>
+          					  <%# sum = sum + taxin_total %>
+                      <%# end %>
+                      <td>¥<%= sum(ordered_items).round.to_s(:delimited) %>円</td>
                       <td>
                         <% if u.is_deleted? %>
                         <a class="badge badge-danger text-white">削除済み</a>

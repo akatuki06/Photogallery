@@ -24,7 +24,7 @@
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
-          <div class="my-2">画像変更<br>
+          <div class="my-2">画像変更(ファイルサイズは1.0M以内)<br>
           <%= f.attachment_field :image %><br>
           </div>
           <%= attachment_image_tag f.object, :image, width: "250px" %>
