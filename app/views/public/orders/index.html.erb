@@ -1,0 +1,92 @@
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <%= render 'layouts/public/sidebar' %>
+      <div class="flex-colum d-flex col-lg-8">
+        <div class="col-lg-12 mx-4">
+         <h1 class="mb-4">購入履歴</h1>
+          <!-- 購入履歴 -->
+          <table class="table">
+            <tbody>
+              <td>
+                <!-- 購入履歴の有無で条件分岐 -->
+
+                <!-- 履歴がない場合 -->
+                <% if @orders.blank? %>
+                <h3　class="indent">※購入履歴はありません※</h3>
+
+                <% else %>
+                <!-- 履歴がある場合 -->
+
+                <% @orders.each do |order| %>
+                <div class="card card-warning">
+                  <div class="card-heading clearfix">
+                    <span style="float: left">
+                      <%= link_to order.created_at.strftime('%Y年%m月%d日 %H:%M'), order_path(order.id),class: "border bg-info" %></span>
+                      <span class="mx-3">ステータス：<%= order.state %></span>
+                    </div>
+                    <div class="card-body" style="padding: 15px 15px 0 15px">
+                      <table class="table">
+                        <tbody>
+                          <% order.line_items.each do |i| %>
+                          <tr>
+                            <td><%= attachment_image_tag i.work, :image, format: 'jpg', class: "center-block img-fluid", fallback: "/no_image_s.png", width: '40', height: '40'%></td>
+                            <td><%= i.work.title %></td>
+                            <td><%= i.work.artist.name %></td>
+                            <td>￥<%= i.price.to_s(:delimited) %></td>
+                            <td><%= i.quantity %>点</td>
+                            <%# total = i.total_price * 1.08 %>
+                            <td>￥<%= i.total_price.round.to_s(:delimited) %></td>
+                          </tr>
+                            <!-- 合計の前までに繰り返しを止める -->
+                            <% end %>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>消費税</td>
+                            <td>￥<%= order.tax.round.to_s(:delimited)  %></td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>送料</td>
+                            <td>￥<%= order.postage.to_s(:delimited)  %></td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>合計</td>
+                            <td>￥<%= order.total.to_s(:delimited)  %>(税込)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <% end %>
+                  <% end %>
+                </td>
+              </tbody>
+            </table>
+    <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+         <div class="row", style="margin-bottom: 60px">
+          <%= paginate @orders, class: "pagenate"%>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,28 @@
+ja:
+  activerecord:
+    models:
+    attributes:
+      work:
+        title: 商品名
+        image: 画像
+        price: 値段
+        stock: 在庫
+      address:
+        name: 名前
+        name_kana: 名前(カナ)
+        zipcode: 郵便番号
+        address: 住所
+        phone: 電話番号
+      order:
+        name: 名前
+        name_kana: 名前(カナ)
+        zipcode: 郵便番号
+        address: 住所
+        phone: 電話番号
+        email: メールアドレス
+        payment: 支払い方法
+      exhibition:
+        title: タイトル名
+        summary: 概要
+        place: 会場
+        term: 会期

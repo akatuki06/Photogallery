@@ -1,2 +1,120 @@
-<h1>Public::StaticPages#how_to_register</h1>
-<p>Find me in app/views/public/static_pages/how_to_register.html.erb</p>
+<div class="py-5 text-center bg-light" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>アーティスト登録方法</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 p-4">
+          <i class="fa fa-user fa-5x mt-1 mx-2"></i>
+          <p class="my-4">
+          <p>
+            <b class="lead">①User</b>
+            <br>ユーザー登録
+          </p>
+            <i>最初にユーザー登録をします。</i>
+          </p>
+        </div>
+        <div class="col-md-4 p-4">
+          <i class="fa fa-user-plus fa-5x mt-1 mx-2"></i>
+          <p class="my-4">
+          <p>
+            <b class="lead">②Artist</b>
+            <br>アーティスト登録
+          </p>
+            <i>ユーザー登録をすると、アーティストとして登録できるようになります。</i>
+          </p>
+        </div>
+        <div class="col-md-4 p-4">
+          <i class="fa fa-table fa-5x mt-1 mx-2"></i>
+          <p class="my-4">
+          <p>
+            <b class="lead">③Wok,Exhibition</b>
+            <br>作品、展覧会登録
+          </p>
+            <i>アーティスト登録をすると、作品や展覧会の情報を登録できます。</i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-5" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center text-primary">アーティスト登録方法の流れ</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-5" >
+	<div class="container">
+	  <div class="row mb-5">
+	    <div class="col-md-7">
+	      <h2 class="text-primary">1.ユーザー登録をしよう</h2>
+
+	      <p class=""><%= link_to "こちらのページ", static_pages_entrance_path, class: "btn-link"  %>から新規ユーザー登録ができます。登録には以下の情報が必要です。<br>・ユーザー名<br>・メールアドレス<br>・パスワード<br>・GoogleやFacebookのアカウントでも登録できます。</p>
+	    </div>
+	    <div class="col-md-5 align-self-center">
+	      <img class="img-fluid d-block w-100 img-thumbnail" src="/assets/howto1"> </div>
+	  </div>
+	  <div class="row mb-5">
+	    <div class="col-md-7">
+	      <h2 class="text-primary">2.マイページを表示しよう</h2>
+	      <p class="">ユーザー登録完了後、画面右上に"マイページ"ボタンが表示されます。それをクリックしてマイページへ移動してください。</p>
+	    </div>
+	    <div class="col-md-5 align-self-center">
+	      <img class="img-fluid d-block w-100 img-thumbnail" src="/assets/howto2"> </div>
+	  </div>
+	  <div class="row mb-5">
+	    <div class="col-md-7">
+	      <h2 class="text-primary">3.アーティスト登録をしよう</h2>
+	      <p class="">マイページ内の"アーティスト登録"ボタンをクリックしてページを移動してください。移動先のフォームに必要情報を記入し、"アーティスト登録"ボタンをクリックしてください。これでアーティスト登録は完了です。</p>
+	    </div>
+	    <div class="col-md-5 align-self-center">
+	      <img class="img-fluid d-block w-100 img-thumbnail" src="/assets/howto3"> </div>
+	  </div>
+	</div>
+</div>
+	  
+<div class="py-5" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center text-primary">作品、展覧会登録方法の流れ</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="py-5" >
+	<div class="container">
+	  <div class="row mb-5">
+	    <div class="col-md-7">
+	      <h2 class="text-primary">1.マイページに移動しよう</h2>
+
+	      <p class="">アーティスト登録後、マイページに"作品新規登録"、"展覧会登録"ボタンが表示されます。そのボタンをクリックしてください。</p>
+	    </div>
+	    <div class="col-md-5 align-self-center">
+	      <img class="img-fluid d-block w-100 img-thumbnail" src="/assets/howto4"> </div>
+	  </div>
+	  <div class="row mb-5">
+	    <div class="col-md-7">
+	      <h2 class="text-primary">2.作品、展覧会を登録しよう</h2>
+	      <p class="">移動先のフォームに必要事項を記入してください。これで作品、展覧会登録は完了です。
+          <div class="alert alert-danger">
+            販売価格の８割がアーティストの売り上げになります。<br><br>
+            (例)販売価格¥10,000円の場合<br>
+            アーティストの売り上げ¥8,000円<br>
+            手数料¥2,000円
+          </div>
+        </p>
+	    </div>
+	    <div class="col-md-5 align-self-center">
+	      <img class="img-fluid d-block w-100 img-thumbnail" src="/assets/howto5"> </div>
+	  </div>
+	</div>
+</div>

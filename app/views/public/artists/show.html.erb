@@ -1,23 +1,44 @@
 <div class="py-5">
     <div class="container">
       <div class="row">
-      <div class="flex-colum d-flex">
-
-        <div class="col-md-4 text-center" >
-        	<%= attachment_image_tag @artist.user, :image, format: 'jpg',
-          class: "center-block", fallback: "/assets/no_image_m.png", width: '250', height: '250'%>
-        <% if user_signed_in? && @artist.user_id == current_user.id %>
-        <div>
-          <%= link_to "アーティスト情報編集", edit_artists_path, class: "col-9 btn bg-danger my-4 p-2" %>
-          <%= link_to "作品新規登録", new_work_path, class: "col-9 btn bg-secondary p-2" %>
+       <div class="col-lg-4 text-center">
+        <%= attachment_image_tag @artist.user, :image, format: 'jpg',
+        class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '100%' %>
+        <div class="form-group my-3">
         </div>
-        <% else %>
-        <% end %>
+        <% if user_signed_in? && current_user.is_artist? && @artist.id == current_user.artist.id %>
+        <div class="col-md-12 my-5">
+          <div class="card">
+            <div class="card-header bg-info">
+              <h5 class="mb-0 text-center text-white">詳細情報</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <%= link_to "クリップ一覧", clips_index_path, class: "list-group-item btn" %>
+              <%= link_to "購入履歴", orders_path, class: "list-group-item btn" %>
+              <%= link_to "プロフィール編集", edit_user_registration_path, class: "list-group-item btn" %>
+              <%= link_to "個人情報詳細", addresses_path, class: "list-group-item btn" %>
+              <% if current_user.is_artist? && !current_user.artist.is_deleted? %>
+              <%= link_to "アーティスト/作品詳細", artist_path(current_user.artist.id), class: "list-group-item btn" %>
+              <%= link_to "作品新規登録", new_work_path, class: "list-group-item btn" %>
+              <% if current_user.artist.exhibition.blank? %>
+              <%= link_to "展覧会登録", new_exhibitions_path, class: "list-group-item btn" %>
+              <% else %>
+              <%= link_to "展覧会編集", edit_exhibitions_path, class: "list-group-item btn" %>
+              <% end %>
+              <%= link_to "売り上げ関連", sales_index_path, class: "list-group-item btn" %>
+              <% else %>
+              <%= link_to "アーティスト登録", new_artists_path, class: "list-group-item btn" %>
+              <% end %>
+            </ul>
+          </div>
         </div>
+  <% end %>
+</div>
 
-        <div class="col-lg-8 mx-4">
+      <div class="flex-colum d-flex col-lg-8">
+        <div class="col-lg-10 offset-1">
           <ul class="list-group list-group-flush">
-            <h5 class="list-group-item md-1"><%= @artist.name %></h5>
+            <h2 class="list-group-item md-1"><%= @artist.name %></h2>
             <h5 class="list-group-item md-1"><%= @artist.url %></h5>
             <a class="list-group-item flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
@@ -38,13 +59,19 @@
               <p class="mb-1"><%= @artist.message %></p>
             </a>
           </ul>
-          <div class="col-12 py-2 bg-success text-center col-md-12">
-            <a>このアーティストをクリップ</a>
-            <i class="fa fa-heart like-btn mx-3"></i>
+          <div id="like-button">
+            <%= render partial: "like", locals:{artist: @artist} %>
           </div>
+        <% if user_signed_in? && @artist.user_id == current_user.id %>
+        <div>
+          <%= link_to "アーティスト情報編集", edit_artists_path, class: "col-9 btn bg-danger my-4 p-2" %>
+        </div>
+        <% else %>
+        <% end %>
         </div>
       </div>
     </div>
+  </div>
     <div class="text-center">
       <div class="container">
         <div class="row">
@@ -58,17 +85,21 @@
           <div class="col-md-3 col-6 p-1">
             <%= link_to work_path(w.id) do %>
           <div class="card">
-            <%= attachment_image_tag w, :image, format: 'jpg',
-            class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+            <div class="imgg">
+              <%= attachment_image_tag w, :image, format: 'jpg',
+              class: "center-block img-fluid imgg imggg" %>
+            </div>
             <div class="card-body">
               <h6 class="card-title text-left"><%= w.title %></h6>
                   <p class="card-text text-right m-1"><%= @artist.name %></p>
                   <div class="card-footer">
-                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円</span>
-                  <div>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                  </div>
+                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円<% if user_signed_in? && w.cliped_by?(current_user) %>
+                  <i class="fa fa-paperclip"" aria-hidden="true" style="color: red;"></i>
+                  <% else %>
+                  <i class="fa fa-paperclip"></i>
+                  <% end %>
+                </span>
+                  
                 </div>
                 <% if user_signed_in? && @artist.user_id == current_user.id %>
                 <div>

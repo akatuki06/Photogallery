@@ -1,6 +1,6 @@
 <div class="col-lg-4 text-center">
   <%= attachment_image_tag current_user, :image, format: 'jpg',
-  class: "center-block", fallback: "/assets/no_image_m.png", width: '250', height: '250'%>
+  class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '100%' %>
   <div class="form-group my-3">
   </div>
   <div class="col-md-12 my-5">
@@ -9,14 +9,19 @@
         <h5 class="mb-0 text-center text-white">詳細情報</h5>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item btn">クリップ一覧</li>
-        <li class="list-group-item btn">購入履歴</li>
+        <%= link_to "クリップ一覧", clips_index_path, class: "list-group-item btn" %>
+        <%= link_to "購入履歴", orders_path, class: "list-group-item btn" %>
         <%= link_to "プロフィール編集", edit_user_registration_path, class: "list-group-item btn" %>
         <%= link_to "個人情報詳細", addresses_path, class: "list-group-item btn" %>
-        <% if current_user.is_artist? %>
-          <%= link_to "アーティスト詳細", artist_path(current_user.artist.id), class: "list-group-item btn" %>
-          <li class="list-group-item btn">展覧会登録・編集</li>
-          <li class="list-group-item btn">売り上げ関連</li>
+        <% if current_user.is_artist? && !current_user.artist.is_deleted? %>
+          <%= link_to "アーティスト/作品詳細", artist_path(current_user.artist.id), class: "list-group-item btn" %>
+          <%= link_to "作品新規登録", new_work_path, class: "list-group-item btn" %>
+            <% if current_user.artist.exhibition.blank? %>
+            <%= link_to "展覧会登録", new_exhibitions_path, class: "list-group-item btn" %>
+            <% else %>
+            <%= link_to "展覧会編集", edit_exhibitions_path, class: "list-group-item btn" %>
+            <% end %>
+          <%= link_to "売り上げ関連", sales_index_path, class: "list-group-item btn" %>
         <% else %>
           <%= link_to "アーティスト登録", new_artists_path, class: "list-group-item btn" %>
         <% end %>

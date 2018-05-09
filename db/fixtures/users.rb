@@ -13,6 +13,8 @@ User.seed do |s|
 	s.name = "ニジ"
 	s.password = "vvvvvv"
 	s.is_artist = true
+	s.image = Rails.root.join("db/fixtures/images/pic_2.jpg").open
+
 end
 
 User.seed do |s|
@@ -21,6 +23,8 @@ User.seed do |s|
 	s.name = "サンジ"
 	s.password = "vvvvvv"
 	s.is_artist = true
+	s.image = Rails.root.join("db/fixtures/images/pic_3.jpg").open
+
 end
 
 User.seed do |s|
@@ -29,6 +33,8 @@ User.seed do |s|
 	s.name = "ヨンジ"
 	s.password = "vvvvvv"
 	s.is_artist = true
+	s.image = Rails.root.join("db/fixtures/images/pic_4.jpg").open
+
 end
 
 User.seed do |s|
@@ -37,4 +43,16 @@ User.seed do |s|
 	s.name = "ゴジ"
 	s.password = "vvvvvv"
 	s.is_artist = true
+	s.image = Rails.root.join("db/fixtures/images/pic_5.jpg").open
+
+end
+
+User.seed do |s|
+	s.id = 6
+	s.email = "6@gmail.com"
+	s.name = "ロクジ"
+	s.password = "vvvvvv"
+	s.is_artist = false
+	s.image = Rails.root.join("db/fixtures/images/pic_6.jpg").open
+
 end

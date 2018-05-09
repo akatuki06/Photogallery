@@ -1,0 +1,37 @@
+<div class="text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center mt-5">
+              <h1>
+              <%= link_to "Exhibitions", exhibitions_path, class: " text-dark" %>
+              </h1><br>
+        </div>
+      </div>
+      <div class="row">
+      	<% @exhibitions.each do |a| %>
+      	<div class="col-md-3 col-6 p-1">
+      		<%= link_to exhibition_path(a.id) do %>
+      		<div class="card">
+            <div class="imgg">
+            <% af = a.images.first %>
+            <%= attachment_image_tag af, :image, format: 'jpg',
+            class: "center-block img-fluid imgg imggg" %>
+            </div>
+      			<div class="card-body">
+      				<h6 class="card-title text-left"><%= a.title %><% if user_signed_in? && a.cliped_by?(current_user) %>
+                <i class="fa fa-paperclip" aria-hidden="true" style="color: red;"></i>
+                <% else %>
+                <i class="fa fa-paperclip" aria-hidden="true" ></i>
+                <% end %></h6>
+      			</a>
+      		  </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" >会期：<%= a.term %></li>
+            </ul>
+      	  </div>
+        </div>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+  </div>

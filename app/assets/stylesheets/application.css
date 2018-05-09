@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require bootstrap-tagsinput
+ *= require featherlight.min.css
  */
 
 
@@ -25,6 +26,28 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+/*dt {
+display: table-cell;
+width: 200px;
+height: 200px;
+vertical-align: middle;
+}*/
+.imggg{
+max-height: 150px;
+}
+
+
+.imgg {
+max-width: 200px;
+max-height: 100px;
+height: 200px;
+margin: 10px auto;
+text-align: center;
+display: flex;
+align-items: center;
+}
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420072213) do
+ActiveRecord::Schema.define(version: 20180429014744) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -56,6 +56,105 @@ ActiveRecord::Schema.define(version: 20180420072213) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_artists_on_user_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clip_artists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_clip_artists_on_artist_id"
+    t.index ["user_id"], name: "index_clip_artists_on_user_id"
+  end
+
+  create_table "clip_exhibitions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "exhibition_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["exhibition_id"], name: "index_clip_exhibitions_on_exhibition_id"
+    t.index ["user_id"], name: "index_clip_exhibitions_on_user_id"
+  end
+
+  create_table "clip_works", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_clip_works_on_user_id"
+    t.index ["work_id"], name: "index_clip_works_on_work_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "exhibitions", force: :cascade do |t|
+    t.integer  "artist_id"
+    t.string   "title"
+    t.text     "summary"
+    t.string   "place"
+    t.string   "term"
+    t.string   "entrance_fee"
+    t.string   "closed_day"
+    t.string   "opneing_hour"
+    t.string   "information"
+    t.string   "url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["artist_id"], name: "index_exhibitions_on_artist_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.integer  "exhibition_id"
+    t.string   "image_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["exhibition_id"], name: "index_images_on_exhibition_id"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "work_id"
+    t.integer  "cart_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "quantity",   default: 1
+    t.integer  "order_id"
+    t.integer  "price"
+    t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["work_id"], name: "index_line_items_on_work_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id",        default: 0
+    t.string   "state",          default: "未完了"
+    t.integer  "total",          default: 0
+    t.integer  "postage",        default: 500
+    t.string   "payment_state",  default: "未完了"
+    t.string   "shipment_state", default: "未完了"
+    t.string   "name"
+    t.string   "name_kana"
+    t.string   "zipcode"
+    t.integer  "prefecture_id"
+    t.text     "address"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "payment"
+    t.boolean  "is_deleted",     default: false, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["name"], name: "index_orders_on_name"
+    t.index ["name_kana"], name: "index_orders_on_name_kana"
+    t.index ["prefecture_id"], name: "index_orders_on_prefecture_id"
   end
 
   create_table "prefectures", force: :cascade do |t|

@@ -1,15 +1,18 @@
 class Public::WorksController < Public::Base
 	before_action :authenticate_user!, except: [:index, :show]
-	before_action :artist_user, except: [:index, :show]
+	before_action :artist_user, except: [:new, :index, :show]
   before_action :ensure_correct_artist, only: [:edit, :update, :soft_delete]
 
 
   def index
-    @works = Work.all
+    @search = Work.ransack(params[:q])
+    @works = @search.result.where(:is_deleted => false).page(params[:page]).reverse_order
   end
 
   def show
+    @works = Work.all
   	@work = Work.find(params[:id])
+    @line_item = LineItem.new
   end
 
   def new
@@ -45,13 +48,13 @@ class Public::WorksController < Public::Base
   private
 
   def artist_user
-  	redirect_to root_path unless current_user.is_artist?
+  	redirect_to root_path unless current_user.is_artist? && !current_user.artist.is_deleted?
   end
 
   def ensure_correct_artist
      @work = Work.find(params[:id])
     if @work.artist.user != current_user || @work.is_deleted == true
-       redirect_to root_path, notice: "権限がありません"
+       redirect_to root_path, alert: "権限がありません"
       end
   end
 
@@ -61,7 +64,7 @@ class Public::WorksController < Public::Base
 						  		:price,
 						  		:stock,
 						  		:creation_date,
-						  		:editionm,
+						  		:edition,
 						  		:size,
 						  		:technique,
 						  		:comment,

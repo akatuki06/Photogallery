@@ -1,0 +1,116 @@
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <%= render 'layouts/public/sidebar' %>
+      <div class="flex-colum d-flex col-lg-8">
+        <div class="col-lg-12 mx-4">
+         <h1 class="mb-4">購入詳細</h1>
+         <div class="card">
+          <div class="card-body p-5">
+            <ul class="list-group list-group-flush">
+              <h5 class="list-group-item md-1">注文日：<%= @order.created_at.strftime('%Y年%m月%d日 %H:%M') %></h5>
+              <h5 class="list-group-item md-1">ステータス：<%= @order.state %></h5>
+              <a class="list-group-item  flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">お届け先</h5>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">お名前：<%= @order.name %></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">〒<%= @order.zipcode %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center"><%= @order.prefecture.name %><%= @order.address %></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">電話番号：<%= @order.phone %></li>
+                  </ul>
+                </a>
+                <a class="list-group-item  flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">支払い方法</h5>
+                  </div>
+                  <p class="mb-1"><%= @order.payment %></p>
+                </a>
+                <a class="list-group-item  flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">注文内容</h5>
+                  </div>
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td>ID</td>
+                        <td>作品名</td>
+                        <td>単価</td>
+                        <td>枚数</td>
+                        <td>小計</td>
+                        <td></td>
+                      </tr>
+                      <% @order.line_items.each do |i| %>
+                      <tr>
+                        <td><%= i.work.id %></td>
+                        <td><%= i.work.title %></td>
+                            <td><%= i.work.artist.name %></td>
+                            <td>￥<%= i.price.to_s(:delimited) %></td>
+                            <td><%= i.quantity %>点</td>
+                            <td>￥<%= i.total_price.round.to_s(:delimited) %></td>
+                          </tr>
+                            <!-- 合計の前までに繰り返しを止める -->
+                            <% end %>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>消費税</td>
+                            <td>￥<%= @order.tax.round.to_s(:delimited)  %></td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>送料</td>
+                            <td>￥<%= @order.postage.to_s(:delimited)  %></td>
+                          </tr>
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>ご請求額</td>
+                        <td>¥<%= @order.total.to_s(:delimited) %>円</td>
+                      </tr>
+                      </tbod>
+                  </table>
+                </a>
+              </ul>
+              <div class="row justify-content-center">
+
+                <div class="col-md-8 text-center">
+                  <h3 class="my-3">作品情報</h3>
+                  <% @order.line_items.each do |w| %>
+                  <%= link_to work_path(w.work.id) do %>
+                  <div class="card">
+                    <div class="imgg">
+                   <%= attachment_image_tag w.work, :image, format: 'jpg',
+                   class: "center-block img-fluid imgg imggg", fallback: "/assets/no_image_m.png" %>
+                    </div>
+                    <div class="card-body">
+                    <h6 class="card-title text-left"><%= w.work.title %></h6>
+                    <p class="card-text text-right m-1"><%= w.work.artist.name %></p>
+                      <div class="card-footer">
+                      <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円</span>
+                        <div>
+                        <% if w.work.stock == 0 %>
+                        <span class="badge badge-danger">売り切れ</span>
+                        <% end %>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+                  <% end %>
+                  </div>
+                <% end %>
+                </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

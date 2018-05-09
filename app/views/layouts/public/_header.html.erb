@@ -1,10 +1,17 @@
 <header>
-	<nav class="navbar navbar-expand-md navbar-dark flex-column h-50" style="background-image: url('/assets/I_020.JPG');background-position: center;background-size:cover;">
+  <nav class="navbar navbar-expand-md navbar-dark flex-column h-50 bg-dark" >
     <div class="container">
-      <div class="row my-3">
-        <%= link_to root_path, class: "h1  text-dark w-25" do %>
+      <div class="row my-3 flex-column">
+        <%= link_to root_path, class: "h1 w-25 text-white" do %>
         Photogallery</a>
         <% end %>
+    <form class="form-inline" >
+      <% if user_signed_in? %>
+      <a>こんにちは<%= current_user.name %>さん</a>
+      <% else %>
+      <a>こんにちはゲストさん</a>
+      <% end %>
+    </form>
       </div>
       <div class="row">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
@@ -17,7 +24,7 @@
               <%= link_to "作品一覧", works_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">写真展一覧</a>
+              <%= link_to "写真展一覧", exhibitions_path, class: "nav-link" %>
             </li>
             <% if user_signed_in? %>
             <li class="nav-item">
@@ -31,22 +38,14 @@
               <%= link_to "ログイン/新規登録", static_pages_entrance_path, class: "nav-link" %>
             <% end %>
             </li>
+            <% if session[:cart_id].present? %>
             <li class="nav-item">
-              <a class="nav-link" href="#">カート</a>
+              <%= link_to "カート", cart_path(session[:cart_id]), class: "nav-link fa fa-shopping-cart bg-light text-dark" %>
             </li>
+            <% end %>
           </ul>
         </div>
       </div>
     </div>
-    <form class="form-inline offset-md-8" action="">
-      <% if user_signed_in? %>
-      <a>こんにちは<%= current_user.name %>さん</a>
-      <a><%= current_user.email %></a>
-      <% else %>
-      <a>こんにちはゲストさん</a>
-      <% end %>
-      <input class="form-control mr-2 form-control-sm" type="text" placeholder="Search">
-      <button class="btn btn-outline-dark btn-sm" type="submit">Search</button>
-    </form>
   </nav>
 </header>

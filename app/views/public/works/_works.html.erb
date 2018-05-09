@@ -1,0 +1,43 @@
+ <div class="text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center mt-5">
+          <h1>
+          <%= link_to "Works", works_path, class: " text-dark" %>
+          </h1><br>
+      </div>
+    </div>
+    <div class="row">
+      <% @works.each do |w| %>
+        <% if w.is_deleted == false %>
+          <div class="col-md-3 col-6 p-1">
+            <div class="card">
+              <div class="imgg">
+                <%= link_to work_path(w.id) do %>
+                  <%= attachment_image_tag w, :image, format: 'jpg',
+                  class: "center-block img-fluid imgg imggg", fallback: "/assets/no_image_m.png"%>
+              </div>
+              <div class="card-body">
+                <h6 class="card-title text-left"><%= w.title %></h6>
+                <p class="card-text text-right m-1"><%= w.artist.name %></p>
+                <div class="card-footer">
+                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円
+                    <% if user_signed_in? && w.cliped_by?(current_user) %>
+                      <i class="fa fa-paperclip"" aria-hidden="true" style="color: red;"></i>
+                    <% else %>
+                      <i class="fa fa-paperclip"></i>
+                    <% end %>
+                      <% if w.stock == 0 %>
+                        <span class="badge badge-danger">売り切れ</span>
+                    <% end %>
+                  </span>
+                </div>
+              </div>
+                <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

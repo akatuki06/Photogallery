@@ -2,8 +2,10 @@
 
    <div>タイトル名<span class="badge badge-danger">必須</span></div>
       <%= f.text_field :title,size: "50x10" %>
-   <div class="my-2">作品画像<span class="badge badge-danger">必須</span><br>
-      <%= f.attachment_field :image %>
+   <div class="my-2">作品画像(ファイルサイズは5.0M以内)<span class="badge badge-danger">必須</span><br>
+      <%= f.attachment_field :image %><br>
+      <%= attachment_image_tag f.object, :image, width: "50%" %>
+
    </div>
    <div class="my-2">値段<span class="badge badge-danger">必須(半角数字)</span></div>
       <%= f.text_field :price,size: "50x10", placeholder: "例：10000" %>

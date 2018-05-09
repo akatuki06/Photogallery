@@ -22,11 +22,17 @@ class Public::ArtistsController <  Public::Base
   end
 
   def index
-    @artists = Artist.all
+    @search = Artist.ransack(params[:q])
+    @artists = @search.result.where(:is_deleted => false).page(params[:page]).reverse_order
+
+    # @s = Post.ransack(params[:q])  
+    # @s.sorts = ['name asc', 'created_at desc'] if @s.sorts.empty?
+    # @posts = @search.result.paginate(page: params[:page], per_page: 20)
   end
 
   def show
     @artist = Artist.find(params[:id])
+    @works = Work.all
     # @works = Work.where(artist_id: params[:id])あとで
   end
 

@@ -1,11 +1,17 @@
  <div class="py-5">
   <div class="container">
     <div class="row">
-      <div class="flex-colum d-flex">
 
-        <div class="col-md-4 text-center mx-1">
+        <div class="col-lg-4 text-center">
+
+          <%= link_to work_path(@work), "data-featherlight" => ".lightbox" do  %>
           <%= attachment_image_tag @work, :image, format: 'jpg',
-          class: "center-block", fallback: "/assets/no_image_m.png", width: '250', height: '250'%>
+          class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '100%'%>
+          <% end %>
+          <div class="badge badge-pill badge-danger">
+            画像をクリックすると拡大します
+          </div>
+
           <% if user_signed_in? && @work.artist.user_id == current_user.id %>
           <div>
             <%= link_to "作品情報編集", edit_work_path(@work), class: "col-9 btn bg-danger my-4 p-2" %>
@@ -21,7 +27,7 @@
               <%= link_to artist_path(@work.artist.id) do %>
               <div class="card-body">
                 <%= attachment_image_tag @work.artist.user, :image, format: 'jpg',
-                class: "center-block", fallback: "/assets/no_image_m.png", width: '100', height: '100'%>
+                class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '100', height: '100'%>
                 <p class="card-text"><%= @work.artist.name %></p>
               </div>
               <% end %>
@@ -29,12 +35,27 @@
           </div>
         </div>
 
-        <div class="col-lg-8 mx-4" >
+      <div class="flex-colum d-flex col-lg-8">
+        <div class="col-lg-10 mx-3" >
           <ul class="list-group list-group-flush">
-            <h5 class="list-group-item md-1">作品名：<%= @work.title %></h5>
-            <h5 class="list-group-item md-1">¥<%= @work.price.to_s(:delimited) %>円
-              <button type="button" class="btn btn-primary mx-5">カートに入れる</button>
-            </h5>
+            <h4 class="list-group-item md-1">作品名：<%= @work.title %></h4>
+            <h4 class="list-group-item md-1 d-inline-flex">¥<%= @work.price.to_s(:delimited) %>円
+              <span class="mx-2">
+              <% if @work.stock == 0 %>
+                <button type="button" class="btn btn-danger" disabled="disabled">売り切れ</button>
+              <% elsif user_signed_in? || session[:cart_id].present? %>
+                  <%= form_for @line_item, url:line_items_path(work_id: @work) do |li| %>
+                  <%= li.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: @work.stock %>
+                  <%= li.submit 'カートに入れる', class:'btn btn-primary' %>
+                  <% end %>
+              <% else %>
+                  <%= form_for @line_item, url:line_items_path(work_id: @work) do |li| %>
+                  <%= li.number_field :quantity, class:"border btn btn-default btn-xs", min:"1", max: @work.stock %>
+                  <%= li.submit 'カートに入れる', data: {confirm: 'ログインせずに買い物しますか？'}, class:'btn btn-primary' %>
+                  <% end %>
+              <% end %>
+              </span>
+              </h4>
             <li class="list-group-item">制作年：<%= @work.creation_date %></li>
                 <li class="list-group-item">エディション：<%= @work.edition %></li>
                 <li class="list-group-item">サイズ：<%= @work.size %></li>
@@ -52,10 +73,10 @@
             </a>
 
           </ul>
-          <div class="col-12 py-2 bg-success text-center col-md-12">
-            <a>この作品をクリップ</a>
-            <i class="fa fa-heart like-btn mx-3"></i>
+          <div id="like-button">
+            <%= render partial: "like", locals:{work: @work} %>
           </div>
+
         </div>
       </div>
     </div>
@@ -63,7 +84,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 my-3">
-            <h4 class="mb-4 text-dark my-3" contenteditable="true"><%= @work.artist.name %>さんの作品</h4>
+            <h2 class="mb-4 text-dark my-3" contenteditable="true"><%= @work.artist.name %>さんの作品</h2>
           </div>
         </div>
         <div class="row">
@@ -72,17 +93,21 @@
           <div class="col-md-3 col-6 p-1">
             <%= link_to work_path(w.id) do %>
             <div class="card">
+              <div class="imgg">
               <%= attachment_image_tag w, :image, format: 'jpg',
-              class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+              class: "center-block img-fluid imgg imggg", fallback: "/assets/no_image_m.png"%>
+              </div>
               <div class="card-body">
                 <h6 class="card-title text-left"><%= w.title %></h6>
                 <p class="card-text text-right m-1"><%= @work.artist.name %></p>
                 <div class="card-footer">
-                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円</span>
-                  <div>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                  </div>
+                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円<% if user_signed_in? && w.cliped_by?(current_user) %>
+                  <i class="fa fa-paperclip"" aria-hidden="true" style="color: red;"></i>
+                  <% else %>
+                  <i class="fa fa-paperclip"></i>
+                  <% end %>
+                </span>
+                  
                 </div>
                 <% if user_signed_in? && @work.artist.user_id == current_user.id %>
                 <div>
@@ -102,4 +127,7 @@
     </div>
   </div>
 </div>
+
+
+<%= attachment_image_tag @work, :image, format: 'jpg', width: '100%', height: '100%', class: ["center-block", "img-fluid", "lightbox"] %>
 

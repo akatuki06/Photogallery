@@ -1,85 +1,24 @@
 <div class="container">
-    <form class="form-inline col-8 offset-2 justify-content-center my-5 bg-light">
-      <span class="">キーワード</span>
-      <div class="form-group m-2">
-        <input type="password" class="form-control" id="passwd" placeholder=""> </div>
-      <button type="button" class="col-2 btn btn-primary">検索 ≫</button>
-      <select class="form-control input-sm ml-auto" id="pref">
-        <option>新着順</option>
-        <option>アルファベット順</option>
-        <option>五十音順</option>
-        <option>価格が高い順</option>
-        <option>価格が安い順</option>
-      </select>
-    </form>
-  </div>
-  <div class="text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="mb-4 text-dark">Works
-            <br> </h1>
-        </div>
-      </div>
-
-      <div class="row">
-      	<% @works.each do |w| %>
-        <% if w.is_deleted == false %>
-      	<div class="col-md-3 col-6 p-1">
-      		<%= link_to work_path(w.id) do %>
-      		<div class="card">
-      			<%= attachment_image_tag w, :image, format: 'jpg',
-      			class: "center-block", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
-      			<div class="card-body">
-      				<h6 class="card-title text-left"><%= w.title %></h6>
-      				<p class="card-text text-right m-1"><%= w.artist.name %></p>
-                <div class="card-footer">
-                  <span class="mx-1">¥<%= w.price.to_s(:delimited) %>円</span>
-                  <div>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                    <i class="fa fa-heart like-btn mx-1"></i>
-                  </div>
-                </div>
-      			</a>
-      		</div>
-      	</div>
-      </div>
-      <% end %>
-      <% end %>
-      <% end %>
-      </div>
+  <form class="form-inline col-8 offset-2 justify-content-center my-5 bg-light">
+    <%= search_form_for @search do |f| %>
+    <span class="">キーワード</span>
+    <div class="form-group m-2"　>
+      <%= f.search_field :title_or_creation_date_or_technique_or_comment_or_tags_name_cont_any %>
     </div>
-  </div>
+    <span class="border"><%= sort_link(@search, :updated_at, '新着順', hide_indicator: true) %></span>/
+    <span class="border"><%= sort_link(@search, :price, '価格順', hide_indicator: true, default_order: :desc) %></span>
+    <div class="mx-2"><%= f.submit "検索", class: "btn btn-primary" %></div>
+  </form>
+</div>
+<% end %>
+ <%= render 'public/works/works' %>
   <div class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" aria-label="Previous">
-                <span aria-hidden="true">«</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" aria-label="Next">
-                <span aria-hidden="true">»</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
+         <div class="row", style="margin-bottom: 60px">
+          <%= paginate @works, class: "pagenate"%>
+        </div>
         </div>
       </div>
     </div>

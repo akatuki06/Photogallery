@@ -70,6 +70,12 @@ protected
     users_show_path(resource)
   end
 
+  ### サインイン後のリダイレクト ###
+  def after_sign_in_path_for(resource)
+    super(resource)
+    root_path
+  end
+
   ### サインアップ後のリダイレクト ###
   def after_sign_up_path_for(resource)
     super(resource)
@@ -77,9 +83,9 @@ protected
   end
 
   # ### アカウント編集のパスワード無し設定 ###
-  # def update_resource(resource, params)
-  #   resource.update_without_password(params)
-  # end
+  def update_resource(resource, params)
+    resource.update_without_current_password(params)
+  end
 
   def configure_permitted_parameters
     added_attrs = [:name, :introduction, :image, :is_deleted]

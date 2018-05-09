@@ -1,0 +1,60 @@
+<%= form_for @order, :url => orders_path do |f| %>
+
+<% if @order.errors.any? %>
+    <div id="error_explanation">
+      <a>エラーが<%= @order.errors.count %>件あります。</a>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-2 border-bottom">名前：
+    <%= @order.name %></div>
+    <%= f.hidden_field :name %>
+  <div class="my-2 border-bottom">名前(カナ)：
+    <%= @order.name_kana %></div>
+    <%= f.hidden_field :name_kana %>
+  <div class="my-2 border-bottom">郵便番号：
+  <%= @order.zipcode %></div>
+    <%= f.hidden_field :zipcode %>
+  <div class="my-2 border-bottom">都道府県：
+    <%= @order.prefecture.name %></div>
+    <%= f.hidden_field :prefecture_id %>
+  <div class="my-2 border-bottom">住所：
+    <%= @order.address %></div>
+    <%= f.hidden_field :address %>
+  <div class="my-2 border-bottom">電話番号：
+    <%= @order.phone %></div>
+    <%= f.hidden_field :phone %>
+    <div class="my-2 border-bottom">e-mail：
+    <%= @order.email %></div>
+    <%= f.hidden_field :email %>
+  <div class="my-2 border-bottom">支払い方法：
+    <%= @order.payment %></div>
+    <%= f.hidden_field :payment %>
+<% if user_signed_in? %>
+<%= f.hidden_field :user_id, value: current_user.id %>
+<% end %>
+
+  <div class="my-2 card"><h3 class="card-header">購入金額</h3>
+  <div class="card-body border">
+    <h4>小計：¥<%= @cart.total_price.to_s(:delimited) %>円</h4>
+    <h5>消費税：¥<%= @cart.tax.round.to_s(:delimited) %>円</h5>
+    <h5>配送料：¥<%= @order.postage.to_s(:delimited) %>円</h5>
+    <h3>合計金額：¥<%= order_total(@cart.total_price,@cart.tax,@order.postage).round.to_s(:delimited) %>円</h3>
+    <%= f.hidden_field :total, value: order_total(@cart.total_price,@cart.tax,@order.postage) %>
+  </div>
+  </div>
+
+    <div class="actions">
+      <%= f.submit '内容を変更する', name: 'back', class: "btn btn-light col-xs-12 my-3"  %>
+    </div>
+
+  <div>
+    <%= f.submit "注文を確定する", class: "btn btn-primary col-xs-12 my-3" %>
+  </div>
+<% end %>
