@@ -45,6 +45,7 @@
     <h4>小計：¥<%= @cart.total_price.to_s(:delimited) %>円</h4>
     <h5>消費税：¥<%= @cart.tax.round.to_s(:delimited) %>円</h5>
     <h5>配送料：¥<%= @order.postage.to_s(:delimited) %>円</h5>
+                <%= f.hidden_field :postage %>
     <h3>合計金額：¥<%= order_total(@cart.total_price,@cart.tax,@order.postage).round.to_s(:delimited) %>円</h3>
     <%= f.hidden_field :total, value: order_total(@cart.total_price,@cart.tax,@order.postage) %>
   </div>

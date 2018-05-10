@@ -1,4 +1,4 @@
-<div class="py-5">
+<div class="py-1">
   <div class="container">
     <div class="row">
       <%= render 'layouts/public/sidebar' %>
@@ -45,15 +45,13 @@
                       <tr>
                         <td><%= i.work.id %></td>
                         <td><%= i.work.title %></td>
-                            <td><%= i.work.artist.name %></td>
-                            <td>￥<%= i.price.to_s(:delimited) %></td>
-                            <td><%= i.quantity %>点</td>
-                            <td>￥<%= i.total_price.round.to_s(:delimited) %></td>
-                          </tr>
+                        <td><%= i.quantity %>点</td>
+                        <td>￥<%= i.price.to_s(:delimited) %></td>
+                        <td>￥<%= i.total_price.round.to_s(:delimited) %></td>
+                      </tr>
                             <!-- 合計の前までに繰り返しを止める -->
                             <% end %>
                           <tr>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -61,7 +59,6 @@
                             <td>￥<%= @order.tax.round.to_s(:delimited)  %></td>
                           </tr>
                           <tr>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -85,7 +82,7 @@
                   <h3 class="my-3">作品情報</h3>
                   <% @order.line_items.each do |w| %>
                   <%= link_to work_path(w.work.id) do %>
-                  <div class="card">
+                  <div class="card my-3">
                     <div class="imgg">
                    <%= attachment_image_tag w.work, :image, format: 'jpg',
                    class: "center-block img-fluid imgg imggg", fallback: "/assets/no_image_m.png" %>
