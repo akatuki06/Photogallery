@@ -38,11 +38,12 @@
                       <th>売上合計</th>
                     </tr>
                   </thead>
+                      <% ordered_items =  LineItem.where(order_id: @orders) %>
                       <% total = @orders.sum(:total) %>
                       <% postage = @orders.sum(:postage) %>
                       <% a = total - postage %>
-                      <% b = a * 0.8 %>
-                      <% c = a * 0.2 %>
+                      <% b =  sum(ordered_items) %>
+                      <% c = a - b  %>
                   <tbody>
                     <tr>
                       <td><%= @orders.count %>件</td>

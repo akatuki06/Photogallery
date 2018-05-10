@@ -86,9 +86,11 @@
           <% @artist.works.each do |w| %>
           <div class="col-md-3 col-6 p-1">
             <%= link_to admin_work_path(w.id) do %>
-            <div class="card">
+            <div class="card my-3">
+              <div class="imgg">
               <%= attachment_image_tag w, :image, format: 'jpg',
-              class: "center-block img-fluid", fallback: "/assets/no_image_m.png", width: '200', height: '200'%>
+              class: "center-block img-fluid imgg imggg"%>
+              </div>
               <div class="card-body">
                 <h6 class="card-title text-left"><%= w.title %></h6>
                 <p class="card-text text-right m-1"><%= @artist.name %></p>
