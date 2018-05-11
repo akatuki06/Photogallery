@@ -15,6 +15,8 @@ module ApplicationHelper
 
 
 	# 遠藤さんヘルプ
+
+	# admin_artist_index
 	def sum(ordered_items)
 		sum = 0
        	ordered_items.each do |oi|
@@ -38,5 +40,7 @@ module ApplicationHelper
         end
         return sum
 	end
+
+	
 
 end
