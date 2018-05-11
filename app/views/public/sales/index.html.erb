@@ -19,7 +19,6 @@
 											<th>消費税</th>
 										</tr>
 									</thead>
-									<% sum = 0 %>
 								<% @ordered_items.each do |oi| %>
 									<tbody>
 										<tr>
@@ -30,15 +29,13 @@
 
 											<td>¥<%= oi.artist_item_total.round.to_s(:delimited) %>円
 											</td>
-											<% tax = oi.artist_item_total * 0.08 %>
-											<td><%= tax %></td>
-											<% sum = sum + oi.artist_item_total + tax %>
+											<td>¥<%= tax(oi).round.to_s(:delimited) %>円</td>
 										</tr>
 								<% end %>
 									</tbody>
 								</table>
 								<h3 class="text-right my-3"> 売り上げ合計
-									<span class="mx-2">¥<%= sum.round.to_s(:delimited)  %></span>
+									<span class="mx-2">¥<%= artist_total(@ordered_items).round.to_s(:delimited)  %></span>
 								</h3>
 								<div class="col-md-12">
 									<div class="row", style="margin-bottom: 60px">
